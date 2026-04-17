@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Leadership Mastery | Future-Forward Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00F5FF;
+            --electric-purple: #9D4EDD;
+            --deep-space: #0A0A0F;
+            --carbon: #121214;
+            --silver: #C0C0C0;
+            --quantum-pink: #FF006E;
+            --stellar-gold: #FFD700;
+            --plasma-blue: #5D3FD3;
+            --aurora-green: #3AFF9E;
+            --white: #FFFFFF;
+            --off-white: #E8E8E8;
+            --glass: rgba(255,255,255,0.04);
+            --glass-border: rgba(255,255,255,0.08);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', 'Century Gothic', system-ui, sans-serif;
+            background: var(--deep-space);
+            color: var(--off-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        .grid-bg {
+            position: fixed; inset:0; z-index:0; pointer-events:none;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position:fixed; top:0; width:100%; z-index:1000;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.8rem 2rem;
+            transition: all 0.3s;
+        }
+        nav.scrolled { padding: 0.5rem 2rem; background: rgba(10,10,15,0.95); }
+        nav ul { display:flex; justify-content:center; gap:0.4rem; list-style:none; flex-wrap:wrap; }
+        nav a {
+            color: var(--silver); text-decoration:none; font-size:0.9rem; font-weight:500;
+            padding: 0.6rem 1.1rem; border-radius:10px; transition: all 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: var(--white);
+            background: linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            box-shadow: 0 0 25px rgba(93,63,211,0.4);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height:100vh; display:flex; align-items:center; justify-content:center;
+            text-align:center; padding:8rem 2rem 4rem; position:relative; overflow:hidden;
+        }
+        .hero::before {
+            content:''; position:absolute; inset:0;
+            background: url('images/hero-main.png') center/cover no-repeat;
+            opacity:0.12; mix-blend-mode:overlay;
+        }
+        .hero::after {
+            content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+            background: radial-gradient(circle, rgba(93,63,211,0.12) 0%, transparent 70%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes heroGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .hero-inner { position:relative; z-index:2; max-width:1100px; }
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight:700; letter-spacing:-2px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--electric-purple), var(--quantum-pink));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+            margin-bottom:1.5rem; animation: fadeUp 1s ease-out;
+        }
+        .hero p {
+            font-size:1.4rem; color:var(--silver); font-weight:300;
+            max-width:700px; margin:0 auto 1.5rem; animation: fadeUp 1s ease-out 0.2s both;
+        }
+        .hero-tags {
+            display:flex; justify-content:center; gap:0.8rem; flex-wrap:wrap; margin-top:1.5rem;
+            animation: fadeUp 1s ease-out 0.4s both;
+        }
+        .hero-tag {
+            background:var(--glass); border:1px solid var(--glass-border);
+            padding:0.5rem 1rem; border-radius:20px; font-size:0.85rem;
+            color:var(--neon-cyan); transition:all 0.3s; cursor:default;
+        }
+        .hero-tag:hover { background:rgba(0,245,255,0.1); border-color:var(--neon-cyan); transform:translateY(-2px); }
+        .cta {
+            display:inline-block; margin-top:2rem;
+            background: linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            color:var(--white); padding:1rem 2.5rem; font-size:1.1rem; font-weight:600;
+            text-decoration:none; border-radius:12px; cursor:pointer;
+            box-shadow: 0 0 30px rgba(93,63,211,0.3); transition:all 0.4s;
+            animation: fadeUp 1s ease-out 0.6s both;
+        }
+        .cta:hover { transform:translateY(-4px); box-shadow:0 15px 50px rgba(93,63,211,0.5); }
+
+        /* ─── SECTIONS ─── */
+        section { padding:6rem 2rem; position:relative; z-index:1; }
+        .section-head { text-align:center; margin-bottom:4rem; }
+        .section-title {
+            font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight:700;
+            background: linear-gradient(135deg, var(--white), var(--silver));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+            margin-bottom:1rem;
+        }
+        .section-sub {
+            font-size:1.2rem; color:var(--silver); max-width:750px; margin:0 auto; font-weight:300;
+        }
+
+        /* ─── TAB NAV ─── */
+        .tab-nav {
+            display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap;
+            margin-bottom:3rem;
+        }
+        .tab-btn {
+            background:var(--glass); border:1px solid var(--glass-border);
+            color:var(--silver); padding:0.8rem 1.5rem; border-radius:12px;
+            font-size:0.95rem; font-weight:500; cursor:pointer; transition:all 0.3s;
+            font-family:inherit;
+        }
+        .tab-btn:hover { border-color:var(--neon-cyan); color:var(--white); }
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            color:var(--white); border-color:transparent;
+            box-shadow: 0 0 20px rgba(93,63,211,0.4);
+        }
+        .tab-panel { display:none; }
+        .tab-panel.active { display:block; animation: fadeUp 0.5s ease-out; }
+
+        /* ─── MODULE CARDS ─── */
+        .modules-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(480px,1fr));
+            gap:2rem; max-width:1600px; margin:0 auto;
+        }
+        .mod-card {
+            background:var(--glass); border:1px solid var(--glass-border);
+            border-radius:20px; overflow:hidden; transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
+            position:relative;
+        }
+        .mod-card:hover {
+            transform:translateY(-8px); border-color:rgba(0,245,255,0.25);
+            box-shadow:0 25px 60px rgba(93,63,211,0.25);
+        }
+        .mod-card img {
+            width:100%; height:280px; object-fit:cover;
+            transition: transform 0.6s; display:block;
+        }
+        .mod-card:hover img { transform:scale(1.08); }
+        .mod-img-wrap { overflow:hidden; }
+        .mod-body { padding:1.8rem; }
+        .mod-badge {
+            display:inline-flex; align-items:center;
+            background:linear-gradient(135deg, rgba(93,63,211,0.3), rgba(157,78,221,0.3));
+            border:1px solid var(--glass-border); padding:0.4rem 1rem; border-radius:20px;
+            font-size:0.8rem; font-weight:600; color:var(--neon-cyan); margin-bottom:1rem;
+        }
+        .mod-body h3 {
+            font-size:1.6rem; color:var(--white); margin-bottom:0.8rem; font-weight:600;
+        }
+        .mod-body p { font-size:0.95rem; color:var(--silver); margin-bottom:1rem; font-weight:300; line-height:1.8; }
+        .use-case {
+            background:rgba(0,245,255,0.04); border-left:3px solid var(--neon-cyan);
+            padding:0.8rem 1rem; margin:0.8rem 0; border-radius:0 10px 10px 0;
+        }
+        .use-case strong {
+            display:block; color:var(--neon-cyan); font-size:0.72rem;
+            text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.3rem;
+        }
+        .use-case span { color:var(--off-white); font-size:0.88rem; }
+        .mod-link {
+            display:inline-block; color:var(--electric-purple); text-decoration:none;
+            font-weight:600; font-size:0.9rem; margin-top:0.8rem; transition:all 0.3s;
+        }
+        .mod-link:hover { color:var(--neon-cyan); }
+
+        /* ─── CLAUDE SECTION ─── */
+        .claude-section {
+            background: linear-gradient(135deg, rgba(93,63,211,0.08), rgba(157,78,221,0.05));
+            border-top:1px solid var(--glass-border); border-bottom:1px solid var(--glass-border);
+        }
+        .claude-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr));
+            gap:1.8rem; max-width:1400px; margin:0 auto;
+        }
+        .claude-card {
+            background:var(--glass); border:1px solid var(--glass-border);
+            border-radius:16px; padding:2rem; transition:all 0.4s;
+        }
+        .claude-card:hover {
+            border-color:rgba(0,245,255,0.2); transform:translateY(-4px);
+            box-shadow:0 15px 40px rgba(93,63,211,0.2);
+        }
+        .claude-icon { font-size:2.5rem; margin-bottom:1rem; }
+        .claude-card h3 { font-size:1.3rem; color:var(--white); margin-bottom:0.6rem; }
+        .claude-card p { font-size:0.9rem; color:var(--silver); line-height:1.7; }
+        .claude-tag {
+            display:inline-block; background:rgba(0,245,255,0.08); border:1px solid rgba(0,245,255,0.15);
+            padding:0.25rem 0.7rem; border-radius:12px; font-size:0.75rem;
+            color:var(--neon-cyan); margin-top:0.8rem;
+        }
+
+        /* ─── EXERCISES ─── */
+        .exercises-section { background: linear-gradient(180deg, var(--deep-space), #0D0D1A); }
+        .ex-grid { max-width:1100px; margin:3rem auto 0; }
+        .ex-card {
+            display:flex; gap:1.5rem; align-items:flex-start;
+            background:var(--glass); border:1px solid var(--glass-border);
+            border-radius:16px; padding:1.8rem; margin-bottom:1.5rem;
+            transition:all 0.3s;
+        }
+        .ex-card:hover { border-color:rgba(0,245,255,0.2); transform:translateX(6px); }
+        .ex-num {
+            min-width:56px; min-height:56px; border-radius:14px;
+            background:linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.4rem; font-weight:700;
+        }
+        .ex-card h4 { font-size:1.2rem; color:var(--white); margin-bottom:0.5rem; }
+        .ex-card p { font-size:0.9rem; color:var(--silver); line-height:1.7; }
+        .ex-pharma {
+            background:rgba(58,255,158,0.05); border-left:3px solid var(--aurora-green);
+            padding:0.6rem 1rem; margin-top:0.8rem; border-radius:0 8px 8px 0;
+            font-size:0.85rem; color:var(--aurora-green);
+        }
+
+        /* ─── INTERACTIVE QUIZ ─── */
+        .quiz-section { max-width:900px; margin:0 auto; }
+        .quiz-card {
+            background:var(--glass); border:1px solid var(--glass-border);
+            border-radius:20px; padding:2.5rem;
+        }
+        .quiz-card h3 {
+            font-size:1.5rem; color:var(--white); margin-bottom:1.5rem;
+        }
+        .quiz-opt {
+            background:rgba(255,255,255,0.03); border:1px solid var(--glass-border);
+            padding:1rem 1.3rem; border-radius:12px; margin-bottom:0.8rem;
+            cursor:pointer; transition:all 0.3s; font-size:0.95rem; color:var(--silver);
+        }
+        .quiz-opt:hover { border-color:var(--plasma-blue); background:rgba(93,63,211,0.1); }
+        .quiz-opt.selected { background:rgba(93,63,211,0.2); border-color:var(--electric-purple); color:var(--white); }
+        .quiz-opt.correct { background:rgba(58,255,158,0.15); border-color:var(--aurora-green); color:var(--aurora-green); }
+        .quiz-opt.wrong { background:rgba(255,0,110,0.15); border-color:var(--quantum-pink); color:var(--quantum-pink); }
+        #quiz-result { margin-top:1.2rem; font-size:1.05rem; font-weight:600; min-height:2rem; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: linear-gradient(180deg, var(--deep-space), #050508);
+            border-top:1px solid var(--glass-border);
+            padding:4rem 2rem; text-align:center;
+        }
+        footer h2 {
+            font-size:2rem;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--electric-purple));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+            margin-bottom:0.8rem;
+        }
+        footer p { color:var(--silver); font-size:1rem; }
+        .footer-emojis { font-size:2.5rem; margin:1rem 0; }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(30px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .fade { opacity:0; transform:translateY(30px); transition:all 0.6s ease-out; }
+        .fade.visible { opacity:1; transform:translateY(0); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width:768px) {
+            .hero h1 { font-size:2.4rem; }
+            .modules-grid, .claude-grid { grid-template-columns:1fr; }
+            nav ul { gap:0.3rem; }
+            nav a { font-size:0.8rem; padding:0.4rem 0.8rem; }
+            .ex-card { flex-direction:column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- ═══════ NAV ═══════ -->
+    <nav id="nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="#claude">Claude Updates</a></li>
+            <li><a href="#exercises">Hands-On</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero" id="home">
+        <div class="hero-inner">
+            <h1>AI Leadership Mastery</h1>
+            <p>Upskill from operator to AI leader. Eight cutting-edge modules covering agents, swarms, engineering patterns, and the modern tech stack — illustrated through Gujarati folk art.</p>
+            <div class="hero-tags">
+                <span class="hero-tag">AI Agents</span>
+                <span class="hero-tag">Swarm Intelligence</span>
+                <span class="hero-tag">Context Engineering</span>
+                <span class="hero-tag">MCP Servers</span>
+                <span class="hero-tag">A2A Protocols</span>
+                <span class="hero-tag">Claude Code</span>
+            </div>
+            <a href="#modules" class="cta">Start Learning →</a>
+        </div>
+    </section>
+
+    <!-- ═══════ MODULES ═══════ -->
+    <section id="modules">
+        <div class="section-head">
+            <h2 class="section-title">8 Deep-Dive Modules</h2>
+            <p class="section-sub">Each module pairs cutting-edge AI concepts with hands-on exercises and real Medical Affairs &amp; Pharma industry applications.</p>
+        </div>
+
+        <div class="tab-nav" id="modTabs">
+            <button class="tab-btn active" data-tab="all">All Modules</button>
+            <button class="tab-btn" data-tab="core">Core AI</button>
+            <button class="tab-btn" data-tab="eng">Engineering</button>
+            <button class="tab-btn" data-tab="infra">Infrastructure</button>
+        </div>
+
+        <div class="modules-grid" id="modGrid">
+
+            <!-- Module 1 -->
+            <div class="mod-card fade" data-cat="core">
+                <div class="mod-img-wrap"><img src="images/hero-agent.png" alt="AI Agents"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 1 — Core AI</span>
+                    <h3>🤖 Autonomous AI Agents</h3>
+                    <p>Master the architecture of goal-directed AI systems that perceive, reason, and act autonomously. Understand agent loops, reflection, tool use, and self-correction.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>Automated literature surveillance agents scanning 500K+ PubMed articles daily for signal detection. FISEA-compliant AI agents drafting medical information response letters with citation verification.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>JPMorgan COIN: 360K hours of legal review → seconds. Pfizer's regulatory submission agents auto-populating eCTD modules.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Build Your First Agent →</a>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="mod-card fade" data-cat="core">
+                <div class="mod-img-wrap"><img src="images/hero-swarm.png" alt="Swarm Agents"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 2 — Core AI</span>
+                    <h3>🐝 Multi-Agent Swarms &amp; Collaboration</h3>
+                    <p>Deploy coordinated agent collectives that divide complex problems, specialize roles, and communicate to achieve shared objectives with emergent intelligence.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>Drug safety swarm: Periodic Safety Update Report agents (signal detection → narrative → QC → regulatory formatting). MSL field intelligence swarm aggregating HCP insights across regions.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Microsoft AutoGen: 8-agent dev teams. Novartis multi-agent clinical trial site selection optimizing enrollment velocity.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Deploy a 3-Agent Swarm →</a>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="mod-card fade" data-cat="eng">
+                <div class="mod-img-wrap"><img src="images/hero-harness.png" alt="Harnesses"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 3 — Engineering</span>
+                    <h3>🎭 Agentic Harnesses &amp; Orchestration</h3>
+                    <p>Build orchestration layers managing agent lifecycles, tool coordination, persistent context, and safety boundaries. Learn harness patterns for production-grade systems.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>MLR review harness orchestrating medical-legal-regulatory workflows: medical writer → MLR reviewer → legal → regulatory sign-off, with audit trails and version control.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Google Project Astra: multimodal agent harness. Salesforce Einstein Orchestrator managing 50+ enterprise tools with governance gates.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Design an Agent Harness →</a>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="mod-card fade" data-cat="eng">
+                <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Context Engineering"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 4 — Engineering</span>
+                    <h3>📜 Context Engineering &amp; Memory Systems</h3>
+                    <p>Architect memory hierarchies enabling AI to maintain context across sessions, retrieve relevant knowledge, and build cumulative expertise. Master RAG, embeddings, and long-term memory.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>RAG-powered medical affairs knowledge base answering HCP queries with real-time evidence. Context-aware congress report generation pulling from 50K+ publication embeddings.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Notion AI: persistent workspace memory across 10M+ docs. Cohere RAG pipeline processing 1B+ tokens/day for enterprise search.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Build a RAG Context Engine →</a>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="mod-card fade" data-cat="eng">
+                <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Agentic Engineering"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 5 — Engineering</span>
+                    <h3>⚙️ Agentic Engineering &amp; Production Patterns</h3>
+                    <p>Design enterprise-grade agents with error handling, self-healing, iterative improvement, and full observability. Patterns from high-reliability organizations applied to AI.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>Self-correcting ICSR (Individual Case Safety Report) agents that validate against MedDRA coding, auto-flag inconsistencies, and re-process until 99.7% accuracy. AE narrative generation with dual-agent QC loops.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Stripe fraud detector: 99.9% accuracy through self-improving loops. GSK's automated compound screening with iterative refinement.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Create Self-Healing Agents →</a>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="mod-card fade" data-cat="infra">
+                <div class="mod-img-wrap"><img src="images/hero-mcp.png" alt="MCP Servers"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 6 — Infrastructure</span>
+                    <h3>🔌 Model Context Protocol (MCP) Servers</h3>
+                    <p>Build standardized connectivity layers exposing any data source, API, or tool to AI agents. MCP is becoming the USB-C of AI integrations — learn to build and deploy servers.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>MCP server exposing Veeva Vault (regulatory document management) to AI agents for real-time submission status queries. Clinical trial MCP connecting CTMS, EDC, and IWRS systems for unified agent access.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>GitHub Copilot MCP: code repos as agent tools. Figma MCP: design-to-code conversion workflows. Anthropic Claude Desktop MCP hub for 100+ integrations.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Build an MCP Server →</a>
+                </div>
+            </div>
+
+            <!-- Module 7 -->
+            <div class="mod-card fade" data-cat="infra">
+                <div class="mod-img-wrap"><img src="images/hero-a2a.png" alt="A2A"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 7 — Infrastructure</span>
+                    <h3>🗣️ Agent-to-Agent (A2A) Communication</h3>
+                    <p>Design secure, scalable communication fabrics for multi-agent ecosystems. Learn Agent Communication Languages, negotiation protocols, and decentralized coordination.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>Cross-functional A2A network: medical information agent ↔ drug safety agent ↔ regulatory agent — auto-routing ICSRs, sharing safety signals, and escalating to human experts when thresholds are exceeded.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Google's A2A protocol enabling 100B+ agent messages/day across cloud services. Roche's multi-site clinical trial agents coordinating patient enrollment.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Build an A2A Network →</a>
+                </div>
+            </div>
+
+            <!-- Module 8 -->
+            <div class="mod-card fade" data-cat="infra">
+                <div class="mod-img-wrap"><img src="images/hero-techstack.png" alt="AI Tech Stack"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 8 — Infrastructure</span>
+                    <h3>🏗️ Modern AI Tech Stack Architecture</h3>
+                    <p>Master the full AI development landscape: foundation models, embeddings, vector DBs, orchestration, observability, and deployment pipelines for production-grade AI platforms.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>Full-stack medical affairs platform: LLM layer (GPT-4/Claude) → embedding model → Pinecone/Qdrant → LangGraph orchestration → MLR governance → Datadog observability → Veeva integration.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Perplexity: 500M+ queries/month with sub-second latency. Mistral's complete AI platform stack. Moderna's mRNA platform running AI across drug discovery, clinical ops, and manufacturing.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Deploy Full AI Platform →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ CLAUDE UPDATES ═══════ -->
+    <section class="claude-section" id="claude">
+        <div class="section-head">
+            <h2 class="section-title">⚡ Claude — Last 3 Months</h2>
+            <p class="section-sub">Every major Claude update from Q1–Q2 2026 that matters for AI leaders.</p>
+        </div>
+
+        <div class="claude-grid">
+            <div class="claude-card fade">
+                <div class="claude-icon">💻</div>
+                <h3>Claude Code</h3>
+                <p>Anthropic's flagship coding agent evolved from terminal assistant to full development platform. Multi-session, auto-mode, computer use, and 1M-token context (Opus 4.6). Now supports parallel worktrees, subagent-driven development, and test-driven coding workflows.</p>
+                <span class="claude-tag">Terminal → Platform</span>
+            </div>
+            <div class="claude-card fade">
+                <div class="claude-icon">🤝</div>
+                <h3>Claude Cowork</h3>
+                <p>Real-time collaborative AI where multiple team members work alongside Claude simultaneously. Shared context, parallel task execution, and automatic conflict resolution. Like Google Docs for AI-assisted development and research.</p>
+                <span class="claude-tag">Multi-Player AI</span>
+            </div>
+            <div class="claude-card fade">
+                <div class="claude-icon">📡</div>
+                <h3>Dispatch</h3>
+                <p>Cloud-based autonomous agent execution engine. Dispatch agents run tasks in the background — code review, testing, documentation, data analysis — without requiring an active session. Results are delivered when complete.</p>
+                <span class="claude-tag">Autonomous Cloud Agents</span>
+            </div>
+            <div class="claude-card fade">
+                <div class="claude-icon">🔄</div>
+                <h3>Routines</h3>
+                <p>Scheduled, repeatable AI workflows that run on triggers or timers. Think cron jobs but intelligent. Auto-generate daily reports, monitor code health, run regression tests, or send daily digests — all on autopilot.</p>
+                <span class="claude-tag">AI Cron + Automation</span>
+            </div>
+            <div class="claude-card fade">
+                <div class="claude-icon">⚡</div>
+                <h3>Claude Opus 4.6</h3>
+                <p>The most capable Opus model yet. 1M-token context window (beta), improved coding accuracy, better long-context reasoning, and sustained performance on agentic tasks. The foundation for all the new features above.</p>
+                <span class="claude-tag">1M Context Window</span>
+            </div>
+            <div class="claude-card fade">
+                <div class="claude-icon">🛠️</div>
+                <h3>Agent Skills 2.0</h3>
+                <p>Programmable agent behaviors that combine instructions, permissions, and hooks into composable skill packages. Build custom workflows (brainstorming → planning → TDD → review) that automatically trigger at the right moment.</p>
+                <span class="claude-tag">Composable Behaviors</span>
+            </div>
+            <div class="claude-card fade">
+                <div class="claude-icon">🖥️</div>
+                <h3>Desktop Redesign (v2.1.76+)</h3>
+                <p>Complete UI overhaul with multi-session support, improved terminal integration, NO_FLICKER rendering, /powerup interactive tutorials, and team onboarding workflows. From pair-programmer to operations platform.</p>
+                <span class="claude-tag">Ops Platform Era</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ EXERCISES ═══════ -->
+    <section class="exercises-section" id="exercises">
+        <div class="section-head">
+            <h2 class="section-title">🛠️ Hands-On Exercises</h2>
+            <p class="section-sub">Build real projects. Pharma &amp; Medical Affairs focused.</p>
+        </div>
+
+        <div class="ex-grid">
+            <div class="ex-card fade">
+                <div class="ex-num">1</div>
+                <div>
+                    <h4>Build Your First Autonomous Agent</h4>
+                    <p>Create an agent that monitors PubMed for new publications on a specific drug, summarizes findings, and drafts a medical information response letter.</p>
+                    <div class="ex-pharma">💊 Pharma: Literature surveillance agent with auto-ICSR flagging</div>
+                </div>
+            </div>
+            <div class="ex-card fade">
+                <div class="ex-num">2</div>
+                <div>
+                    <h4>Deploy a 3-Agent Safety Swarm</h4>
+                    <p>Build a swarm where Signal Detector, Narrative Writer, and QC Reviewer collaborate to produce a Periodic Safety Update Report (PSUR) from raw AE data.</p>
+                    <div class="ex-pharma">💊 Pharma: PSUR generation swarm with MedDRA coding validation</div>
+                </div>
+            </div>
+            <div class="ex-card fade">
+                <div class="ex-num">3</div>
+                <div>
+                    <h4>Design an MLR Review Harness</h4>
+                    <p>Orchestrate an agent harness that routes content through Medical → Legal → Regulatory review with version control, audit trails, and approval gates.</p>
+                    <div class="ex-pharma">💊 Pharma: End-to-end MLR workflow with Veeva Vault integration</div>
+                </div>
+            </div>
+            <div class="ex-card fade">
+                <div class="ex-num">4</div>
+                <div>
+                    <h4>Build a RAG Context Engine</h4>
+                    <p>Implement retrieval-augmented generation over a corpus of 10K+ medical publications, enabling HCP query answering with citation-level evidence.</p>
+                    <div class="ex-pharma">💊 Pharma: Medical affairs knowledge base with real-time evidence retrieval</div>
+                </div>
+            </div>
+            <div class="ex-card fade">
+                <div class="ex-num">5</div>
+                <div>
+                    <h4>Create an MCP Server for Pharma Data</h4>
+                    <p>Build an MCP server exposing Veeva Vault documents, clinical trial data, and safety databases as agent-consumable tools with proper access controls.</p>
+                    <div class="ex-pharma">💊 Pharma: Unified MCP gateway for regulated document access</div>
+                </div>
+            </div>
+            <div class="ex-card fade">
+                <div class="ex-num">6</div>
+                <div>
+                    <h4>Deploy a Full Medical Affairs AI Platform</h4>
+                    <p>Combine all patterns into a production platform: multi-agent orchestration, RAG over med-sci content, MCP integration, A2A communication, and observability dashboard.</p>
+                    <div class="ex-pharma">💊 Pharma: Production medical affairs AI with MLR compliance, Datadog observability, and Veeva integration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ QUIZ ═══════ -->
+    <section id="quiz">
+        <div class="section-head">
+            <h2 class="section-title">🎯 Test Your Knowledge</h2>
+            <p class="section-sub">Quick check on a key concept for AI leaders.</p>
+        </div>
+        <div class="quiz-card">
+            <h3>What distinguishes an AI agent from a simple chatbot?</h3>
+            <div class="quiz-opt" data-correct="false">A. It uses a larger language model</div>
+            <div class="quiz-opt" data-correct="false">B. It responds faster with lower latency</div>
+            <div class="quiz-opt" data-correct="true">C. It perceives, reasons, and takes autonomous actions toward goals</div>
+            <div class="quiz-opt" data-correct="false">D. It has a better user interface</div>
+            <div id="quiz-result"></div>
+            <button class="cta" onclick="checkQuiz()" style="margin-top:1.5rem;font-size:1rem;padding:0.8rem 2rem;">Submit Answer</button>
+        </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer>
+        <div class="footer-emojis">🎨🐘🦚</div>
+        <h2>Created for Gujarati Medium by Vivek</h2>
+        <p>Where Ancient Art Meets Future Intelligence &nbsp;|&nbsp; Course © 2026</p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;color:#888;">Powered by Venice AI &nbsp;•&nbsp; Built with ❤️</p>
+    </footer>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+            });
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // Intersection Observer for fade-in
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, {threshold:0.1});
+        document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+        // Module tab filter
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.tab;
+                document.querySelectorAll('.mod-card').forEach(card => {
+                    if(cat === 'all' || card.dataset.cat === cat) {
+                        card.style.display = '';
+                        setTimeout(() => card.classList.add('visible'), 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Quiz
+        let selected = null;
+        document.querySelectorAll('.quiz-opt').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected','correct','wrong'));
+                opt.classList.add('selected');
+                selected = opt;
+            });
+        });
+
+        function checkQuiz() {
+            const result = document.getElementById('quiz-result');
+            if(!selected) { result.style.color = '#FF006E'; result.textContent = 'Please select an answer first!'; return; }
+            document.querySelectorAll('.quiz-opt').forEach(o => {
+                if(o.dataset.correct === 'true') o.classList.add('correct');
+                else if(o.classList.contains('selected')) o.classList.add('wrong');
+            });
+            if(selected.dataset.correct === 'true') {
+                result.style.color = '#3AFF9E';
+                result.textContent = '✅ Correct! AI agents are autonomous systems that perceive, reason, and take actions toward goals — not just respond to prompts.';
+            } else {
+                result.style.color = '#FF006E';
+                result.textContent = '❌ Not quite. The correct answer is C — agents are distinguished by autonomous goal-directed behavior (perceive → reason → act).';
+            }
+        }
+    </script>
+</body>
+</html>
