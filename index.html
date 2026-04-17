@@ -171,6 +171,17 @@
             border:1px solid var(--glass-border); padding:0.4rem 1rem; border-radius:20px;
             font-size:0.8rem; font-weight:600; color:var(--neon-cyan); margin-bottom:1rem;
         }
+        .mod-new {
+            display:inline-flex; align-items:center;
+            background:linear-gradient(135deg, rgba(255,0,110,0.3), rgba(255,215,0,0.3));
+            border:1px solid rgba(255,0,110,0.3); padding:0.3rem 0.8rem; border-radius:12px;
+            font-size:0.7rem; font-weight:700; color:var(--quantum-pink); margin-left:0.5rem;
+        }
+        .def-box {
+            background:rgba(157,78,221,0.08); border:1px solid rgba(157,78,221,0.2);
+            padding:1rem 1.2rem; border-radius:12px; margin:0.8rem 0; font-size:0.92rem; line-height:1.7;
+        }
+        .def-box strong { color:var(--electric-purple); }
         .mod-body h3 {
             font-size:1.6rem; color:var(--white); margin-bottom:0.8rem; font-weight:600;
         }
@@ -301,6 +312,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#modules">Modules</a></li>
+            <li><a href="#concepts">Key Concepts</a></li>
             <li><a href="#claude">Claude Updates</a></li>
             <li><a href="#exercises">Hands-On</a></li>
             <li><a href="#quiz">Quiz</a></li>
@@ -311,10 +323,10 @@
     <section class="hero" id="home">
         <div class="hero-inner">
             <h1>AI Leadership Mastery</h1>
-            <p>Upskill from operator to AI leader. Eight cutting-edge modules covering agents, swarms, engineering patterns, and the modern tech stack — illustrated through Gujarati folk art.</p>
+            <p>Upskill from operator to AI leader. Nine cutting-edge modules covering agents, swarms, harness engineering, context engineering, and the modern tech stack — illustrated through Gujarati folk art.</p>
             <div class="hero-tags">
-                <span class="hero-tag">AI Agents</span>
-                <span class="hero-tag">Swarm Intelligence</span>
+                <span class="hero-tag">Agentic Engineering</span>
+                <span class="hero-tag">Harness Engineering</span>
                 <span class="hero-tag">Context Engineering</span>
                 <span class="hero-tag">MCP Servers</span>
                 <span class="hero-tag">A2A Protocols</span>
@@ -327,7 +339,7 @@
     <!-- ═══════ MODULES ═══════ -->
     <section id="modules">
         <div class="section-head">
-            <h2 class="section-title">8 Deep-Dive Modules</h2>
+            <h2 class="section-title">9 Deep-Dive Modules</h2>
             <p class="section-sub">Each module pairs cutting-edge AI concepts with hands-on exercises and real Medical Affairs &amp; Pharma industry applications.</p>
         </div>
 
@@ -346,7 +358,10 @@
                 <div class="mod-body">
                     <span class="mod-badge">Module 1 — Core AI</span>
                     <h3>🤖 Autonomous AI Agents</h3>
-                    <p>Master the architecture of goal-directed AI systems that perceive, reason, and act autonomously. Understand agent loops, reflection, tool use, and self-correction.</p>
+                    <div class="def-box">
+                        <strong>Definition:</strong> An AI agent is an autonomous system that perceives its environment, reasons about goals, and takes actions using tools — going beyond a chatbot's single-shot responses into persistent, goal-directed loops (observe → think → act → reflect). Per Anthropic, agents are “systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks.”
+                    </div>
+                    <p>Agent loops, tool use, memory persistence, reflection patterns, and self-correction.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
                         <span>Automated literature surveillance agents scanning 500K+ PubMed articles daily for signal detection. FISEA-compliant AI agents drafting medical information response letters with citation verification.</span>
@@ -364,8 +379,11 @@
                 <div class="mod-img-wrap"><img src="images/hero-swarm.png" alt="Swarm Agents"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 2 — Core AI</span>
-                    <h3>🐝 Multi-Agent Swarms &amp; Collaboration</h3>
-                    <p>Deploy coordinated agent collectives that divide complex problems, specialize roles, and communicate to achieve shared objectives with emergent intelligence.</p>
+                    <h3>🐝 Multi-Agent Swarms & Collaboration</h3>
+                    <div class="def-box">
+                        <strong>Definition:</strong> A multi-agent swarm is a coordinated collective of specialized agents that divide complex objectives into sub-tasks, communicate through structured message passing, and achieve emergent intelligence no single agent could produce alone. Anthropic recommends starting with simple workflows and only adding swarm complexity when flexibility and model-driven decision-making are needed at scale.
+                    </div>
+                    <p>Role-based orchestration, emergent behaviors, handoff patterns, and decentralized coordination.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
                         <span>Drug safety swarm: Periodic Safety Update Report agents (signal detection → narrative → QC → regulatory formatting). MSL field intelligence swarm aggregating HCP insights across regions.</span>
@@ -378,20 +396,23 @@
                 </div>
             </div>
 
-            <!-- Module 3 -->
+            <!-- Module 3 — Harness Engineering -->
             <div class="mod-card fade" data-cat="eng">
-                <div class="mod-img-wrap"><img src="images/hero-harness.png" alt="Harnesses"></div>
+                <div class="mod-img-wrap"><img src="images/hero-harness.png" alt="Harness Engineering"></div>
                 <div class="mod-body">
-                    <span class="mod-badge">Module 3 — Engineering</span>
-                    <h3>🎭 Agentic Harnesses &amp; Orchestration</h3>
-                    <p>Build orchestration layers managing agent lifecycles, tool coordination, persistent context, and safety boundaries. Learn harness patterns for production-grade systems.</p>
+                    <span class="mod-badge">Module 3 — Engineering</span><span class="mod-new">NEW</span>
+                    <h3>🎭 Harness Engineering</h3>
+                    <div class="def-box">
+                        <strong>Definition:</strong> Coined by Mitchell Hashimoto in 2026 — <strong>Agent = Model + Harness</strong>. Harness Engineering is the discipline of designing everything that wraps the AI model: tool orchestration, context pipelines, feedback loops, memory systems, safety hooks, sub-agent coordination, and feedforward guides. If the model is the engine, the harness is the entire car around it — steering, brakes, dashboard, telemetry.
+                    </div>
+                    <p>Without harness engineering, agents are unpredictable raw models. With it, they become reliable, auditable, production-ready systems. 27% of agent failures trace to data quality rather than model or harness — proving the harness is what separates a demo from a product.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>MLR review harness orchestrating medical-legal-regulatory workflows: medical writer → MLR reviewer → legal → regulatory sign-off, with audit trails and version control.</span>
+                        <span>MLR review harness orchestrating Medical → Legal → Regulatory workflows with audit trails. Safety signal harness with feedforward guides (approved MedDRA terms) and feedback sensors (deviation flags) keeping the agent within regulatory bounds.</span>
                     </div>
                     <div class="use-case">
                         <strong>Industry Leaders</strong>
-                        <span>Google Project Astra: multimodal agent harness. Salesforce Einstein Orchestrator managing 50+ enterprise tools with governance gates.</span>
+                        <span>OpenAI Codex agents use harness engineering for production-scale code generation. Martin Fowler's "feedforward guides + feedback sensors" pattern adopted by Anthropic and OpenAI in Q1 2026. Salesforce Einstein Orchestrator managing 50+ enterprise tools.</span>
                     </div>
                     <a href="#exercises" class="mod-link">Design an Agent Harness →</a>
                 </div>
@@ -402,8 +423,11 @@
                 <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Context Engineering"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 4 — Engineering</span>
-                    <h3>📜 Context Engineering &amp; Memory Systems</h3>
-                    <p>Architect memory hierarchies enabling AI to maintain context across sessions, retrieve relevant knowledge, and build cumulative expertise. Master RAG, embeddings, and long-term memory.</p>
+                    <h3>📜 Context Engineering</h3>
+                    <div class="def-box">
+                        <strong>Definition:</strong> Identified by Anthropic in 2026 as the most important skill shift in AI — Context Engineering has replaced prompt engineering as the key to production AI. It means architecting the 5 context layers (system instructions, retrieval context, conversation history, tool results, user input) so the model has exactly what it needs, when it needs it. Not "write better prompts" — but "design the information environment."
+                    </div>
+                    <p>Context design patterns (progressive disclosure, relevant context windows, compression), anti-patterns (overload, staleness, information asymmetry), and memory hierarchies (working, episodic, semantic, procedural).</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
                         <span>RAG-powered medical affairs knowledge base answering HCP queries with real-time evidence. Context-aware congress report generation pulling from 50K+ publication embeddings.</span>
@@ -416,22 +440,25 @@
                 </div>
             </div>
 
-            <!-- Module 5 -->
+            <!-- Module 5 — Agentic Engineering -->
             <div class="mod-card fade" data-cat="eng">
                 <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Agentic Engineering"></div>
                 <div class="mod-body">
-                    <span class="mod-badge">Module 5 — Engineering</span>
-                    <h3>⚙️ Agentic Engineering &amp; Production Patterns</h3>
-                    <p>Design enterprise-grade agents with error handling, self-healing, iterative improvement, and full observability. Patterns from high-reliability organizations applied to AI.</p>
+                    <span class="mod-badge">Module 5 — Engineering</span><span class="mod-new">UPDATED</span>
+                    <h3>🧬 Agentic Engineering <small style="font-size:0.7em;color:var(--quantum-pink);">(The New Vibe Coding)</small></h3>
+                    <div class="def-box">
+                        <strong>Definition:</strong> Coined by Andrej Karpathy in 2026 — <strong>Agentic Engineering</strong> is the successor to vibe coding. Where vibe coding (2025) was "express intent → watch code spin up," agentic engineering adds planning, verification, iterative refinement, and governance. You're no longer prompting — you're conducting an orchestra of agents. You own the architecture, tests, and reviews. The agents do the implementation.
+                    </div>
+                    <p>The evolution: Vibe Coding (2025) = prompt → code. Agentic Engineering (2026) = architect → orchestrate agents → verify → ship. It's the difference between playing an instrument and conducting a symphony.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Self-correcting ICSR (Individual Case Safety Report) agents that validate against MedDRA coding, auto-flag inconsistencies, and re-process until 99.7% accuracy. AE narrative generation with dual-agent QC loops.</span>
+                        <span>Orchestrating a medical writing agent team: planner agent drafts outline → writer agent produces first draft → reviewer agent flags MLR gaps → refactoring agent revises — all under human oversight gates required for regulated content.</span>
                     </div>
                     <div class="use-case">
                         <strong>Industry Leaders</strong>
-                        <span>Stripe fraud detector: 99.9% accuracy through self-improving loops. GSK's automated compound screening with iterative refinement.</span>
+                        <span>Zapier's agentic pipeline: 47 agents in production. TELUS uses agentic engineering for compliance-first content generation. Stripe's agentic fraud detection uses ReAct + multi-agent coordination.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Create Self-Healing Agents →</a>
+                    <a href="#exercises" class="mod-link">Practice Agentic Engineering →</a>
                 </div>
             </div>
 
@@ -441,7 +468,10 @@
                 <div class="mod-body">
                     <span class="mod-badge">Module 6 — Infrastructure</span>
                     <h3>🔌 Model Context Protocol (MCP) Servers</h3>
-                    <p>Build standardized connectivity layers exposing any data source, API, or tool to AI agents. MCP is becoming the USB-C of AI integrations — learn to build and deploy servers.</p>
+                    <div class="def-box">
+                        <strong>Definition:</strong> MCP is an open standard for connecting AI applications to external systems — the "USB-C for AI." Just as USB-C provides a standardized way to connect devices, MCP provides a standardized way for AI agents to connect to data sources, tools, and workflows. Organizations now stand up MCP servers instead of building custom integrations.
+                    </div>
+                    <p>Build standardized connectivity layers exposing any data source, API, or tool to AI agents. MCP is becoming the universal integration standard — learn to build and deploy servers.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
                         <span>MCP server exposing Veeva Vault (regulatory document management) to AI agents for real-time submission status queries. Clinical trial MCP connecting CTMS, EDC, and IWRS systems for unified agent access.</span>
@@ -460,7 +490,10 @@
                 <div class="mod-body">
                     <span class="mod-badge">Module 7 — Infrastructure</span>
                     <h3>🗣️ Agent-to-Agent (A2A) Communication</h3>
-                    <p>Design secure, scalable communication fabrics for multi-agent ecosystems. Learn Agent Communication Languages, negotiation protocols, and decentralized coordination.</p>
+                    <div class="def-box">
+                        <strong>Definition:</strong> A2A is Google's open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. It defines how agents advertise capabilities, negotiate tasks, and exchange structured messages — making multi-agent ecosystems interoperable the way HTTP made web services interoperable.
+                    </div>
+                    <p>Design secure, scalable communication fabrics for multi-agent ecosystems. Learn agent discovery, negotiation protocols, and decentralized coordination.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
                         <span>Cross-functional A2A network: medical information agent ↔ drug safety agent ↔ regulatory agent — auto-routing ICSRs, sharing safety signals, and escalating to human experts when thresholds are exceeded.</span>
@@ -479,7 +512,10 @@
                 <div class="mod-body">
                     <span class="mod-badge">Module 8 — Infrastructure</span>
                     <h3>🏗️ Modern AI Tech Stack Architecture</h3>
-                    <p>Master the full AI development landscape: foundation models, embeddings, vector DBs, orchestration, observability, and deployment pipelines for production-grade AI platforms.</p>
+                    <div class="def-box">
+                        <strong>Definition:</strong> The modern AI tech stack is the full production pipeline: foundation models → embeddings → vector databases → orchestration (LangGraph, Claude Agent SDK) → harness layers → observability → deployment. It's what separates a demo from a reliable, scalable system.
+                    </div>
+                    <p>Master the full AI development landscape: foundation models, embeddings, vector DBs, orchestration, harness layers, observability, and deployment pipelines for production-grade AI platforms.</p>
                     <div class="use-case">
                         <strong>Pharma &amp; Medical Affairs</strong>
                         <span>Full-stack medical affairs platform: LLM layer (GPT-4/Claude) → embedding model → Pinecone/Qdrant → LangGraph orchestration → MLR governance → Datadog observability → Veeva integration.</span>
@@ -491,6 +527,88 @@
                     <a href="#exercises" class="mod-link">Deploy Full AI Platform →</a>
                 </div>
             </div>
+
+            <!-- Module 9 -->
+            <div class="mod-card fade" data-cat="core">
+                <div class="mod-img-wrap"><img src="images/hero-main.png" alt="AI Safety"></div>
+                <div class="mod-body">
+                    <span class="mod-badge">Module 9 — Core AI</span><span class="mod-new">NEW</span>
+                    <h3>🛡️ AI Safety, Governance &amp; Responsible Deployment</h3>
+                    <div class="def-box">
+                        <strong>Definition:</strong> AI Safety & Governance is the discipline of ensuring agentic systems remain reliable, unbiased, and compliant. In regulated industries like pharma, this means designing guardrails, audit trails, human-in-the-loop checkpoints, and model validation protocols that satisfy both AI ethics frameworks (EU AI Act) and industry regulations (FDA, GxP).
+                    </div>
+                    <p>Guardrail design, bias auditing, model validation, human-in-the-loop patterns, regulatory compliance, and responsible AI deployment strategies.</p>
+                    <div class="use-case">
+                        <strong>Pharma &amp; Medical Affairs</strong>
+                        <span>Automated pharmacovigilance with mandatory human review gates. AI-generated medical content with MLR compliance trails, bias detection in safety signal analysis, and FDA-submission-ready audit logs.</span>
+                    </div>
+                    <div class="use-case">
+                        <strong>Industry Leaders</strong>
+                        <span>Google DeepMind's responsible AI framework. Microsoft's responsible AI dashboard. Pfizer's AI governance council reviewing all agentic deployments under GxP compliance.</span>
+                    </div>
+                    <a href="#exercises" class="mod-link">Design AI Guardrails →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════ KEY CONCEPTS ═══════ -->
+    <section id="concepts" style="padding:6rem 2rem;position:relative;z-index:1;">
+        <div class="section-head">
+            <h2 class="section-title">📖 Key Concepts Explained</h2>
+            <p class="section-sub">The essential terms reshaping AI in 2026 — defined, compared, and contextualized.</p>
+        </div>
+
+        <div style="max-width:1100px;margin:0 auto;">
+
+            <!-- Agentic Engineering -->
+            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🧬 Agentic Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">← The New Vibe Coding</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Coined by Andrej Karpathy, 2026.</strong> The evolution beyond vibe coding. Vibe coding (2025) meant writing code by describing intent to an AI and accepting whatever it generates. Agentic engineering means <em>orchestrating teams of AI agents</em> — you design the architecture, set the tests, own the reviews, and agents handle implementation. It's the shift from "solo coder with AI autocomplete" to "engineering conductor of an AI orchestra."</p>
+                <div style="background:rgba(0,245,255,0.04);border-left:3px solid var(--neon-cyan);padding:0.8rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;">
+                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;">The Evolution</strong>
+                    <span style="color:var(--off-white);font-size:0.85rem;"><strong>2024:</strong> Prompt Engineering (craft the perfect prompt) → <strong>2025:</strong> Vibe Coding (express intent, AI generates) → <strong>2026:</strong> Agentic Engineering (orchestrate agents that plan, code, test, and ship under your supervision)</span>
+                </div>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Key insight:</strong> In vibe coding, you vibe. In agentic engineering, you architect. The human role shifts from writing code to designing systems, setting quality gates, and directing agent teams.</p>
+            </div>
+
+            <!-- Harness Engineering -->
+            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🎭 Harness Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">NEW TERM</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Coined by Mitchell Hashimoto, 2026.</strong> The formula: <strong style="color:var(--neon-cyan);">Agent = Model + Harness</strong>. The harness is everything that wraps the model — tools, context pipelines, feedback loops, memory, safety hooks, and sub-agent orchestration. If the model is the engine, the harness is the entire car: steering, brakes, dashboard, telemetry, and airbags.</p>
+                <div style="background:rgba(0,245,255,0.04);border-left:3px solid var(--neon-cyan);padding:0.8rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;">
+                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;">Martin Fowler's Pattern</strong>
+                    <span style="color:var(--off-white);font-size:0.85rem;"><strong>Feedforward Guides</strong> = instructions & constraints given before the model acts (system prompts, approved term lists, templates). <strong>Feedback Sensors</strong> = signals captured after the model acts (output validation, deviation detection, audit logs). Together, they form the harness's steering system.</span>
+                </div>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> 27% of AI agent failures trace to data quality, not the model or harness — which proves the harness is the differentiator between a demo and a product. Harness engineering is what makes agents reliable, auditable, and production-ready.</p>
+            </div>
+
+            <!-- Context Engineering -->
+            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">📜 Context Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">← Replaces Prompt Engineering</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Identified by Anthropic, 2026.</strong> The most important skill shift in AI. Context engineering replaces prompt engineering as the key discipline. It's not about "writing better prompts" — it's about <em>designing the information environment</em> so the model has exactly what it needs, when it needs it.</p>
+                <div style="background:rgba(0,245,255,0.04);border-left:3px solid var(--neon-cyan);padding:0.8rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;">
+                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;">The 5 Context Layers</strong>
+                    <span style="color:var(--off-white);font-size:0.85rem;"><strong>1.</strong> System Instructions &nbsp;|&nbsp; <strong>2.</strong> Retrieval Context (RAG) &nbsp;|&nbsp; <strong>3.</strong> Conversation History &nbsp;|&nbsp; <strong>4.</strong> Tool Results &nbsp;|&nbsp; <strong>5.</strong> User Input. — Context engineering means getting the right information into the right layer at the right time.</span>
+                </div>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Anti-patterns:</strong> Context overload (too much info), context staleness (outdated data), information asymmetry (agent sees different info at different stages). Good context engineering eliminates all three.</p>
+            </div>
+
+            <!-- MCP -->
+            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🔌 MCP (Model Context Protocol) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">THE USB-C FOR AI</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Created by Anthropic, 2024–2025.</strong> An open standard for connecting AI applications to external systems. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way for AI agents to connect to data sources, tools, and workflows. Now supported by Claude, ChatGPT, VS Code, Cursor, and 100+ integrations.</p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> Organizations now stand up MCP servers instead of building custom integrations. One MCP server can serve any AI client — write once, connect everywhere.</p>
+            </div>
+
+            <!-- A2A -->
+            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🗣️ A2A (Agent-to-Agent Protocol) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">THE HTTP FOR AGENTS</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Published by Google, 2025.</strong> An open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. A2A defines how agents advertise capabilities, negotiate tasks, and exchange structured messages — making multi-agent ecosystems interoperable the way HTTP made web services interoperable.</p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> Without A2A, agents are siloed. With it, a pharma safety agent, a regulatory agent, and a medical writing agent — each built on different platforms — can seamlessly collaborate on a PSUR.</p>
+            </div>
+
         </div>
     </section>
 
