@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Gujarati Medium: ગુજરાતી માધ્યમ - AI નેતૃત્વ માસ્ટરી -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +55,7 @@
             transition: all 0.3s;
         }
         nav.scrolled { padding: 0.5rem 2rem; background: rgba(10,10,15,0.95); }
-        nav ul { display:flex; justify-content:center; gap:0.4rem; list-style:none; flex-wrap:wrap; }
+        nav ul { display:flex; justify-content:center; gap:0.4rem; list-style:none; flex-wrap:wrap; align-items:center; }
         nav a {
             color: var(--silver); text-decoration:none; font-size:0.9rem; font-weight:500;
             padding: 0.6rem 1.1rem; border-radius:10px; transition: all 0.3s;
@@ -66,6 +65,17 @@
             background: linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
             box-shadow: 0 0 25px rgba(93,63,211,0.4);
         }
+
+        /* ─── LANGUAGE TOGGLE ─── */
+        .lang-toggle {
+            display:inline-flex; align-items:center; gap:0.4rem;
+            background:var(--glass); border:1px solid var(--glass-border);
+            padding:0.45rem 0.9rem; border-radius:10px; cursor:pointer;
+            color:var(--neon-cyan); font-size:0.85rem; font-weight:600;
+            font-family:inherit; transition:all 0.3s; margin-left:0.5rem;
+        }
+        .lang-toggle:hover { border-color:var(--neon-cyan); background:rgba(0,245,255,0.08); }
+        .lang-toggle .flag { font-size:1.1rem; }
 
         /* ─── HERO ─── */
         .hero {
@@ -176,12 +186,6 @@
             background:linear-gradient(135deg, rgba(93,63,211,0.3), rgba(157,78,221,0.3));
             border:1px solid var(--glass-border); padding:0.4rem 1rem; border-radius:20px;
             font-size:0.8rem; font-weight:600; color:var(--neon-cyan); margin-bottom:1rem;
-        }
-        .mod-new {
-            display:inline-flex; align-items:center;
-            background:linear-gradient(135deg, rgba(255,0,110,0.3), rgba(255,215,0,0.3));
-            border:1px solid rgba(255,0,110,0.3); padding:0.3rem 0.8rem; border-radius:12px;
-            font-size:0.7rem; font-weight:700; color:var(--quantum-pink); margin-left:0.5rem;
         }
         .def-box {
             background:rgba(157,78,221,0.08); border:1px solid rgba(157,78,221,0.2);
@@ -376,6 +380,19 @@
         .quiz-expl { margin-top:0.8rem; font-size:0.88rem; color:var(--silver); line-height:1.6; display:none; }
         .quiz-expl.visible { display:block; }
 
+        /* ─── GLOSSARY ─── */
+        .glossary-grid {
+            max-width:900px; margin:0 auto;
+            display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem;
+        }
+        .glossary-item {
+            background:var(--glass); border:1px solid var(--glass-border);
+            border-radius:12px; padding:1.2rem; transition:all 0.3s;
+        }
+        .glossary-item:hover { border-color:rgba(0,245,255,0.2); }
+        .glossary-term { color:var(--neon-cyan); font-weight:600; font-size:0.95rem; }
+        .glossary-def { color:var(--silver); font-size:0.9rem; margin-top:0.3rem; }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width:768px) {
             .hero h1 { font-size:2.4rem; }
@@ -409,49 +426,48 @@
     <!-- ═══════ NAV ═══════ -->
     <nav id="nav">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#modules">Modules</a></li>
-            <li><a href="#concepts">Key Concepts</a></li>
-            <li><a href="#timeline">Timeline</a></li>
-            <li><a href="#claude">Claude Updates</a></li>
-            <li><a href="#exercises">Hands-On</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#glossary">શબ્દકોશ</a></li>
+            <li><a href="#home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#modules" data-i18n="nav_modules">Modules</a></li>
+            <li><a href="#concepts" data-i18n="nav_concepts">Key Concepts</a></li>
+            <li><a href="#timeline" data-i18n="nav_timeline">Timeline</a></li>
+            <li><a href="#claude" data-i18n="nav_claude">Claude Updates</a></li>
+            <li><a href="#exercises" data-i18n="nav_exercises">Hands-On</a></li>
+            <li><a href="#quiz" data-i18n="nav_quiz">Quiz</a></li>
+            <li><a href="#glossary" data-i18n="nav_glossary">Glossary</a></li>
+            <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span class="flag">🇮🇳</span> <span data-i18n="lang_btn">ગુજરાતી</span></button></li>
         </ul>
     </nav>
 
     <!-- ═══════ HERO ═══════ -->
     <section class="hero" id="home">
         <div class="hero-inner">
-            <p style="font-size:0.95rem;color:var(--neon-cyan);font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.8rem;">✦ ગુજરાતી માધ્યમ માટે વિશેષ રીતે બનાવેલ ✦</p>
-            <h1>AI નેતૃત્વ માસ્ટરી</h1>
-            <p>ઓપરેટરથી AI નેતા સુધી. એજન્ટ્સ, સ્વોર્મ્સ, હાર્નેસ એન્જિનિયરિંગ, કોન્ટેક્સ્ટ એન્જિનિયરિંગ અને મોડર્ન ટેક સ્ટેક — ગુજરાતી લોકકલા દ્વારા ચિત્રિત.</p>
-            <p style="font-size:1rem;color:var(--silver);font-weight:300;font-style:italic;margin-top:0.5rem;">Upskill from operator to AI leader. Nine cutting-edge modules — illustrated through Gujarati folk art.</p>
+            <p style="font-size:0.95rem;color:var(--neon-cyan);font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.8rem;" data-i18n="hero_badge">✦ Created Specially For Gujarati Medium ✦</p>
+            <h1 data-i18n="hero_title">AI Leadership Mastery</h1>
+            <p data-i18n="hero_sub">Upskill from operator to AI leader. Nine cutting-edge modules covering agents, swarms, harness engineering, context engineering, and the modern tech stack — illustrated through Gujarati folk art.</p>
             <div class="hero-tags">
-                <span class="hero-tag">એજેન્ટિક એન્જિનિયરિંગ</span>
-                <span class="hero-tag">હાર્નેસ એન્જિનિયરિંગ</span>
-                <span class="hero-tag">કોન્ટેક્સ્ટ એન્જિનિયરિંગ</span>
-                <span class="hero-tag">MCP સર્વર્સ</span>
-                <span class="hero-tag">A2A પ્રોટોકોલ</span>
+                <span class="hero-tag" data-i18n="tag_agentic">Agentic Engineering</span>
+                <span class="hero-tag" data-i18n="tag_harness">Harness Engineering</span>
+                <span class="hero-tag" data-i18n="tag_context">Context Engineering</span>
+                <span class="hero-tag" data-i18n="tag_mcp">MCP Servers</span>
+                <span class="hero-tag" data-i18n="tag_a2a">A2A Protocols</span>
                 <span class="hero-tag">Claude Code</span>
             </div>
-            <a href="#modules" class="cta">શીખવાનું શરૂ કરો →</a>
+            <a href="#modules" class="cta" data-i18n="hero_cta">Start Learning →</a>
         </div>
     </section>
 
     <!-- ═══════ MODULES ═══════ -->
     <section id="modules">
         <div class="section-head">
-            <h2 class="section-title">9 ઊંડાણપૂર્વક મોડ્યુલ્સ</h2>
-            <p class="section-sub">દરેક મોડ્યુલ અત્યાધુનિક AI ખ્યાલોને હાથ-અનુભવ કસરતો અને વાસ્તવિક ફાર્મા ઉદ્યોગ એપ્લિકેશન્સ સાથે જોડે છે.</p>
-            <p class="section-sub" style="font-size:0.95rem;margin-top:0.5rem;opacity:0.7;">Each module pairs cutting-edge AI concepts with hands-on exercises and real Medical Affairs &amp; Pharma industry applications.</p>
+            <h2 class="section-title" data-i18n="mod_title">9 Deep-Dive Modules</h2>
+            <p class="section-sub" data-i18n="mod_sub">Each module pairs cutting-edge AI concepts with hands-on exercises and real Medical Affairs &amp; Pharma industry applications.</p>
         </div>
 
         <div class="tab-nav" id="modTabs">
-            <button class="tab-btn active" data-tab="all">All Modules</button>
-            <button class="tab-btn" data-tab="core">Core AI</button>
-            <button class="tab-btn" data-tab="eng">Engineering</button>
-            <button class="tab-btn" data-tab="infra">Infrastructure</button>
+            <button class="tab-btn active" data-tab="all" data-i18n="tab_all">All Modules</button>
+            <button class="tab-btn" data-tab="core" data-i18n="tab_core">Core AI</button>
+            <button class="tab-btn" data-tab="eng" data-i18n="tab_eng">Engineering</button>
+            <button class="tab-btn" data-tab="infra" data-i18n="tab_infra">Infrastructure</button>
         </div>
 
         <div class="modules-grid" id="modGrid">
@@ -461,189 +477,205 @@
                 <div class="mod-img-wrap"><img src="images/hero-agent.png" alt="AI Agents"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 1 — Core AI</span>
-                    <h3>🤖 Autonomous AI Agents</h3>
+                    <h3 data-i18n="m1_title">🤖 Autonomous AI Agents</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> An AI agent is an autonomous system that perceives its environment, reasons about goals, and takes actions using tools — going beyond a chatbot's single-shot responses into persistent, goal-directed loops (observe → think → act → reflect). Per Anthropic, agents are “systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks.”
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m1_def">An AI agent is an autonomous system that perceives its environment, reasons about goals, and takes actions using tools — going beyond a chatbot's single-shot responses into persistent, goal-directed loops (observe → think → act → reflect). Per Anthropic, agents are "systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks."</span>
                     </div>
-                    <p>Agent loops, tool use, memory persistence, reflection patterns, and self-correction.</p>
+                    <p data-i18n="m1_desc">Agent loops, tool use, memory persistence, reflection patterns, and self-correction.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Automated literature surveillance agents scanning 500K+ PubMed articles daily for signal detection. FISEA-compliant AI agents drafting medical information response letters with citation verification.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m1_pharma">Automated literature surveillance agents scanning 500K+ PubMed articles daily for signal detection. FISEA-compliant AI agents drafting medical information response letters with citation verification.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>JPMorgan COIN: 360K hours of legal review → seconds. Pfizer's regulatory submission agents auto-populating eCTD modules.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m1_leaders">JPMorgan COIN: 360K hours of legal review → seconds. Pfizer's regulatory submission agents auto-populating eCTD modules.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m1" onchange="saveProgress()"><label for="m1">Mark Module 1 complete</label></div>
-                    <a href="#exercises" class="mod-link">Build Your First Agent →</a>
+                    <div class="mod-check"><input type="checkbox" id="m1" onchange="saveProgress()"><label for="m1" data-i18n="mod_check">Mark Module 1 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m1_link">Build Your First Agent →</a>
                 </div>
             </div>
+
+            <!-- Module 2 -->
             <div class="mod-card fade" data-cat="core">
                 <div class="mod-img-wrap"><img src="images/hero-swarm.png" alt="Swarm Agents"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 2 — Core AI</span>
-                    <h3>🐝 Multi-Agent Swarms & Collaboration</h3>
+                    <h3 data-i18n="m2_title">🐝 Multi-Agent Swarms &amp; Collaboration</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> A multi-agent swarm is a coordinated collective of specialized agents that divide complex objectives into sub-tasks, communicate through structured message passing, and achieve emergent intelligence no single agent could produce alone. Anthropic recommends starting with simple workflows and only adding swarm complexity when flexibility and model-driven decision-making are needed at scale.
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m2_def">A multi-agent swarm is a coordinated collective of specialized agents that divide complex objectives into sub-tasks, communicate through structured message passing, and achieve emergent intelligence no single agent could produce alone. Anthropic recommends starting with simple workflows and only adding swarm complexity when flexibility and model-driven decision-making are needed at scale.</span>
                     </div>
-                    <p>Role-based orchestration, emergent behaviors, handoff patterns, and decentralized coordination.</p>
+                    <p data-i18n="m2_desc">Role-based orchestration, emergent behaviors, handoff patterns, and decentralized coordination.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Drug safety swarm: Periodic Safety Update Report agents (signal detection → narrative → QC → regulatory formatting). MSL field intelligence swarm aggregating HCP insights across regions.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m2_pharma">Drug safety swarm: Periodic Safety Update Report agents (signal detection → narrative → QC → regulatory formatting). MSL field intelligence swarm aggregating HCP insights across regions.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>Microsoft AutoGen: 8-agent dev teams. Novartis multi-agent clinical trial site selection optimizing enrollment velocity.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m2_leaders">Microsoft AutoGen: 8-agent dev teams. Novartis multi-agent clinical trial site selection optimizing enrollment velocity.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m2" onchange="saveProgress()"><label for="m2">Mark Module 2 complete</label></div>
-                    <a href="#exercises" class="mod-link">Deploy a 3-Agent Swarm →</a>
+                    <div class="mod-check"><input type="checkbox" id="m2" onchange="saveProgress()"><label for="m2" data-i18n="mod_check2">Mark Module 2 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m2_link">Deploy a 3-Agent Swarm →</a>
                 </div>
             </div>
+
+            <!-- Module 3 -->
             <div class="mod-card fade" data-cat="eng">
                 <div class="mod-img-wrap"><img src="images/hero-harness.png" alt="Harness Engineering"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 3 — Engineering</span>
-                    <h3>🎭 Harness Engineering</h3>
+                    <h3 data-i18n="m3_title">🎭 Harness Engineering</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> Coined by Mitchell Hashimoto in 2026 — <strong>Agent = Model + Harness</strong>. Harness Engineering is the discipline of designing everything that wraps the AI model: tool orchestration, context pipelines, feedback loops, memory systems, safety hooks, sub-agent coordination, and feedforward guides. If the model is the engine, the harness is the entire car around it — steering, brakes, dashboard, telemetry.
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m3_def">Coined by Mitchell Hashimoto in 2026 — <strong>Agent = Model + Harness</strong>. Harness Engineering is the discipline of designing everything that wraps the AI model: tool orchestration, context pipelines, feedback loops, memory systems, safety hooks, sub-agent coordination, and feedforward guides. If the model is the engine, the harness is the entire car around it — steering, brakes, dashboard, telemetry.</span>
                     </div>
-                    <p>Without harness engineering, agents are unpredictable raw models. With it, they become reliable, auditable, production-ready systems. 27% of agent failures trace to data quality rather than model or harness — proving the harness is what separates a demo from a product.</p>
+                    <p data-i18n="m3_desc">Without harness engineering, agents are unpredictable raw models. With it, they become reliable, auditable, production-ready systems. 27% of agent failures trace to data quality rather than model or harness — proving the harness is what separates a demo from a product.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>MLR review harness orchestrating Medical → Legal → Regulatory workflows with audit trails. Safety signal harness with feedforward guides (approved MedDRA terms) and feedback sensors (deviation flags) keeping the agent within regulatory bounds.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m3_pharma">MLR review harness orchestrating Medical → Legal → Regulatory workflows with audit trails. Safety signal harness with feedforward guides (approved MedDRA terms) and feedback sensors (deviation flags) keeping the agent within regulatory bounds.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>OpenAI Codex agents use harness engineering for production-scale code generation. Martin Fowler's "feedforward guides + feedback sensors" pattern adopted by Anthropic and OpenAI in Q1 2026. Salesforce Einstein Orchestrator managing 50+ enterprise tools.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m3_leaders">OpenAI Codex agents use harness engineering for production-scale code generation. Martin Fowler's "feedforward guides + feedback sensors" pattern adopted by Anthropic and OpenAI in Q1 2026. Salesforce Einstein Orchestrator managing 50+ enterprise tools.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m3" onchange="saveProgress()"><label for="m3">Mark Module 3 complete</label></div>
-                    <a href="#exercises" class="mod-link">Design an Agent Harness →</a>
+                    <div class="mod-check"><input type="checkbox" id="m3" onchange="saveProgress()"><label for="m3" data-i18n="mod_check3">Mark Module 3 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m3_link">Design an Agent Harness →</a>
                 </div>
             </div>
+
+            <!-- Module 4 -->
             <div class="mod-card fade" data-cat="eng">
                 <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Context Engineering"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 4 — Engineering</span>
-                    <h3>📜 Context Engineering</h3>
+                    <h3 data-i18n="m4_title">📜 Context Engineering</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> Identified by Anthropic in 2026 as the most important skill shift in AI — Context Engineering has replaced prompt engineering as the key to production AI. It means architecting the 5 context layers (system instructions, retrieval context, conversation history, tool results, user input) so the model has exactly what it needs, when it needs it. Not "write better prompts" — but "design the information environment."
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m4_def">Identified by Anthropic in 2026 as the most important skill shift in AI — Context Engineering has replaced prompt engineering as the key to production AI. It means architecting the 5 context layers (system instructions, retrieval context, conversation history, tool results, user input) so the model has exactly what it needs, when it needs it. Not "write better prompts" — but "design the information environment."</span>
                     </div>
-                    <p>Context design patterns (progressive disclosure, relevant context windows, compression), anti-patterns (overload, staleness, information asymmetry), and memory hierarchies (working, episodic, semantic, procedural).</p>
+                    <p data-i18n="m4_desc">Context design patterns (progressive disclosure, relevant context windows, compression), anti-patterns (overload, staleness, information asymmetry), and memory hierarchies (working, episodic, semantic, procedural).</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>RAG-powered medical affairs knowledge base answering HCP queries with real-time evidence. Context-aware congress report generation pulling from 50K+ publication embeddings.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m4_pharma">RAG-powered medical affairs knowledge base answering HCP queries with real-time evidence. Context-aware congress report generation pulling from 50K+ publication embeddings.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>Notion AI: persistent workspace memory across 10M+ docs. Cohere RAG pipeline processing 1B+ tokens/day for enterprise search.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m4_leaders">Notion AI: persistent workspace memory across 10M+ docs. Cohere RAG pipeline processing 1B+ tokens/day for enterprise search.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m4" onchange="saveProgress()"><label for="m4">Mark Module 4 complete</label></div>
-                    <a href="#exercises" class="mod-link">Build a RAG Context Engine →</a>
+                    <div class="mod-check"><input type="checkbox" id="m4" onchange="saveProgress()"><label for="m4" data-i18n="mod_check4">Mark Module 4 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m4_link">Build a RAG Context Engine →</a>
                 </div>
             </div>
+
+            <!-- Module 5 -->
             <div class="mod-card fade" data-cat="eng">
                 <div class="mod-img-wrap"><img src="images/hero-agentic.png" alt="Agentic Engineering"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 5 — Engineering</span>
-                    <h3>🧬 Agentic Engineering <small style="font-size:0.7em;color:var(--quantum-pink);">(The New Vibe Coding)</small></h3>
+                    <h3 data-i18n="m5_title">🧬 Agentic Engineering <small style="font-size:0.7em;color:var(--quantum-pink);" data-i18n="m5_sub">(The New Vibe Coding)</small></h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> Coined by Andrej Karpathy in 2026 — <strong>Agentic Engineering</strong> is the successor to vibe coding. Where vibe coding (2025) was "express intent → watch code spin up," agentic engineering adds planning, verification, iterative refinement, and governance. You're no longer prompting — you're conducting an orchestra of agents. You own the architecture, tests, and reviews. The agents do the implementation.
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m5_def">Coined by Andrej Karpathy in 2026 — <strong>Agentic Engineering</strong> is the successor to vibe coding. Where vibe coding (2025) was "express intent → watch code spin up," agentic engineering adds planning, verification, iterative refinement, and governance. You're no longer prompting — you're conducting an orchestra of agents. You own the architecture, tests, and reviews. The agents do the implementation.</span>
                     </div>
-                    <p>The evolution: Vibe Coding (2025) = prompt → code. Agentic Engineering (2026) = architect → orchestrate agents → verify → ship. It's the difference between playing an instrument and conducting a symphony.</p>
+                    <p data-i18n="m5_desc">The evolution: Vibe Coding (2025) = prompt → code. Agentic Engineering (2026) = architect → orchestrate agents → verify → ship. It's the difference between playing an instrument and conducting a symphony.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Orchestrating a medical writing agent team: planner agent drafts outline → writer agent produces first draft → reviewer agent flags MLR gaps → refactoring agent revises — all under human oversight gates required for regulated content.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m5_pharma">Orchestrating a medical writing agent team: planner agent drafts outline → writer agent produces first draft → reviewer agent flags MLR gaps → refactoring agent revises — all under human oversight gates required for regulated content.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>Zapier's agentic pipeline: 47 agents in production. TELUS uses agentic engineering for compliance-first content generation. Stripe's agentic fraud detection uses ReAct + multi-agent coordination.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m5_leaders">Zapier's agentic pipeline: 47 agents in production. TELUS uses agentic engineering for compliance-first content generation. Stripe's agentic fraud detection uses ReAct + multi-agent coordination.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m5" onchange="saveProgress()"><label for="m5">Mark Module 5 complete</label></div>
-                    <a href="#exercises" class="mod-link">Practice Agentic Engineering →</a>
+                    <div class="mod-check"><input type="checkbox" id="m5" onchange="saveProgress()"><label for="m5" data-i18n="mod_check5">Mark Module 5 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m5_link">Practice Agentic Engineering →</a>
                 </div>
             </div>
+
+            <!-- Module 6 -->
             <div class="mod-card fade" data-cat="infra">
                 <div class="mod-img-wrap"><img src="images/hero-mcp.png" alt="MCP Servers"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 6 — Infrastructure</span>
-                    <h3>🔌 Model Context Protocol (MCP) Servers</h3>
+                    <h3 data-i18n="m6_title">🔌 Model Context Protocol (MCP) Servers</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> MCP is an open standard for connecting AI applications to external systems — the "USB-C for AI." Just as USB-C provides a standardized way to connect devices, MCP provides a standardized way for AI agents to connect to data sources, tools, and workflows. Organizations now stand up MCP servers instead of building custom integrations.
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m6_def">MCP is an open standard for connecting AI applications to external systems — the "USB-C for AI." Just as USB-C provides a standardized way to connect devices, MCP provides a standardized way for AI agents to connect to data sources, tools, and workflows. Organizations now stand up MCP servers instead of building custom integrations.</span>
                     </div>
-                    <p>Build standardized connectivity layers exposing any data source, API, or tool to AI agents. MCP is becoming the universal integration standard — learn to build and deploy servers.</p>
+                    <p data-i18n="m6_desc">Build standardized connectivity layers exposing any data source, API, or tool to AI agents. MCP is becoming the universal integration standard — learn to build and deploy servers.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>MCP server exposing Veeva Vault (regulatory document management) to AI agents for real-time submission status queries. Clinical trial MCP connecting CTMS, EDC, and IWRS systems for unified agent access.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m6_pharma">MCP server exposing Veeva Vault (regulatory document management) to AI agents for real-time submission status queries. Clinical trial MCP connecting CTMS, EDC, and IWRS systems for unified agent access.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>GitHub Copilot MCP: code repos as agent tools. Figma MCP: design-to-code conversion workflows. Anthropic Claude Desktop MCP hub for 100+ integrations.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m6_leaders">GitHub Copilot MCP: code repos as agent tools. Figma MCP: design-to-code conversion workflows. Anthropic Claude Desktop MCP hub for 100+ integrations.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m6" onchange="saveProgress()"><label for="m6">Mark Module 6 complete</label></div>
-                    <a href="#exercises" class="mod-link">Build an MCP Server →</a>
+                    <div class="mod-check"><input type="checkbox" id="m6" onchange="saveProgress()"><label for="m6" data-i18n="mod_check6">Mark Module 6 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m6_link">Build an MCP Server →</a>
                 </div>
             </div>
+
+            <!-- Module 7 -->
             <div class="mod-card fade" data-cat="infra">
                 <div class="mod-img-wrap"><img src="images/hero-a2a.png" alt="A2A"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 7 — Infrastructure</span>
-                    <h3>🗣️ Agent-to-Agent (A2A) Communication</h3>
+                    <h3 data-i18n="m7_title">🗣️ Agent-to-Agent (A2A) Communication</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> A2A is Google's open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. It defines how agents advertise capabilities, negotiate tasks, and exchange structured messages — making multi-agent ecosystems interoperable the way HTTP made web services interoperable.
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m7_def">A2A is Google's open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. It defines how agents advertise capabilities, negotiate tasks, and exchange structured messages — making multi-agent ecosystems interoperable the way HTTP made web services interoperable.</span>
                     </div>
-                    <p>Design secure, scalable communication fabrics for multi-agent ecosystems. Learn agent discovery, negotiation protocols, and decentralized coordination.</p>
+                    <p data-i18n="m7_desc">Design secure, scalable communication fabrics for multi-agent ecosystems. Learn agent discovery, negotiation protocols, and decentralized coordination.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Cross-functional A2A network: medical information agent ↔ drug safety agent ↔ regulatory agent — auto-routing ICSRs, sharing safety signals, and escalating to human experts when thresholds are exceeded.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m7_pharma">Cross-functional A2A network: medical information agent ↔ drug safety agent ↔ regulatory agent — auto-routing ICSRs, sharing safety signals, and escalating to human experts when thresholds are exceeded.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>Google's A2A protocol enabling 100B+ agent messages/day across cloud services. Roche's multi-site clinical trial agents coordinating patient enrollment.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m7_leaders">Google's A2A protocol enabling 100B+ agent messages/day across cloud services. Roche's multi-site clinical trial agents coordinating patient enrollment.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m7" onchange="saveProgress()"><label for="m7">Mark Module 7 complete</label></div>
-                    <a href="#exercises" class="mod-link">Build an A2A Network →</a>
+                    <div class="mod-check"><input type="checkbox" id="m7" onchange="saveProgress()"><label for="m7" data-i18n="mod_check7">Mark Module 7 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m7_link">Build an A2A Network →</a>
                 </div>
             </div>
+
+            <!-- Module 8 -->
             <div class="mod-card fade" data-cat="infra">
                 <div class="mod-img-wrap"><img src="images/hero-techstack.png" alt="AI Tech Stack"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 8 — Infrastructure</span>
-                    <h3>🏗️ Modern AI Tech Stack Architecture</h3>
+                    <h3 data-i18n="m8_title">🏗️ Modern AI Tech Stack Architecture</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> The modern AI tech stack is the full production pipeline: foundation models → embeddings → vector databases → orchestration (LangGraph, Claude Agent SDK) → harness layers → observability → deployment. It's what separates a demo from a reliable, scalable system.
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m8_def">The modern AI tech stack is the full production pipeline: foundation models → embeddings → vector databases → orchestration (LangGraph, Claude Agent SDK) → harness layers → observability → deployment. It's what separates a demo from a reliable, scalable system.</span>
                     </div>
-                    <p>Master the full AI development landscape: foundation models, embeddings, vector DBs, orchestration, harness layers, observability, and deployment pipelines for production-grade AI platforms.</p>
+                    <p data-i18n="m8_desc">Master the full AI development landscape: foundation models, embeddings, vector DBs, orchestration, harness layers, observability, and deployment pipelines for production-grade AI platforms.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Full-stack medical affairs platform: LLM layer (GPT-4/Claude) → embedding model → Pinecone/Qdrant → LangGraph orchestration → MLR governance → Datadog observability → Veeva integration.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m8_pharma">Full-stack medical affairs platform: LLM layer (GPT-4/Claude) → embedding model → Pinecone/Qdrant → LangGraph orchestration → MLR governance → Datadog observability → Veeva integration.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>Perplexity: 500M+ queries/month with sub-second latency. Mistral's complete AI platform stack. Moderna's mRNA platform running AI across drug discovery, clinical ops, and manufacturing.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m8_leaders">Perplexity: 500M+ queries/month with sub-second latency. Mistral's complete AI platform stack. Moderna's mRNA platform running AI across drug discovery, clinical ops, and manufacturing.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m8" onchange="saveProgress()"><label for="m8">Mark Module 8 complete</label></div>
-                    <a href="#exercises" class="mod-link">Deploy Full AI Platform →</a>
+                    <div class="mod-check"><input type="checkbox" id="m8" onchange="saveProgress()"><label for="m8" data-i18n="mod_check8">Mark Module 8 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m8_link">Deploy Full AI Platform →</a>
                 </div>
             </div>
+
+            <!-- Module 9 -->
             <div class="mod-card fade" data-cat="core">
                 <div class="mod-img-wrap"><img src="images/hero-safety.png" alt="AI Safety"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 9 — Core AI</span>
-                    <h3>🛡️ AI Safety, Governance &amp; Responsible Deployment</h3>
+                    <h3 data-i18n="m9_title">🛡️ AI Safety, Governance &amp; Responsible Deployment</h3>
                     <div class="def-box">
-                        <strong>Definition:</strong> AI Safety & Governance is the discipline of ensuring agentic systems remain reliable, unbiased, and compliant. In regulated industries like pharma, this means designing guardrails, audit trails, human-in-the-loop checkpoints, and model validation protocols that satisfy both AI ethics frameworks (EU AI Act) and industry regulations (FDA, GxP).
+                        <strong data-i18n="def_label">Definition:</strong> <span data-i18n="m9_def">AI Safety &amp; Governance is the discipline of ensuring agentic systems remain reliable, unbiased, and compliant. In regulated industries like pharma, this means designing guardrails, audit trails, human-in-the-loop checkpoints, and model validation protocols that satisfy both AI ethics frameworks (EU AI Act) and industry regulations (FDA, GxP).</span>
                     </div>
-                    <p>Guardrail design, bias auditing, model validation, human-in-the-loop patterns, regulatory compliance, and responsible AI deployment strategies.</p>
+                    <p data-i18n="m9_desc">Guardrail design, bias auditing, model validation, human-in-the-loop patterns, regulatory compliance, and responsible AI deployment strategies.</p>
                     <div class="use-case">
-                        <strong>Pharma &amp; Medical Affairs</strong>
-                        <span>Automated pharmacovigilance with mandatory human review gates. AI-generated medical content with MLR compliance trails, bias detection in safety signal analysis, and FDA-submission-ready audit logs.</span>
+                        <strong data-i18n="uc_pharma">Pharma &amp; Medical Affairs</strong>
+                        <span data-i18n="m9_pharma">Automated pharmacovigilance with mandatory human review gates. AI-generated medical content with MLR compliance trails, bias detection in safety signal analysis, and FDA-submission-ready audit logs.</span>
                     </div>
                     <div class="use-case">
-                        <strong>Industry Leaders</strong>
-                        <span>Google DeepMind's responsible AI framework. Microsoft's responsible AI dashboard. Pfizer's AI governance council reviewing all agentic deployments under GxP compliance.</span>
+                        <strong data-i18n="uc_leaders">Industry Leaders</strong>
+                        <span data-i18n="m9_leaders">Google DeepMind's responsible AI framework. Microsoft's responsible AI dashboard. Pfizer's AI governance council reviewing all agentic deployments under GxP compliance.</span>
                     </div>
-                    <div class="mod-check"><input type="checkbox" id="m9" onchange="saveProgress()"><label for="m9">Mark Module 9 complete</label></div>
-                    <a href="#exercises" class="mod-link">Design AI Guardrails →</a>
+                    <div class="mod-check"><input type="checkbox" id="m9" onchange="saveProgress()"><label for="m9" data-i18n="mod_check9">Mark Module 9 complete</label></div>
+                    <a href="#exercises" class="mod-link" data-i18n="m9_link">Design AI Guardrails →</a>
                 </div>
             </div>
 
@@ -653,58 +685,57 @@
     <!-- ═══════ KEY CONCEPTS ═══════ -->
     <section id="concepts" style="padding:6rem 2rem;position:relative;z-index:1;">
         <div class="section-head">
-            <h2 class="section-title">📖 મુખ્ય ખ્યાલો સમજાવ્યા</h2>
-            <p class="section-sub">2026માં AI ને ફરીથી આકાર આપતી આવશ્યક શબ્દાવલી — વ્યાખ્યાયિત, સરખાવેલ અને સંદર્ભિત.</p>
-            <p class="section-sub" style="font-size:0.95rem;margin-top:0.5rem;opacity:0.7;">The essential terms reshaping AI in 2026 — defined, compared, and contextualized.</p>
+            <h2 class="section-title" data-i18n="concepts_title">📖 Key Concepts Explained</h2>
+            <p class="section-sub" data-i18n="concepts_sub">The essential terms reshaping AI in 2026 — defined, compared, and contextualized.</p>
         </div>
 
         <div style="max-width:1100px;margin:0 auto;">
 
             <!-- Agentic Engineering -->
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
-                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🧬 Agentic Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">← The New Vibe Coding</span></h3>
-                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Coined by Andrej Karpathy, 2026.</strong> The evolution beyond vibe coding. Vibe coding (2025) meant writing code by describing intent to an AI and accepting whatever it generates. Agentic engineering means <em>orchestrating teams of AI agents</em> — you design the architecture, set the tests, own the reviews, and agents handle implementation. It's the shift from "solo coder with AI autocomplete" to "engineering conductor of an AI orchestra."</p>
+            <div class="concept-card fade" style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;" data-i18n="c_agentic_title">🧬 Agentic Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;" data-i18n="c_agentic_tag">← The New Vibe Coding</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);" data-i18n="c_agentic_by">Coined by Andrej Karpathy, 2026.</strong> <span data-i18n="c_agentic_desc">The evolution beyond vibe coding. Vibe coding (2025) meant writing code by describing intent to an AI and accepting whatever it generates. Agentic engineering means orchestrating teams of AI agents — you design the architecture, set the tests, own the reviews, and agents handle implementation. It's the shift from "solo coder with AI autocomplete" to "engineering conductor of an AI orchestra."</span></p>
                 <div style="background:rgba(0,245,255,0.04);border-left:3px solid var(--neon-cyan);padding:0.8rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;">
-                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;">The Evolution</strong>
-                    <span style="color:var(--off-white);font-size:0.85rem;"><strong>2024:</strong> Prompt Engineering (craft the perfect prompt) → <strong>2025:</strong> Vibe Coding (express intent, AI generates) → <strong>2026:</strong> Agentic Engineering (orchestrate agents that plan, code, test, and ship under your supervision)</span>
+                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;" data-i18n="c_agentic_evo_label">The Evolution</strong>
+                    <span style="color:var(--off-white);font-size:0.85rem;" data-i18n="c_agentic_evo"><strong>2024:</strong> Prompt Engineering (craft the perfect prompt) → <strong>2025:</strong> Vibe Coding (express intent, AI generates) → <strong>2026:</strong> Agentic Engineering (orchestrate agents that plan, code, test, and ship under your supervision)</span>
                 </div>
-                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Key insight:</strong> In vibe coding, you vibe. In agentic engineering, you architect. The human role shifts from writing code to designing systems, setting quality gates, and directing agent teams.</p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);" data-i18n="c_agentic_insight_label">Key insight:</strong> <span data-i18n="c_agentic_insight">In vibe coding, you vibe. In agentic engineering, you architect. The human role shifts from writing code to designing systems, setting quality gates, and directing agent teams.</span></p>
             </div>
 
             <!-- Harness Engineering -->
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
-                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🎭 Harness Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">NEW TERM</span></h3>
-                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Coined by Mitchell Hashimoto, 2026.</strong> The formula: <strong style="color:var(--neon-cyan);">Agent = Model + Harness</strong>. The harness is everything that wraps the model — tools, context pipelines, feedback loops, memory, safety hooks, and sub-agent orchestration. If the model is the engine, the harness is the entire car: steering, brakes, dashboard, telemetry, and airbags.</p>
+            <div class="concept-card fade" style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;" data-i18n="c_harness_title">🎭 Harness Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;" data-i18n="c_harness_tag">NEW TERM</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);" data-i18n="c_harness_by">Coined by Mitchell Hashimoto, 2026.</strong> <span data-i18n="c_harness_desc">The formula: <strong style="color:var(--neon-cyan);">Agent = Model + Harness</strong>. The harness is everything that wraps the model — tools, context pipelines, feedback loops, memory, safety hooks, and sub-agent orchestration. If the model is the engine, the harness is the entire car: steering, brakes, dashboard, telemetry, and airbags.</span></p>
                 <div style="background:rgba(0,245,255,0.04);border-left:3px solid var(--neon-cyan);padding:0.8rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;">
-                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;">Martin Fowler's Pattern</strong>
-                    <span style="color:var(--off-white);font-size:0.85rem;"><strong>Feedforward Guides</strong> = instructions & constraints given before the model acts (system prompts, approved term lists, templates). <strong>Feedback Sensors</strong> = signals captured after the model acts (output validation, deviation detection, audit logs). Together, they form the harness's steering system.</span>
+                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;" data-i18n="c_harness_pat_label">Martin Fowler's Pattern</strong>
+                    <span style="color:var(--off-white);font-size:0.85rem;" data-i18n="c_harness_pat"><strong>Feedforward Guides</strong> = instructions &amp; constraints given before the model acts (system prompts, approved term lists, templates). <strong>Feedback Sensors</strong> = signals captured after the model acts (output validation, deviation detection, audit logs). Together, they form the harness's steering system.</span>
                 </div>
-                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> 27% of AI agent failures trace to data quality, not the model or harness — which proves the harness is the differentiator between a demo and a product. Harness engineering is what makes agents reliable, auditable, and production-ready.</p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);" data-i18n="c_harness_why_label">Why it matters:</strong> <span data-i18n="c_harness_why">27% of AI agent failures trace to data quality, not the model or harness — which proves the harness is the differentiator between a demo and a product. Harness engineering is what makes agents reliable, auditable, and production-ready.</span></p>
             </div>
 
             <!-- Context Engineering -->
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
-                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">📜 Context Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">← Replaces Prompt Engineering</span></h3>
-                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Identified by Anthropic, 2026.</strong> The most important skill shift in AI. Context engineering replaces prompt engineering as the key discipline. It's not about "writing better prompts" — it's about <em>designing the information environment</em> so the model has exactly what it needs, when it needs it.</p>
+            <div class="concept-card fade" style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;" data-i18n="c_context_title">📜 Context Engineering <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;" data-i18n="c_context_tag">← Replaces Prompt Engineering</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);" data-i18n="c_context_by">Identified by Anthropic, 2026.</strong> <span data-i18n="c_context_desc">The most important skill shift in AI. Context engineering replaces prompt engineering as the key discipline. It's not about "writing better prompts" — it's about designing the information environment so the model has exactly what it needs, when it needs it.</span></p>
                 <div style="background:rgba(0,245,255,0.04);border-left:3px solid var(--neon-cyan);padding:0.8rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;">
-                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;">The 5 Context Layers</strong>
-                    <span style="color:var(--off-white);font-size:0.85rem;"><strong>1.</strong> System Instructions &nbsp;|&nbsp; <strong>2.</strong> Retrieval Context (RAG) &nbsp;|&nbsp; <strong>3.</strong> Conversation History &nbsp;|&nbsp; <strong>4.</strong> Tool Results &nbsp;|&nbsp; <strong>5.</strong> User Input. — Context engineering means getting the right information into the right layer at the right time.</span>
+                    <strong style="display:block;color:var(--neon-cyan);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.3rem;" data-i18n="c_context_layers_label">The 5 Context Layers</strong>
+                    <span style="color:var(--off-white);font-size:0.85rem;" data-i18n="c_context_layers"><strong>1.</strong> System Instructions &nbsp;|&nbsp; <strong>2.</strong> Retrieval Context (RAG) &nbsp;|&nbsp; <strong>3.</strong> Conversation History &nbsp;|&nbsp; <strong>4.</strong> Tool Results &nbsp;|&nbsp; <strong>5.</strong> User Input. — Context engineering means getting the right information into the right layer at the right time.</span>
                 </div>
-                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Anti-patterns:</strong> Context overload (too much info), context staleness (outdated data), information asymmetry (agent sees different info at different stages). Good context engineering eliminates all three.</p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);" data-i18n="c_context_anti_label">Anti-patterns:</strong> <span data-i18n="c_context_anti">Context overload (too much info), context staleness (outdated data), information asymmetry (agent sees different info at different stages). Good context engineering eliminates all three.</span></p>
             </div>
 
             <!-- MCP -->
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
-                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🔌 MCP (Model Context Protocol) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">THE USB-C FOR AI</span></h3>
-                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Created by Anthropic, 2024–2025.</strong> An open standard for connecting AI applications to external systems. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way for AI agents to connect to data sources, tools, and workflows. Now supported by Claude, ChatGPT, VS Code, Cursor, and 100+ integrations.</p>
-                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> Organizations now stand up MCP servers instead of building custom integrations. One MCP server can serve any AI client — write once, connect everywhere.</p>
+            <div class="concept-card fade" style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;" data-i18n="c_mcp_title">🔌 MCP (Model Context Protocol) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;" data-i18n="c_mcp_tag">THE USB-C FOR AI</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);" data-i18n="c_mcp_by">Created by Anthropic, 2024–2025.</strong> <span data-i18n="c_mcp_desc">An open standard for connecting AI applications to external systems. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way for AI agents to connect to data sources, tools, and workflows. Now supported by Claude, ChatGPT, VS Code, Cursor, and 100+ integrations.</span></p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);" data-i18n="c_mcp_why_label">Why it matters:</strong> <span data-i18n="c_mcp_why">Organizations now stand up MCP servers instead of building custom integrations. One MCP server can serve any AI client — write once, connect everywhere.</span></p>
             </div>
 
             <!-- A2A -->
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
-                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;">🗣️ A2A (Agent-to-Agent Protocol) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">THE HTTP FOR AGENTS</span></h3>
-                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);">Published by Google, 2025.</strong> An open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. A2A defines how agents advertise capabilities, negotiate tasks, and exchange structured messages — making multi-agent ecosystems interoperable the way HTTP made web services interoperable.</p>
-                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> Without A2A, agents are siloed. With it, a pharma safety agent, a regulatory agent, and a medical writing agent — each built on different platforms — can seamlessly collaborate on a PSUR.</p>
+            <div class="concept-card fade" style="background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;margin-bottom:2rem;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+                <h3 style="font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;" data-i18n="c_a2a_title">🗣️ A2A (Agent-to-Agent Protocol) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;" data-i18n="c_a2a_tag">THE HTTP FOR AGENTS</span></h3>
+                <p style="font-size:0.95rem;color:var(--silver);line-height:1.8;margin-bottom:1rem;"><strong style="color:var(--electric-purple);" data-i18n="c_a2a_by">Published by Google, 2025.</strong> <span data-i18n="c_a2a_desc">An open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. A2A defines how agents advertise capabilities, negotiate tasks, and exchange structured messages — making multi-agent ecosystems interoperable the way HTTP made web services interoperable.</span></p>
+                <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);" data-i18n="c_a2a_why_label">Why it matters:</strong> <span data-i18n="c_a2a_why">Without A2A, agents are siloed. With it, a pharma safety agent, a regulatory agent, and a medical writing agent — each built on different platforms — can seamlessly collaborate on a PSUR.</span></p>
             </div>
 
         </div>
@@ -713,28 +744,27 @@
     <!-- ═══════ EVOLUTION TIMELINE ═══════ -->
     <section class="timeline-section" id="timeline">
         <div class="section-head">
-            <h2 class="section-title">⏳ ઉત્ક્રાંતિ</h2>
-            <p class="section-sub">AI એન્જિનિયરિંગ શિસ્ત કેવી રીતે વિકસિત થઈ — પ્રોમ્પ્ટ બનાવવાથી સમગ્ર એજન્ટ સિસ્ટમ્સ એન્જિનિયર કરવા સુધી.</p>
-            <p class="section-sub" style="font-size:0.95rem;margin-top:0.5rem;opacity:0.7;">How AI engineering disciplines evolved — from crafting prompts to engineering entire agent systems.</p>
+            <h2 class="section-title" data-i18n="tl_title">⏳ The Evolution</h2>
+            <p class="section-sub" data-i18n="tl_sub">How AI engineering disciplines evolved — from crafting prompts to engineering entire agent systems.</p>
         </div>
         <div class="timeline">
             <div class="tl-step fade">
                 <div class="tl-node">🎯</div>
                 <div class="tl-year">2024</div>
-                <div class="tl-term">Prompt Engineering</div>
-                <div class="tl-desc">Craft the perfect prompt. Optimize instructions to get better outputs from a single model call. One shot, one output.</div>
+                <div class="tl-term" data-i18n="tl_2024_term">Prompt Engineering</div>
+                <div class="tl-desc" data-i18n="tl_2024_desc">Craft the perfect prompt. Optimize instructions to get better outputs from a single model call. One shot, one output.</div>
             </div>
             <div class="tl-step fade">
                 <div class="tl-node">🧩</div>
                 <div class="tl-year">2025</div>
-                <div class="tl-term">Context Engineering</div>
-                <div class="tl-desc">Design the information environment. 5 context layers, RAG, memory hierarchies. Not better prompts — better context architecture.</div>
+                <div class="tl-term" data-i18n="tl_2025_term">Context Engineering</div>
+                <div class="tl-desc" data-i18n="tl_2025_desc">Design the information environment. 5 context layers, RAG, memory hierarchies. Not better prompts — better context architecture.</div>
             </div>
             <div class="tl-step fade">
                 <div class="tl-node">🎭</div>
                 <div class="tl-year">2026</div>
-                <div class="tl-term">Harness Engineering</div>
-                <div class="tl-desc">Design everything around the model: tools, feedback loops, safety hooks, sub-agents. Agent = Model + Harness. Production-ready systems.</div>
+                <div class="tl-term" data-i18n="tl_2026_term">Harness Engineering</div>
+                <div class="tl-desc" data-i18n="tl_2026_desc">Design everything around the model: tools, feedback loops, safety hooks, sub-agents. Agent = Model + Harness. Production-ready systems.</div>
             </div>
         </div>
     </section>
@@ -742,53 +772,52 @@
     <!-- ═══════ CLAUDE UPDATES ═══════ -->
     <section class="claude-section" id="claude">
         <div class="section-head">
-            <h2 class="section-title">⚡ Claude — તાજેતરના અપડેટ્સ</h2>
-            <p class="section-sub">AI નેતાઓ માટે મહત્વના તમામ મુખ્ય Claude અપડેટ્સ — Q1–Q2 2026.</p>
-            <p class="section-sub" style="font-size:0.95rem;margin-top:0.5rem;opacity:0.7;">Every major Claude update from Q1–Q2 2026 that matters for AI leaders.</p>
+            <h2 class="section-title" data-i18n="claude_title">⚡ Claude — Recent Updates</h2>
+            <p class="section-sub" data-i18n="claude_sub">Every major Claude update from Q1–Q2 2026 that matters for AI leaders.</p>
         </div>
 
         <div class="claude-grid">
             <div class="claude-card fade">
                 <div class="claude-icon">💻</div>
-                <h3>Claude Code</h3>
-                <p>Anthropic's flagship coding agent evolved from terminal assistant to full development platform. Multi-session, auto-mode, computer use, and 1M-token context (Opus 4.6). Now supports parallel worktrees, subagent-driven development, and test-driven coding workflows.</p>
-                <span class="claude-tag">Terminal → Platform</span>
+                <h3 data-i18n="cl_code">Claude Code</h3>
+                <p data-i18n="cl_code_desc">Anthropic's flagship coding agent evolved from terminal assistant to full development platform. Multi-session, auto-mode, computer use, and 1M-token context (Opus 4.6). Now supports parallel worktrees, subagent-driven development, and test-driven coding workflows.</p>
+                <span class="claude-tag" data-i18n="cl_code_tag">Terminal → Platform</span>
             </div>
             <div class="claude-card fade">
                 <div class="claude-icon">🤝</div>
-                <h3>Claude Cowork</h3>
-                <p>Real-time collaborative AI where multiple team members work alongside Claude simultaneously. Shared context, parallel task execution, and automatic conflict resolution. Like Google Docs for AI-assisted development and research.</p>
-                <span class="claude-tag">Multi-Player AI</span>
+                <h3 data-i18n="cl_cowork">Claude Cowork</h3>
+                <p data-i18n="cl_cowork_desc">Real-time collaborative AI where multiple team members work alongside Claude simultaneously. Shared context, parallel task execution, and automatic conflict resolution. Like Google Docs for AI-assisted development and research.</p>
+                <span class="claude-tag" data-i18n="cl_cowork_tag">Multi-Player AI</span>
             </div>
             <div class="claude-card fade">
                 <div class="claude-icon">📡</div>
-                <h3>Dispatch</h3>
-                <p>Cloud-based autonomous agent execution engine. Dispatch agents run tasks in the background — code review, testing, documentation, data analysis — without requiring an active session. Results are delivered when complete.</p>
-                <span class="claude-tag">Autonomous Cloud Agents</span>
+                <h3 data-i18n="cl_dispatch">Dispatch</h3>
+                <p data-i18n="cl_dispatch_desc">Cloud-based autonomous agent execution engine. Dispatch agents run tasks in the background — code review, testing, documentation, data analysis — without requiring an active session. Results are delivered when complete.</p>
+                <span class="claude-tag" data-i18n="cl_dispatch_tag">Autonomous Cloud Agents</span>
             </div>
             <div class="claude-card fade">
                 <div class="claude-icon">🔄</div>
-                <h3>Routines</h3>
-                <p>Scheduled, repeatable AI workflows that run on triggers or timers. Think cron jobs but intelligent. Auto-generate daily reports, monitor code health, run regression tests, or send daily digests — all on autopilot.</p>
-                <span class="claude-tag">AI Cron + Automation</span>
+                <h3 data-i18n="cl_routines">Routines</h3>
+                <p data-i18n="cl_routines_desc">Scheduled, repeatable AI workflows that run on triggers or timers. Think cron jobs but intelligent. Auto-generate daily reports, monitor code health, run regression tests, or send daily digests — all on autopilot.</p>
+                <span class="claude-tag" data-i18n="cl_routines_tag">AI Cron + Automation</span>
             </div>
             <div class="claude-card fade">
                 <div class="claude-icon">⚡</div>
-                <h3>Claude Opus 4.6</h3>
-                <p>The most capable Opus model yet. 1M-token context window (beta), improved coding accuracy, better long-context reasoning, and sustained performance on agentic tasks. The foundation for all the new features above.</p>
-                <span class="claude-tag">1M Context Window</span>
+                <h3 data-i18n="cl_opus">Claude Opus 4.6</h3>
+                <p data-i18n="cl_opus_desc">The most capable Opus model yet. 1M-token context window (beta), improved coding accuracy, better long-context reasoning, and sustained performance on agentic tasks. The foundation for all the new features above.</p>
+                <span class="claude-tag" data-i18n="cl_opus_tag">1M Context Window</span>
             </div>
             <div class="claude-card fade">
                 <div class="claude-icon">🛠️</div>
-                <h3>Agent Skills 2.0</h3>
-                <p>Programmable agent behaviors that combine instructions, permissions, and hooks into composable skill packages. Build custom workflows (brainstorming → planning → TDD → review) that automatically trigger at the right moment.</p>
-                <span class="claude-tag">Composable Behaviors</span>
+                <h3 data-i18n="cl_skills">Agent Skills 2.0</h3>
+                <p data-i18n="cl_skills_desc">Programmable agent behaviors that combine instructions, permissions, and hooks into composable skill packages. Build custom workflows (brainstorming → planning → TDD → review) that automatically trigger at the right moment.</p>
+                <span class="claude-tag" data-i18n="cl_skills_tag">Composable Behaviors</span>
             </div>
             <div class="claude-card fade">
                 <div class="claude-icon">🖥️</div>
-                <h3>Desktop Redesign (v2.1.76+)</h3>
-                <p>Complete UI overhaul with multi-session support, improved terminal integration, NO_FLICKER rendering, /powerup interactive tutorials, and team onboarding workflows. From pair-programmer to operations platform.</p>
-                <span class="claude-tag">Ops Platform Era</span>
+                <h3 data-i18n="cl_desktop">Desktop Redesign (v2.1.76+)</h3>
+                <p data-i18n="cl_desktop_desc">Complete UI overhaul with multi-session support, improved terminal integration, NO_FLICKER rendering, /powerup interactive tutorials, and team onboarding workflows. From pair-programmer to operations platform.</p>
+                <span class="claude-tag" data-i18n="cl_desktop_tag">Ops Platform Era</span>
             </div>
         </div>
     </section>
@@ -796,74 +825,73 @@
     <!-- ═══════ EXERCISES ═══════ -->
     <section class="exercises-section" id="exercises">
         <div class="section-head">
-            <h2 class="section-title">🛠️ હાથ-અનુભવ કસરતો</h2>
-            <p class="section-sub">વાસ્તવિક પ્રોજેક્ટ્સ બનાવો. ફાર્મા અને મેડિકલ અફેર્સ પર કેન્દ્રિત.</p>
-            <p class="section-sub" style="font-size:0.95rem;margin-top:0.5rem;opacity:0.7;">Build real projects. Pharma &amp; Medical Affairs focused.</p>
+            <h2 class="section-title" data-i18n="ex_title">🛠️ Hands-On Exercises</h2>
+            <p class="section-sub" data-i18n="ex_sub">Build real projects. Pharma &amp; Medical Affairs focused.</p>
         </div>
 
         <div class="ex-grid">
             <div class="ex-card fade">
                 <div class="ex-num">1</div>
                 <div>
-                    <h4>Build Your First Autonomous Agent</h4>
-                    <p>Create an agent that monitors PubMed for new publications on a specific drug, summarizes findings, and drafts a medical information response letter.</p>
-                    <div class="ex-pharma">💊 Pharma: Literature surveillance agent with auto-ICSR flagging</div>
+                    <h4 data-i18n="ex1_title">Build Your First Autonomous Agent</h4>
+                    <p data-i18n="ex1_desc">Create an agent that monitors PubMed for new publications on a specific drug, summarizes findings, and drafts a medical information response letter.</p>
+                    <div class="ex-pharma" data-i18n="ex1_pharma">💊 Pharma: Literature surveillance agent with auto-ICSR flagging</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">2</div>
                 <div>
-                    <h4>Deploy a 3-Agent Safety Swarm</h4>
-                    <p>Build a swarm where Signal Detector, Narrative Writer, and QC Reviewer collaborate to produce a Periodic Safety Update Report (PSUR) from raw AE data.</p>
-                    <div class="ex-pharma">💊 Pharma: PSUR generation swarm with MedDRA coding validation</div>
+                    <h4 data-i18n="ex2_title">Deploy a 3-Agent Safety Swarm</h4>
+                    <p data-i18n="ex2_desc">Build a swarm where Signal Detector, Narrative Writer, and QC Reviewer collaborate to produce a Periodic Safety Update Report (PSUR) from raw AE data.</p>
+                    <div class="ex-pharma" data-i18n="ex2_pharma">💊 Pharma: PSUR generation swarm with MedDRA coding validation</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">3</div>
                 <div>
-                    <h4>Design an MLR Review Harness</h4>
-                    <p>Orchestrate an agent harness that routes content through Medical → Legal → Regulatory review with version control, audit trails, and approval gates.</p>
-                    <div class="ex-pharma">💊 Pharma: End-to-end MLR workflow with Veeva Vault integration</div>
+                    <h4 data-i18n="ex3_title">Design an MLR Review Harness</h4>
+                    <p data-i18n="ex3_desc">Orchestrate an agent harness that routes content through Medical → Legal → Regulatory review with version control, audit trails, and approval gates.</p>
+                    <div class="ex-pharma" data-i18n="ex3_pharma">💊 Pharma: End-to-end MLR workflow with Veeva Vault integration</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">4</div>
                 <div>
-                    <h4>Build a RAG Context Engine</h4>
-                    <p>Implement retrieval-augmented generation over a corpus of 10K+ medical publications, enabling HCP query answering with citation-level evidence.</p>
-                    <div class="ex-pharma">💊 Pharma: Medical affairs knowledge base with real-time evidence retrieval</div>
+                    <h4 data-i18n="ex4_title">Build a RAG Context Engine</h4>
+                    <p data-i18n="ex4_desc">Implement retrieval-augmented generation over a corpus of 10K+ medical publications, enabling HCP query answering with citation-level evidence.</p>
+                    <div class="ex-pharma" data-i18n="ex4_pharma">💊 Pharma: Medical affairs knowledge base with real-time evidence retrieval</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">5</div>
                 <div>
-                    <h4>Create an MCP Server for Pharma Data</h4>
-                    <p>Build an MCP server exposing Veeva Vault documents, clinical trial data, and safety databases as agent-consumable tools with proper access controls.</p>
-                    <div class="ex-pharma">💊 Pharma: Unified MCP gateway for regulated document access</div>
+                    <h4 data-i18n="ex5_title">Create an MCP Server for Pharma Data</h4>
+                    <p data-i18n="ex5_desc">Build an MCP server exposing Veeva Vault documents, clinical trial data, and safety databases as agent-consumable tools with proper access controls.</p>
+                    <div class="ex-pharma" data-i18n="ex5_pharma">💊 Pharma: Unified MCP gateway for regulated document access</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">6</div>
                 <div>
-                    <h4>Deploy a Full Medical Affairs AI Platform</h4>
-                    <p>Combine all patterns into a production platform: multi-agent orchestration, RAG over med-sci content, MCP integration, A2A communication, and observability dashboard.</p>
-                    <div class="ex-pharma">💊 Pharma: Production medical affairs AI with MLR compliance, Datadog observability, and Veeva integration</div>
+                    <h4 data-i18n="ex6_title">Deploy a Full Medical Affairs AI Platform</h4>
+                    <p data-i18n="ex6_desc">Combine all patterns into a production platform: multi-agent orchestration, RAG over med-sci content, MCP integration, A2A communication, and observability dashboard.</p>
+                    <div class="ex-pharma" data-i18n="ex6_pharma">💊 Pharma: Production medical affairs AI with MLR compliance, Datadog observability, and Veeva integration</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">7</div>
                 <div>
-                    <h4>Design an MLR Harness with Feedforward + Feedback</h4>
-                    <p>Build a harness for the Medical-Legal-Regulatory review process: feedforward guides (approved terminology, template constraints) and feedback sensors (deviation flags, compliance scores) that keep the agent within regulatory bounds.</p>
-                    <div class="ex-pharma">💊 Pharma: MLR harness with MedDRA feedforward guides and deviation feedback sensors for regulated content</div>
+                    <h4 data-i18n="ex7_title">Design an MLR Harness with Feedforward + Feedback</h4>
+                    <p data-i18n="ex7_desc">Build a harness for the Medical-Legal-Regulatory review process: feedforward guides (approved terminology, template constraints) and feedback sensors (deviation flags, compliance scores) that keep the agent within regulatory bounds.</p>
+                    <div class="ex-pharma" data-i18n="ex7_pharma">💊 Pharma: MLR harness with MedDRA feedforward guides and deviation feedback sensors for regulated content</div>
                 </div>
             </div>
             <div class="ex-card fade">
                 <div class="ex-num">8</div>
                 <div>
-                    <h4>Build AI Guardrails for Pharmacovigilance</h4>
-                    <p>Design a safety-first agent system with mandatory human review gates, bias detection in signal analysis, audit trail logging, and compliance validation for FDA GxP and EU AI Act requirements.</p>
-                    <div class="ex-pharma">💊 Pharma: Pharmacovigilance guardrails with human-in-the-loop checkpoints and FDA submission-ready audit logs</div>
+                    <h4 data-i18n="ex8_title">Build AI Guardrails for Pharmacovigilance</h4>
+                    <p data-i18n="ex8_desc">Design a safety-first agent system with mandatory human review gates, bias detection in signal analysis, audit trail logging, and compliance validation for FDA GxP and EU AI Act requirements.</p>
+                    <div class="ex-pharma" data-i18n="ex8_pharma">💊 Pharma: Pharmacovigilance guardrails with human-in-the-loop checkpoints and FDA submission-ready audit logs</div>
                 </div>
             </div>
         </div>
@@ -872,9 +900,8 @@
     <!-- ═══════ QUIZ ═══════ -->
     <section id="quiz">
         <div class="section-head">
-            <h2 class="section-title">🎯 તમારા જ્ઞાનની કસોટી</h2>
-            <p class="section-sub">2026માં AI નેતૃત્વને ફરીથી આકાર આપતા ખ્યાલો પર 5 પ્રશ્નો.</p>
-            <p class="section-sub" style="font-size:0.95rem;margin-top:0.5rem;opacity:0.7;">5 questions on the concepts reshaping AI leadership in 2026.</p>
+            <h2 class="section-title" data-i18n="quiz_title">🎯 Test Your Knowledge</h2>
+            <p class="section-sub" data-i18n="quiz_sub">5 questions on the concepts reshaping AI leadership in 2026.</p>
         </div>
         <div class="quiz-section">
             <div class="quiz-card">
@@ -885,68 +912,68 @@
                     <div class="quiz-dot"></div>
                     <div class="quiz-dot"></div>
                 </div>
-                <div class="quiz-counter" id="quizCounter">Question 1 of 5</div>
+                <div class="quiz-counter" id="quizCounter" data-i18n="quiz_counter">Question 1 of 5</div>
 
                 <!-- Q1 -->
                 <div class="quiz-question" id="q1">
-                    <h3>What is the key difference between Agentic Engineering and Vibe Coding?</h3>
-                    <div class="quiz-opt" data-correct="false" data-expl="Vibe coding is about expressing intent and accepting whatever the AI generates, with no structured oversight.">A. Agentic Engineering uses larger models</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="Both can use any model — the difference is in process and oversight, not model size.">B. Vibe Coding is faster but less accurate</div>
-                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Agentic Engineering adds planning, verification, iterative refinement, and governance — you conduct an orchestra of agents rather than vibing alone.">C. Agentic Engineering orchestrates agents with planning, verification, and governance</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="Close — but the real shift isn't about team size, it's about structured oversight vs. unstructured generation.">D. Vibe Coding requires a team, Agentic Engineering is solo</div>
+                    <h3 data-i18n="q1_q">What is the key difference between Agentic Engineering and Vibe Coding?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q1_a_expl">A. Agentic Engineering uses larger models</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q1_b_expl">B. Vibe Coding is faster but less accurate</div>
+                    <div class="quiz-opt" data-correct="true" data-expl-i18n="q1_c_expl">C. Agentic Engineering orchestrates agents with planning, verification, and governance</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q1_d_expl">D. Vibe Coding requires a team, Agentic Engineering is solo</div>
                     <div class="quiz-expl" id="expl1"></div>
                 </div>
 
                 <!-- Q2 -->
                 <div class="quiz-question" id="q2" style="display:none">
-                    <h3>In Harness Engineering, what does the "harness" refer to?</h3>
-                    <div class="quiz-opt" data-correct="false" data-expl="The harness includes tools, but it's much broader than that.">A. Just the tools an agent can use</div>
-                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Agent = Model + Harness. The harness is everything around the model: tools, context pipes, feedback loops, memory, safety hooks, and sub-agents. Like the car around an engine.">B. Everything that wraps the model: tools, context, feedback, memory, safety, sub-agents</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="The harness doesn't replace the model — it wraps around it.">C. A replacement model that's more reliable</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="The harness includes deployment patterns, but it's fundamentally about the control layer around a model, not just where it runs.">D. The cloud infrastructure where the agent runs</div>
+                    <h3 data-i18n="q2_q">In Harness Engineering, what does the "harness" refer to?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q2_a_expl">A. Just the tools an agent can use</div>
+                    <div class="quiz-opt" data-correct="true" data-expl-i18n="q2_b_expl">B. Everything that wraps the model: tools, context, feedback, memory, safety, sub-agents</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q2_c_expl">C. A replacement model that's more reliable</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q2_d_expl">D. The cloud infrastructure where the agent runs</div>
                     <div class="quiz-expl" id="expl2"></div>
                 </div>
 
                 <!-- Q3 -->
                 <div class="quiz-question" id="q3" style="display:none">
-                    <h3>What does Context Engineering replace, and what are the 5 layers?</h3>
-                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Anthropic identified Context Engineering as the key skill shift in 2026. The 5 layers are: system instructions, retrieval context (RAG), conversation history, tool results, and user input.">A. Replaces Prompt Engineering; layers are system instructions, retrieval, history, tool results, user input</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="Close — it does replace prompt engineering, but the layers aren't model architecture layers. They're information context layers.">B. Replaces Prompt Engineering; layers are input, hidden, output, attention, and embedding</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="Context Engineering doesn't replace Harness Engineering — they complement each other. Context is about information design; Harness is about the control layer around the model.">C. Replaces Harness Engineering; layers are tools, memory, safety, feedback, and deployment</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="Context Engineering predates 2026, but Anthropic's formal identification of it as replacing prompt engineering is what makes it the key 2026 skill shift.">D. Replaces RAG; layers are vector databases, embeddings, chunking, retrieval, and generation</div>
+                    <h3 data-i18n="q3_q">What does Context Engineering replace, and what are the 5 layers?</h3>
+                    <div class="quiz-opt" data-correct="true" data-expl-i18n="q3_a_expl">A. Replaces Prompt Engineering; layers are system instructions, retrieval, history, tool results, user input</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q3_b_expl">B. Replaces Prompt Engineering; layers are input, hidden, output, attention, and embedding</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q3_c_expl">C. Replaces Harness Engineering; layers are tools, memory, safety, feedback, and deployment</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q3_d_expl">D. Replaces RAG; layers are vector databases, embeddings, chunking, retrieval, and generation</div>
                     <div class="quiz-expl" id="expl3"></div>
                 </div>
 
                 <!-- Q4 -->
                 <div class="quiz-question" id="q4" style="display:none">
-                    <h3>What is MCP (Model Context Protocol) and why does it matter?</h3>
-                    <div class="quiz-opt" data-correct="false" data-expl="MCP is not a model — it's a connectivity standard.">A. A new large language model by Anthropic</div>
-                    <div class="quiz-opt" data-correct="true" data-expl="Correct! MCP is the "USB-C for AI" — an open standard for connecting agents to data sources, tools, and workflows. One MCP server serves any AI client. Write once, connect everywhere.">B. An open standard for connecting AI applications to external systems — the USB-C for AI</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="MCP is a connectivity protocol, not a training technique.">C. A method for training models with more context</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="While MCP is made by Anthropic, it's supported by Claude, ChatGPT, VS Code, Cursor, and 100+ integrations — it's a universal standard, not a proprietary lock-in.">D. Anthropic's proprietary API for Claude</div>
+                    <h3 data-i18n="q4_q">What is MCP (Model Context Protocol) and why does it matter?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q4_a_expl">A. A new large language model by Anthropic</div>
+                    <div class="quiz-opt" data-correct="true" data-expl-i18n="q4_b_expl">B. An open standard for connecting AI applications to external systems — the USB-C for AI</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q4_c_expl">C. A method for training models with more context</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q4_d_expl">D. Anthropic's proprietary API for Claude</div>
                     <div class="quiz-expl" id="expl4"></div>
                 </div>
 
                 <!-- Q5 -->
                 <div class="quiz-question" id="q5" style="display:none">
-                    <h3>The evolution timeline goes: Prompt Engineering → Context Engineering → Harness Engineering. Why?</h3>
-                    <div class="quiz-opt" data-correct="false" data-expl="Subtext doesn't fully capture it — each discipline represents a fundamental expansion in scope, not just a new label.">A. Each is just a rebrand of the previous one for marketing</div>
-                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Each discipline fundamentally expands scope: Prompt Engineering optimizes a single call, Context Engineering designs the entire information environment, and Harness Engineering builds the complete production system around the model.">B. Each expands scope — from optimizing a call, to designing information flow, to engineering the full production system</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="They actually complement each other — you still use prompt and context engineering within a harness. It's additive, not sequential.">C. Each replaces the previous one completely</div>
-                    <div class="quiz-opt" data-correct="false" data-expl="Harness Engineering can apply to much simpler systems than multi-agent swarms. It's about the control layer around ANY model instance.">D. They're only relevant for multi-agent swarms</div>
+                    <h3 data-i18n="q5_q">The evolution timeline goes: Prompt Engineering → Context Engineering → Harness Engineering. Why?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q5_a_expl">A. Each is just a rebrand of the previous one for marketing</div>
+                    <div class="quiz-opt" data-correct="true" data-expl-i18n="q5_b_expl">B. Each expands scope — from optimizing a call, to designing information flow, to engineering the full production system</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q5_c_expl">C. Each replaces the previous one completely</div>
+                    <div class="quiz-opt" data-correct="false" data-expl-i18n="q5_d_expl">D. They're only relevant for multi-agent swarms</div>
                     <div class="quiz-expl" id="expl5"></div>
                 </div>
 
                 <div id="quiz-result"></div>
                 <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
-                    <button class="cta" id="quizSubmit" onclick="submitAnswer()" style="font-size:1rem;padding:0.8rem 2rem;">Submit Answer</button>
-                    <button class="cta" id="quizNext" onclick="nextQuestion()" style="font-size:1rem;padding:0.8rem 2rem;display:none;background:linear-gradient(135deg,var(--neon-cyan),var(--plasma-blue));">Next Question →</button>
+                    <button class="cta" id="quizSubmit" onclick="submitAnswer()" style="font-size:1rem;padding:0.8rem 2rem;" data-i18n="quiz_submit">Submit Answer</button>
+                    <button class="cta" id="quizNext" onclick="nextQuestion()" style="font-size:1rem;padding:0.8rem 2rem;display:none;background:linear-gradient(135deg,var(--neon-cyan),var(--plasma-blue));" data-i18n="quiz_next">Next Question →</button>
                 </div>
                 <div id="quizFinal" style="display:none;margin-top:1.5rem;text-align:center;">
                     <h3 style="font-size:1.8rem;margin-bottom:0.5rem;" id="finalScore"></h3>
                     <p style="color:var(--silver);margin-bottom:1rem;" id="finalMsg"></p>
-                    <button class="share-btn" onclick="shareResults()">📋 Share Results</button>
-                    <button class="share-btn" onclick="restartQuiz()" style="margin-left:0.5rem;background:linear-gradient(135deg,var(--neon-cyan),var(--plasma-blue));">🔄 Retake Quiz</button>
+                    <button class="share-btn" onclick="shareResults()" data-i18n="quiz_share">📋 Share Results</button>
+                    <button class="share-btn" onclick="restartQuiz()" style="margin-left:0.5rem;background:linear-gradient(135deg,var(--neon-cyan),var(--plasma-blue));" data-i18n="quiz_retake">🔄 Retake Quiz</button>
                 </div>
             </div>
         </div>
@@ -955,58 +982,321 @@
     <!-- ═══════ GUJARATI GLOSSARY ═══════ -->
     <section id="glossary" style="background:linear-gradient(135deg, rgba(93,63,211,0.06), rgba(157,78,221,0.04));border-top:1px solid var(--glass-border);">
         <div class="section-head">
-            <h2 class="section-title">📚 ગુજરાતી શબ્દકોશ</h2>
-            <p class="section-sub">AI શબ્દાવલીના ગુજરાતી અનુવાદ — English to Gujarati AI glossary.</p>
+            <h2 class="section-title" data-i18n="gloss_title">📚 AI Glossary</h2>
+            <p class="section-sub" data-i18n="gloss_sub">Key AI terms with Gujarati translations.</p>
         </div>
-        <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">AI Agent</div>
-                <div style="color:var(--silver);font-size:0.9rem;">AI એજન્ટ — સ્વતંત્ર પ્રણાલી જે પર્યાવરણને સમજે છે, લક્ષ્યો વિશે વિચારે છે અને કાર્યો કરે છે</div>
+        <div class="glossary-grid">
+            <div class="glossary-item fade">
+                <div class="glossary-term">AI Agent</div>
+                <div class="glossary-def">AI એજન્ટ — સ્વતંત્ર પ્રણાલી જે પર્યાવરણને સમજે છે, લક્ષ્યો વિશે વિચારે છે અને કાર્યો કરે છે</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">Swarm</div>
-                <div style="color:var(--silver);font-size:0.9rem;">સ્વોર્મ — વિશિષ્ટ એજન્ટ્સનું સમન્વિત સામૂહિક</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">Swarm</div>
+                <div class="glossary-def">સ્વોર્મ — વિશિષ્ટ એજન્ટ્સનું સમન્વિત સામૂહિક</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">Harness Engineering</div>
-                <div style="color:var(--silver);font-size:0.9rem;">હાર્નેસ એન્જિનિયરિંગ — મોડેલની આસપાસની બધી વસ્તુઓ ડિઝાઇન કરવી</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">Harness Engineering</div>
+                <div class="glossary-def">હાર્નેસ એન્જિનિયરિંગ — મોડેલની આસપાસની બધી વસ્તુઓ ડિઝાઇન કરવી</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">Context Engineering</div>
-                <div style="color:var(--silver);font-size:0.9rem;">કોન્ટેક્સ્ટ એન્જિનિયરિંગ — માહિતી પર્યાવરણ ડિઝાઇન કરવું</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">Context Engineering</div>
+                <div class="glossary-def">કોન્ટેક્સ્ટ એન્જિનિયરિંગ — માહિતી પર્યાવરણ ડિઝાઇન કરવું</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">Agentic Engineering</div>
-                <div style="color:var(--silver);font-size:0.9rem;">એજેન્ટિક એન્જિનિયરિંગ — એજન્ટ્સની ટીમનું સંચાલન કરવું</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">Agentic Engineering</div>
+                <div class="glossary-def">એજેન્ટિક એન્જિનિયરિંગ — એજન્ટ્સની ટીમનું સંચાલન કરવું</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">MCP (Model Context Protocol)</div>
-                <div style="color:var(--silver);font-size:0.9rem;">MCP — AI એપ્લિકેશન્સને બાહ્ય સિસ્ટમ્સ સાથે જોડવા માટેનો ખુલ્લો માનક</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">MCP (Model Context Protocol)</div>
+                <div class="glossary-def">MCP — AI એપ્લિકેશન્સને બાહ્ય સિસ્ટમ્સ સાથે જોડવા માટેનો ખુલ્લો માનક</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">A2A (Agent-to-Agent)</div>
-                <div style="color:var(--silver);font-size:0.9rem;">A2A — એજન્ટ-ટુ-એજન્ટ સંચાર પ્રોટોકોલ</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">A2A (Agent-to-Agent)</div>
+                <div class="glossary-def">A2A — એજન્ટ-ટુ-એજન્ટ સંચાર પ્રોટોકોલ</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">RAG (Retrieval-Augmented Generation)</div>
-                <div style="color:var(--silver);font-size:0.9rem;">RAG — પુનઃપ્રાપ્તિ-વર્ધિત જનરેશન</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">RAG (Retrieval-Augmented Generation)</div>
+                <div class="glossary-def">RAG — પુનઃપ્રાપ્તિ-વર્ધિત જનરેશન</div>
             </div>
-            <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem;">
-                <div style="color:var(--neon-cyan);font-weight:600;font-size:0.95rem;">Guardrails</div>
-                <div style="color:var(--silver);font-size:0.9rem;">ગાર્ડરેલ્સ — સુરક્ષા માર્ગદર્શિકા અને મર્યાદાઓ</div>
+            <div class="glossary-item fade">
+                <div class="glossary-term">Guardrails</div>
+                <div class="glossary-def">ગાર્ડરેલ્સ — સુરક્ષા માર્ગદર્શિકા અને મર્યાદાઓ</div>
             </div>
         </div>
     </section>
 
     <!-- ═══════ FOOTER ═══════ -->
     <footer>
-        <p style="font-size:1.1rem;color:var(--neon-cyan);margin-bottom:0.5rem;">પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે</p>
-        <p style="font-size:0.9rem;color:#666;">Where Ancient Art Meets Future Intelligence &nbsp;|&nbsp; Course © 2026 &nbsp;•&nbsp; Powered by Venice AI</p>
+        <p style="font-size:1.1rem;color:var(--neon-cyan);margin-bottom:0.5rem;" data-i18n="footer_gu">પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે</p>
+        <p style="font-size:0.9rem;color:#666;" data-i18n="footer_en">Where Ancient Art Meets Future Intelligence &nbsp;|&nbsp; Course © 2026 &nbsp;•&nbsp; Powered by Venice AI</p>
     </footer>
 
     <!-- ═══════ JAVASCRIPT ═══════ -->
     <script>
-        // Smooth scroll
+        // ─── LANGUAGE TOGGLE ───
+        let currentLang = localStorage.getItem('gujarati-lang') || 'en';
+
+        const translations = {
+            gu: {
+                nav_home: 'મુખ્ય પૃષ્ઠ',
+                nav_modules: 'મોડ્યુલ્સ',
+                nav_concepts: 'મુખ્ય ખ્યાલો',
+                nav_timeline: 'ઉત્ક્રાંતિ',
+                nav_claude: 'Claude અપડેટ્સ',
+                nav_exercises: 'કસરતો',
+                nav_quiz: 'ક્વિઝ',
+                nav_glossary: 'શબ્દકોશ',
+                lang_btn: 'English',
+                hero_badge: '✦ ગુજરાતી માધ્યમ માટે વિશેષ રીતે બનાવેલ ✦',
+                hero_title: 'AI નેતૃત્વ માસ્ટરી',
+                hero_sub: 'ઓપરેટરથી AI નેતા સુધી. એજન્ટ્સ, સ્વોર્મ્સ, હાર્નેસ એન્જિનિયરિંગ, કોન્ટેક્સ્ટ એન્જિનિયરિંગ અને મોડર્ન ટેક સ્ટેક — ગુજરાતી લોકકલા દ્વારા ચિત્રિત.',
+                tag_agentic: 'એજેન્ટિક એન્જિનિયરિંગ',
+                tag_harness: 'હાર્નેસ એન્જિનિયરિંગ',
+                tag_context: 'કોન્ટેક્સ્ટ એન્જિનિયરિંગ',
+                tag_mcp: 'MCP સર્વર્સ',
+                tag_a2a: 'A2A પ્રોટોકોલ',
+                hero_cta: 'શીખવાનું શરૂ કરો →',
+                mod_title: '9 ઊંડાણપૂર્વક મોડ્યુલ્સ',
+                mod_sub: 'દરેક મોડ્યુલ અત્યાધુનિક AI ખ્યાલોને હાથ-અનુભવ કસરતો અને વાસ્તવિક ફાર્મા ઉદ્યોગ એપ્લિકેશન્સ સાથે જોડે છે.',
+                tab_all: 'બધા મોડ્યુલ્સ',
+                tab_core: 'કોર AI',
+                tab_eng: 'એન્જિનિયરિંગ',
+                tab_infra: 'ઇન્ફ્રાસ્ટ્રક્ચર',
+                def_label: 'વ્યાખ્યા:',
+                m1_title: '🤖 સ્વતંત્ર AI એજન્ટ્સ',
+                m1_def: 'AI એજન્ટ એક સ્વતંત્ર પ્રણાલી છે જે તેના પર્યાવરણને સમજે છે, લક્ષ્યો વિશે તર્ક કરે છે અને સાધનોનો ઉપયોગ કરીને કાર્યો કરે છે — ચેટબોટના સિંગલ-શોટ પ્રતિભાવોથી આગળ વધીને સતત, લક્ષ્ય-નિર્દેશિત લૂપ્સમાં (અવલોકન → વિચાર → કાર્ય → પ્રતિબિંબ).',
+                m1_desc: 'એજન્ટ લૂપ્સ, સાધન ઉપયોગ, મેમરી પર્સિસ્ટન્સ, પ્રતિબિંબ પેટર્ન અને સ્વ-સુધારો.',
+                m1_pharma: '500K+ PubMed લેખોનું દૈનિક સ્કેનિંગ કરતા સ્વચાલિત સાહિત્ય સર્વેલન્સ એજન્ટ્સ. FISEA-અનુરૂપ AI એજન્ટ્સ મેડિકલ માહિતી પ્રતિભાવ પત્રો ડ્રાફ્ટ કરે છે.',
+                m1_leaders: 'JPMorgan COIN: 360K કલાકની કાનૂની સમીક્ષા → સેકન્ડોમાં. Pfizer ના રેગ્યુલેટરી સબમિશન એજન્ટ્સ eCTD મોડ્યુલ્સ ઓટો-પોપ્યુલેટ કરે છે.',
+                m1_link: 'તમારો પ્રથમ એજન્ટ બનાવો →',
+                m2_title: '🐝 મલ્ટી-એજન્ટ સ્વોર્મ્સ અને સહયોગ',
+                m2_def: 'મલ્ટી-એજન્ટ સ્વોર્મ એ વિશિષ્ટ એજન્ટ્સનું સમન્વિત સામૂહિક છે જે જટિલ ઉદ્દેશ્યોને ઉપ-કાર્યોમાં વિભાજિત કરે છે, સંરચિત સંદેશા પસાર કરે છે અને એકલ એજન્ટ ઉત્પન્ન કરી શકે તેનાથી વધુ ઉદ્ભવતી બુદ્ધિમત્તા પ્રાપ્ત કરે છે.',
+                m2_desc: 'ભૂમિકા-આધારિત ઓર્કેસ્ટ્રેશન, ઉદ્ભવતી વર્તણૂક, હેન્ડઓફ પેટર્ન અને વિકેન્દ્રિત સમન્વય.',
+                m2_pharma: 'ડ્રગ સેફ્ટી સ્વોર્મ: PSUR એજન્ટ્સ (સિગ્નલ ડિટેક્શન → નેરેટિવ → QC → રેગ્યુલેટરી ફોર્મેટિંગ). MSL ફીલ્ડ ઇન્ટેલિજન્સ સ્વોર્મ.',
+                m2_leaders: 'Microsoft AutoGen: 8-એજન્ટ ડેવ ટીમ્સ. Novartis મલ્ટી-એજન્ટ ક્લિનિકલ ટ્રાયલ સાઇટ સિલેક્શન.',
+                m2_link: '3-એજન્ટ સ્વોર્મ ડિપ્લોય કરો →',
+                m3_title: '🎭 હાર્નેસ એન્જિનિયરિંગ',
+                m3_def: '2026માં મિશેલ હાશિમોટો દ્વારા ગઠિત — <strong>એજન્ટ = મોડેલ + હાર્નેસ</strong>. હાર્નેસ એન્જિનિયરિંગ એ AI મોડેલની આસપાસની બધી વસ્તુઓ ડિઝાઇન કરવાની શિસ્ત છે: સાધન ઓર્કેસ્ટ્રેશન, કોન્ટેક્સ્ટ પાઇપલાઇન્સ, ફીડબેક લૂપ્સ, મેમરી સિસ્ટમ્સ, સેફ્ટી હુક્સ.',
+                m3_desc: 'હાર્નેસ એન્જિનિયરિંગ વગર, એજન્ટ્સ અણધાર્યા કાચા મોડેલ્સ છે. તેની સાથે, તેઓ વિશ્વસનીય, ઓડિટ કરી શકાય તેવી, પ્રોડક્શન-તૈયાર સિસ્ટમ્સ બને છે.',
+                m3_pharma: 'MLR સમીક્ષા હાર્નેસ મેડિકલ → લીગલ → રેગ્યુલેટરી વર્કફ્લો ઓર્કેસ્ટ્રેટ કરે છે. સેફ્ટી સિગ્નલ હાર્નેસ ફીડફોરવર્ડ ગાઇડ્સ અને ફીડબેક સેન્સર્સ સાથે.',
+                m3_leaders: 'OpenAI Codex એજન્ટ્સ પ્રોડક્શન-સ્કેલ કોડ જનરેશન માટે હાર્નેસ એન્જિનિયરિંગ વાપરે છે. Salesforce Einstein Orchestrator 50+ એન્ટરપ્રાઇઝ સાધનો મેનેજ કરે છે.',
+                m3_link: 'એજન્ટ હાર્નેસ ડિઝાઇન કરો →',
+                m4_title: '📜 કોન્ટેક્સ્ટ એન્જિનિયરિંગ',
+                m4_def: '2026માં Anthropic દ્વારા AI માં સૌથી મહત્વપૂર્ણ કૌશલ્ય શિફ્ટ તરીકે ઓળખાયેલ — કોન્ટેક્સ્ટ એન્જિનિયરિંગે પ્રોમ્પ્ટ એન્જિનિયરિંગને પ્રોડક્શન AI ની મુખ્ય કળા તરીકે બદલ્યું છે. તેનો અર્થ છે 5 કોન્ટેક્સ્ટ લેયર્સનું આર્કિટેક્ચર કરવું.',
+                m4_desc: 'કોન્ટેક્સ્ટ ડિઝાઇન પેટર્ન (પ્રોગ્રેસિવ ડિસ્ક્લોઝર, સંબંધિત કોન્ટેક્સ્ટ વિન્ડોઝ, કોમ્પ્રેશન), એન્ટિ-પેટર્ન અને મેમરી હાયરાર્કીઝ.',
+                m4_pharma: 'RAG-સંચાલિત મેડિકલ અફેર્સ નોલેજ બેઝ HCP પ્રશ્નોના રિયલ-ટાઇમ પુરાવા સાથે જવાબ આપે છે.',
+                m4_leaders: 'Notion AI: 10M+ ડૉક્સમાં સતત વર્કસ્પેસ મેમરી. Cohere RAG પાઇપલાઇન એન્ટરપ્રાઇઝ શોધ માટે 1B+ ટોકન્સ/દિવસ પ્રોસેસ કરે છે.',
+                m4_link: 'RAG કોન્ટેક્સ્ટ એન્જિન બનાવો →',
+                m5_title: '🧬 એજેન્ટિક એન્જિનિયરિંગ <small style="font-size:0.7em;color:var(--quantum-pink);">(નવું વાઇબ કોડિંગ)</small>',
+                m5_def: '2026માં આન્દ્રેજ કરપાથી દ્વારા ગઠિત — <strong>એજેન્ટિક એન્જિનિયરિંગ</strong> વાઇબ કોડિંગનો ઉત્તરાધિકારી છે. જ્યાં વાઇબ કોડિંગ (2025) "ઇરાદા વ્યક્ત કરો → કોડ સ્પિન અપ જુઓ" હતું, ત્યાં એજેન્ટિક એન્જિનિયરિંગ આયોજન, ચકાસણી, પુનરાવર્તિત શુદ્ધિકરણ અને શાસન ઉમેરે છે.',
+                m5_desc: 'ઉત્ક્રાંતિ: વાઇબ કોડિંગ (2025) = પ્રોમ્પ્ટ → કોડ. એજેન્ટિક એન્જિનિયરિંગ (2026) = આર્કિટેક્ટ → એજન્ટ્સ ઓર્કેસ્ટ્રેટ → ચકાસો → શિપ કરો.',
+                m5_pharma: 'મેડિકલ રાઇટિંગ એજન્ટ ટીમ ઓર્કેસ્ટ્રેટ કરવી: પ્લાનર એજન્ટ આઉટલાઇન ડ્રાફ્ટ કરે → રાઇટર એજન્ટ પ્રથમ ડ્રાફ્ટ બનાવે → રિવ્યૂઅર એજન્ટ MLR ગેપ્સ ફ્લેગ કરે.',
+                m5_leaders: 'Zapier ની એજેન્ટિક પાઇપલાઇન: 47 એજન્ટ્સ પ્રોડક્શનમાં. TELUS કમ્પ્લાયન્સ-ફર્સ્ટ કન્ટેન્ટ જનરેશન માટે એજેન્ટિક એન્જિનિયરિંગ વાપરે છે.',
+                m5_link: 'એજેન્ટિક એન્જિનિયરિંગ પ્રેક્ટિસ કરો →',
+                m6_title: '🔌 મોડેલ કોન્ટેક્સ્ટ પ્રોટોકોલ (MCP) સર્વર્સ',
+                m6_def: 'MCP એ AI એપ્લિકેશન્સને બાહ્ય સિસ્ટમ્સ સાથે જોડવા માટેનો ખુલ્લો માનક છે — "AI માટે USB-C." જેમ USB-C સાધનોને જોડવા માટે પ્રમાણિત રીત પૂરી પાડે છે, તેમ MCP AI એજન્ટ્સને ડેટા સ્રોત, સાધનો અને વર્કફ્લો સાથે જોડવા માટે પ્રમાણિત રીત પૂરી પાડે છે.',
+                m6_desc: 'કોઈપણ ડેટા સ્રોત, API અથવા સાધનને AI એજન્ટ્સ માટે ઉપલબ્ધ કરાવતા પ્રમાણિત કનેક્ટિવિટી લેયર્સ બનાવો.',
+                m6_pharma: 'Veeva Vault ને AI એજન્ટ્સ માટે એક્સપોઝ કરતો MCP સર્વર. CTMS, EDC અને IWRS સિસ્ટમ્સને જોડતો ક્લિનિકલ ટ્રાયલ MCP.',
+                m6_leaders: 'GitHub Copilot MCP: કોડ રેપોઝ એજન્ટ સાધનો તરીકે. Figma MCP: ડિઝાઇન-ટુ-કોડ કન્વર્ઝન વર્કફ્લો.',
+                m6_link: 'MCP સર્વર બનાવો →',
+                m7_title: '🗣️ એજન્ટ-ટુ-એજન્ટ (A2A) સંચાર',
+                m7_def: 'A2A એ Google નું ખુલ્લું પ્રોટોકોલ છે જે વિવિધ વેન્ડર્સ અને ફ્રેમવર્કના એજન્ટ્સને શોધવા, સંચાર કરવા અને સહયોગ કરવા સક્ષમ બનાવે છે. તે વ્યાખ્યાયિત કરે છે કે એજન્ટ્સ કેપેબિલિટીઝ જાહેર કરે છે, કાર્યો પર વાટાઘાટ કરે છે અને સંરચિત સંદેશાઓની આપલે કરે છે.',
+                m7_desc: 'મલ્ટી-એજન્ટ ઇકોસિસ્ટમ્સ માટે સુરક્ષિત, સ્કેલેબલ કમ્યુનિકેશન ફેબ્રિક ડિઝાઇન કરો.',
+                m7_pharma: 'ક્રોસ-ફંક્શનલ A2A નેટવર્ક: મેડિકલ ઇન્ફર્મેશન એજન્ટ ↔ ડ્રગ સેફ્ટી એજન્ટ ↔ રેગ્યુલેટરી એજન્ટ.',
+                m7_leaders: 'Google નું A2A પ્રોટોકોલ ક્લાઉડ સર્વિસમાં 100B+ એજન્ટ સંદેશા/દિવસ સક્ષમ બનાવે છે.',
+                m7_link: 'A2A નેટવર્ક બનાવો →',
+                m8_title: '🏗️ મોડર્ન AI ટેક સ્ટેક આર્કિટેક્ચર',
+                m8_def: 'મોડર્ન AI ટેક સ્ટેક એ સંપૂર્ણ પ્રોડક્શન પાઇપલાઇન છે: ફાઉન્ડેશન મોડેલ્સ → એમ્બેડિંગ્સ → વેક્ટર ડેટાબેઝ → ઓર્કેસ્ટ્રેશન → હાર્નેસ લેયર્સ → ઓબ્ઝર્વેબિલિટી → ડિપ્લોયમેન્ટ. તે ડેમો અને વિશ્વસનીય, સ્કેલેબલ સિસ્ટમ વચ્ચેનો તફાવત છે.',
+                m8_desc: 'સંપૂર્ણ AI ડેવલપમેન્ટ લેન્ડસ્કેપ માસ્ટર કરો: ફાઉન્ડેશન મોડેલ્સ, એમ્બેડિંગ્સ, વેક્ટર DBs, ઓર્કેસ્ટ્રેશન, હાર્નેસ લેયર્સ, ઓબ્ઝર્વેબિલિટી.',
+                m8_pharma: 'ફુલ-સ્ટેક મેડિકલ અફેર્સ પ્લેટફોર્મ: LLM લેયર → એમ્બેડિંગ મોડેલ → Pinecone/Qdrant → LangGraph ઓર્કેસ્ટ્રેશન → MLR ગવર્નન્સ → Datadog.',
+                m8_leaders: 'Perplexity: 500M+ પ્રશ્નો/મહિને સબ-સેકન્ડ લેટન્સી સાથે. Mistral નું સંપૂર્ણ AI પ્લેટફોર્મ સ્ટેક.',
+                m8_link: 'ફુલ AI પ્લેટફોર્મ ડિપ્લોય કરો →',
+                m9_title: '🛡️ AI સેફ્ટી, ગવર્નન્સ અને જવાબદાર ડિપ્લોયમેન્ટ',
+                m9_def: 'AI સેફ્ટી અને ગવર્નન્સ એ એજેન્ટિક સિસ્ટમ્સ વિશ્વસનીય, નિષ્પક્ષ અને અનુરૂપ રહે તે સુનિશ્ચિત કરવાની શિસ્ત છે. ફાર્મા જેવા રેગ્યુલેટેડ ઉદ્યોગોમાં, તેનો અર્થ છે ગાર્ડરેલ્સ, ઓડિટ ટ્રેલ્સ, હ્યુમન-ઇન-ધ-લૂપ ચેકપોઇન્ટ્સ ડિઝાઇન કરવા.',
+                m9_desc: 'ગાર્ડરેલ ડિઝાઇન, બાયસ ઓડિટિંગ, મોડેલ વેલિડેશન, હ્યુમન-ઇન-ધ-લૂપ પેટર્ન, રેગ્યુલેટરી અનુરૂપતા.',
+                m9_pharma: 'ફરજિયાત માનવ સમીક્ષા ગેટ્સ સાથે સ્વચાલિત ફાર્માકોવિજિલન્સ. MLR અનુરૂપતા ટ્રેલ્સ સાથે AI-જનરેટેડ મેડિકલ કન્ટેન્ટ.',
+                m9_leaders: 'Google DeepMind ની જવાબદાર AI ફ્રેમવર્ક. Microsoft નું જવાબદાર AI ડેશબોર્ડ. Pfizer ની AI ગવર્નન્સ કાઉન્સિલ.',
+                m9_link: 'AI ગાર્ડરેલ્સ ડિઝાઇન કરો →',
+                mod_check: 'મોડ્યુલ 1 પૂર્ણ ચિહ્નિત કરો',
+                mod_check2: 'મોડ્યુલ 2 પૂર્ણ ચિહ્નિત કરો',
+                mod_check3: 'મોડ્યુલ 3 પૂર્ણ ચિહ્નિત કરો',
+                mod_check4: 'મોડ્યુલ 4 પૂર્ણ ચિહ્નિત કરો',
+                mod_check5: 'મોડ્યુલ 5 પૂર્ણ ચિહ્નિત કરો',
+                mod_check6: 'મોડ્યુલ 6 પૂર્ણ ચિહ્નિત કરો',
+                mod_check7: 'મોડ્યુલ 7 પૂર્ણ ચિહ્નિત કરો',
+                mod_check8: 'મોડ્યુલ 8 પૂર્ણ ચિહ્નિત કરો',
+                mod_check9: 'મોડ્યુલ 9 પૂર્ણ ચિહ્નિત કરો',
+                uc_pharma: 'ફાર્મા અને મેડિકલ અફેર્સ',
+                uc_leaders: 'ઉદ્યોગ નેતાઓ',
+                concepts_title: '📖 મુખ્ય ખ્યાલો સમજાવ્યા',
+                concepts_sub: '2026માં AI ને ફરીથી આકાર આપતી આવશ્યક શબ્દાવલી — વ્યાખ્યાયિત, સરખાવેલ અને સંદર્ભિત.',
+                c_agentic_title: '🧬 એજેન્ટિક એન્જિનિયરિંગ <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">← નવું વાઇબ કોડિંગ</span>',
+                c_agentic_tag: '← નવું વાઇબ કોડિંગ',
+                c_agentic_by: 'આન્દ્રેજ કરપાથી દ્વારા ગઠિત, 2026.',
+                c_agentic_desc: 'વાઇબ કોડિંગથી આગળની ઉત્ક્રાંતિ. વાઇબ કોડિંગ (2025) નો અર્થ હતો AI ને ઇરાદાનું વર્ણન કરીને કોડ લખવું અને તે જે જનરેટ કરે તે સ્વીકારવું. એજેન્ટિક એન્જિનિયરિંગનો અર્થ છે AI એજન્ટ્સની ટીમોનું સંચાલન — તમે આર્કિટેક્ચર ડિઝાઇન કરો, ટેસ્ટ સેટ કરો, સમીક્ષાઓ માલિકી ધરાવો, અને એજન્ટ્સ અમલીકરણ સંભાળે છે.',
+                c_agentic_evo_label: 'ઉત્ક્રાંતિ',
+                c_agentic_evo: '<strong>2024:</strong> પ્રોમ્પ્ટ એન્જિનિયરિંગ (સંપૂર્ણ પ્રોમ્પ્ટ બનાવો) → <strong>2025:</strong> વાઇબ કોડિંગ (ઇરાદા વ્યક્ત કરો, AI જનરેટ કરે) → <strong>2026:</strong> એજેન્ટિક એન્જિનિયરિંગ (એજન્ટ્સ ઓર્કેસ્ટ્રેટ કરો જે આયોજન, કોડ, ટેસ્ટ અને શિપ કરે)',
+                c_agentic_insight_label: 'મુખ્ય સમજ:',
+                c_agentic_insight: 'વાઇબ કોડિંગમાં, તમે વાઇબ કરો. એજેન્ટિક એન્જિનિયરિંગમાં, તમે આર્કિટેક્ટ કરો. માનવ ભૂમિકા કોડ લખવાથી સિસ્ટમ્સ ડિઝાઇન કરવા, ગુણવત્તા ગેટ્સ સેટ કરવા અને એજન્ટ ટીમોને નિર્દેશિત કરવા તરફ બદલાય છે.',
+                c_harness_title: '🎭 હાર્નેસ એન્જિનિયરિંગ <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">નવો શબ્દ</span>',
+                c_harness_tag: 'નવો શબ્દ',
+                c_harness_by: 'મિશેલ હાશિમોટો દ્વારા ગઠિત, 2026.',
+                c_harness_desc: 'સૂત્ર: <strong style="color:var(--neon-cyan);">એજન્ટ = મોડેલ + હાર્નેસ</strong>. હાર્નેસ એ મોડેલની આસપાસની બધી વસ્તુઓ છે — સાધનો, કોન્ટેક્સ્ટ પાઇપલાઇન્સ, ફીડબેક લૂપ્સ, મેમરી, સેફ્ટી હુક્સ અને સબ-એજન્ટ ઓર્કેસ્ટ્રેશન. જો મોડેલ એન્જિન છે, તો હાર્નેસ એ સંપૂર્ણ કાર છે: સ્ટીયરિંગ, બ્રેક, ડેશબોર્ડ, ટેલિમેટ્રી.',
+                c_harness_pat_label: 'માર્ટિન ફાઉલર ની પેટર્ન',
+                c_harness_pat: '<strong>ફીડફોરવર્ડ ગાઇડ્સ</strong> = મોડેલ કાર્ય કરે તે પહેલાં આપવામાં આવતી સૂચનાઓ અને મર્યાદાઓ. <strong>ફીડબેક સેન્સર્સ</strong> = મોડેલ કાર્ય કર્યા પછી પકડવામાં આવતા સિગ્નલો. સાથે મળીને, તેઓ હાર્નેસની સ્ટીયરિંગ સિસ્ટમ બનાવે છે.',
+                c_harness_why_label: 'શા માટે મહત્વનું:',
+                c_harness_why: '27% AI એજન્ટ નિષ્ફળતાઓ ડેટા ગુણવત્તાને કારણે છે, મોડેલ કે હાર્નેસને કારણે નહીં — જે સાબિત કરે છે કે હાર્નેસ એ ડેમો અને પ્રોડક્ટ વચ્ચેનો તફાવત છે.',
+                c_context_title: '📜 કોન્ટેક્સ્ટ એન્જિનિયરિંગ <span style="font-size:0.75rem;color:var(--quantum-pink);font-weight:700;">← પ્રોમ્પ્ટ એન્જિનિયરિંગને બદલે છે</span>',
+                c_context_tag: '← પ્રોમ્પ્ટ એન્જિનિયરિંગને બદલે છે',
+                c_context_by: 'Anthropic દ્વારા ઓળખાયેલ, 2026.',
+                c_context_desc: 'AI માં સૌથી મહત્વપૂર્ણ કૌશલ્ય શિફ્ટ. કોન્ટેક્સ્ટ એન્જિનિયરિંગ પ્રોમ્પ્ટ એન્જિનિયરિંગને મુખ્ય શિસ્ત તરીકે બદલે છે. તે "સારા પ્રોમ્પ્ટ્સ લખવા" વિશે નથી — તે માહિતી પર્યાવરણ ડિઝાઇન કરવા વિશે છે જેથી મોડેલને જ્યારે જોઈએ ત્યારે જે જોઈએ તે મળે.',
+                c_context_layers_label: '5 કોન્ટેક્સ્ટ લેયર્સ',
+                c_context_layers: '<strong>1.</strong> સિસ્ટમ સૂચનાઓ &nbsp;|&nbsp; <strong>2.</strong> પુનઃપ્રાપ્તિ કોન્ટેક્સ્ટ (RAG) &nbsp;|&nbsp; <strong>3.</strong> વાર્તાલાપ ઇતિહાસ &nbsp;|&nbsp; <strong>4.</strong> સાધન પરિણામો &nbsp;|&nbsp; <strong>5.</strong> વપરાશકર્તા ઇનપુટ.',
+                c_context_anti_label: 'એન્ટિ-પેટર્ન:',
+                c_context_anti: 'કોન્ટેક્સ્ટ ઓવરલોડ (વધુ માહિતી), કોન્ટેક્સ્ટ સ્ટેલનેસ (જૂનો ડેટા), માહિતી અસમપ્રમાણતા (એજન્ટ અલગ અલગ તબક્કે અલગ માહિતી જુએ છે).',
+                c_mcp_title: '🔌 MCP (મોડેલ કોન્ટેક્સ્ટ પ્રોટોકોલ) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">AI માટે USB-C</span>',
+                c_mcp_tag: 'AI માટે USB-C',
+                c_mcp_by: 'Anthropic દ્વારા બનાવેલ, 2024–2025.',
+                c_mcp_desc: 'AI એપ્લિકેશન્સને બાહ્ય સિસ્ટમ્સ સાથે જોડવા માટેનો ખુલ્લો માનક. જેમ USB-C ઇલેક્ટ્રોનિક સાધનોને જોડવા માટે પ્રમાણિત રીત પૂરી પાડે છે, તેમ MCP AI એજન્ટ્સને ડેટા સ્રોત, સાધનો અને વર્કફ્લો સાથે જોડવા માટે પ્રમાણિત રીત પૂરી પાડે છે.',
+                c_mcp_why_label: 'શા માટે મહત્વનું:',
+                c_mcp_why: 'સંસ્થાઓ હવે કસ્ટમ ઇન્ટિગ્રેશન બનાવવાને બદલે MCP સર્વર્સ ઊભા કરે છે. એક MCP સર્વર કોઈપણ AI ક્લાયન્ટને સેવા આપી શકે છે.',
+                c_a2a_title: '🗣️ A2A (એજન્ટ-ટુ-એજન્ટ પ્રોટોકોલ) <span style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">એજન્ટ્સ માટે HTTP</span>',
+                c_a2a_tag: 'એજન્ટ્સ માટે HTTP',
+                c_a2a_by: 'Google દ્વારા પ્રકાશિત, 2025.',
+                c_a2a_desc: 'વિવિધ વેન્ડર્સ અને ફ્રેમવર્કના એજન્ટ્સને શોધવા, સંચાર કરવા અને સહયોગ કરવા સક્ષમ બનાવતું ખુલ્લું પ્રોટોકોલ. A2A વ્યાખ્યાયિત કરે છે કે એજન્ટ્સ કેપેબિલિટીઝ જાહેર કરે છે, કાર્યો પર વાટાઘાટ કરે છે.',
+                c_a2a_why_label: 'શા માટે મહત્વનું:',
+                c_a2a_why: 'A2A વગર, એજન્ટ્સ અલગ પડેલા છે. તેની સાથે, ફાર્મા સેફ્ટી એજન્ટ, રેગ્યુલેટરી એજન્ટ અને મેડિકલ રાઇટિંગ એજન્ટ — દરેક અલગ પ્લેટફોર્મ પર બનેલ — PSUR પર નિર્વિઘ્ન સહયોગ કરી શકે છે.',
+                tl_title: '⏳ ઉત્ક્રાંતિ',
+                tl_sub: 'AI એન્જિનિયરિંગ શિસ્ત કેવી રીતે વિકસિત થઈ — પ્રોમ્પ્ટ બનાવવાથી સમગ્ર એજન્ટ સિસ્ટમ્સ એન્જિનિયર કરવા સુધી.',
+                tl_2024_term: 'પ્રોમ્પ્ટ એન્જિનિયરિંગ',
+                tl_2024_desc: 'સંપૂર્ણ પ્રોમ્પ્ટ બનાવો. સિંગલ મોડેલ કોલમાંથી સારા આઉટપુટ મેળવવા સૂચનાઓ ઑપ્ટિમાઇઝ કરો.',
+                tl_2025_term: 'કોન્ટેક્સ્ટ એન્જિનિયરિંગ',
+                tl_2025_desc: 'માહિતી પર્યાવરણ ડિઝાઇન કરો. 5 કોન્ટેક્સ્ટ લેયર્સ, RAG, મેમરી હાયરાર્કીઝ.',
+                tl_2026_term: 'હાર્નેસ એન્જિનિયરિંગ',
+                tl_2026_desc: 'મોડેલની આસપાસની બધી વસ્તુઓ ડિઝાઇન કરો: સાધનો, ફીડબેક લૂપ્સ, સેફ્ટી હુક્સ, સબ-એજન્ટ્સ.',
+                claude_title: '⚡ Claude — તાજેતરના અપડેટ્સ',
+                claude_sub: 'AI નેતાઓ માટે મહત્વના તમામ મુખ્ય Claude અપડેટ્સ — Q1–Q2 2026.',
+                cl_code: 'Claude Code',
+                cl_code_desc: 'Anthropic નું ફ્લેગશિપ કોડિંગ એજન્ટ ટર્મિનલ આસિસ્ટન્ટથી સંપૂર્ણ ડેવલપમેન્ટ પ્લેટફોર્મ સુધી વિકસિત થયું.',
+                cl_code_tag: 'ટર્મિનલ → પ્લેટફોર્મ',
+                cl_cowork: 'Claude Cowork',
+                cl_cowork_desc: 'રીઅલ-ટાઇમ કોલેબોરેટિવ AI જ્યાં એકાધિક ટીમ સભ્યો Claude સાથે એકસાથે કામ કરે છે.',
+                cl_cowork_tag: 'મલ્ટી-પ્લેયર AI',
+                cl_dispatch: 'Dispatch',
+                cl_dispatch_desc: 'ક્લાઉડ-આધારિત સ્વતંત્ર એજન્ટ એક્ઝિક્યુશન એન્જિન. Dispatch એજન્ટ્સ બેકગ્રાઉન્ડમાં કાર્યો ચલાવે છે.',
+                cl_dispatch_tag: 'સ્વતંત્ર ક્લાઉડ એજન્ટ્સ',
+                cl_routines: 'Routines',
+                cl_routines_desc: 'નિર્ધારિત, પુનરાવર્તનીય AI વર્કફ્લો જે ટ્રિગર્સ અથવા ટાઇમર પર ચાલે છે.',
+                cl_routines_tag: 'AI ક્રોન + ઓટોમેશન',
+                cl_opus: 'Claude Opus 4.6',
+                cl_opus_desc: 'સૌથી સક્ષમ Opus મોડેલ. 1M-ટોકન કોન્ટેક્સ્ટ વિન્ડો, સુધારેલી કોડિંગ ચોકસાઈ.',
+                cl_opus_tag: '1M કોન્ટેક્સ્ટ વિન્ડો',
+                cl_skills: 'Agent Skills 2.0',
+                cl_skills_desc: 'પ્રોગ્રામેબલ એજન્ટ વર્તણૂક જે સૂચનાઓ, પરવાનગીઓ અને હુક્સને કમ્પોઝેબલ સ્કિલ પેકેજોમાં જોડે છે.',
+                cl_skills_tag: 'કમ્પોઝેબલ વર્તણૂક',
+                cl_desktop: 'ડેસ્કટોપ રીડિઝાઇન (v2.1.76+)',
+                cl_desktop_desc: 'મલ્ટી-સેશન સપોર્ટ, સુધારેલ ટર્મિનલ ઇન્ટિગ્રેશન, NO_FLICKER રેન્ડરિંગ સાથે સંપૂર્ણ UI ઓવરહોલ.',
+                cl_desktop_tag: 'ઓપ્સ પ્લેટફોર્મ યુગ',
+                ex_title: '🛠️ હાથ-અનુભવ કસરતો',
+                ex_sub: 'વાસ્તવિક પ્રોજેક્ટ્સ બનાવો. ફાર્મા અને મેડિકલ અફેર્સ પર કેન્દ્રિત.',
+                ex1_title: 'તમારો પ્રથમ સ્વતંત્ર એજન્ટ બનાવો',
+                ex1_desc: 'ચોક્કસ ડ્રગ પર નવી પ્રકાશનો માટે PubMed મોનિટર કરતો એજન્ટ બનાવો, તારણો સારાંશ કરો અને મેડિકલ માહિતી પ્રતિભાવ પત્ર ડ્રાફ્ટ કરો.',
+                ex1_pharma: '💊 ફાર્મા: ઓટો-ICSR ફ્લેગિંગ સાથે સાહિત્ય સર્વેલન્સ એજન્ટ',
+                ex2_title: '3-એજન્ટ સેફ્ટી સ્વોર્મ ડિપ્લોય કરો',
+                ex2_desc: 'સ્વોર્મ બનાવો જ્યાં સિગ્નલ ડિટેક્ટર, નેરેટિવ રાઇટર અને QC રિવ્યૂઅર કાચા AE ડેટાથી PSUR બનાવવા સહયોગ કરે છે.',
+                ex2_pharma: '💊 ફાર્મા: MedDRA કોડિંગ વેલિડેશન સાથે PSUR જનરેશન સ્વોર્મ',
+                ex3_title: 'MLR સમીક્ષા હાર્નેસ ડિઝાઇન કરો',
+                ex3_desc: 'એજન્ટ હાર્નેસ ઓર્કેસ્ટ્રેટ કરો જે મેડિકલ → લીગલ → રેગ્યુલેટરી સમીક્ષા દ્વારા કન્ટેન્ટ રાઉટ કરે છે.',
+                ex3_pharma: '💊 ફાર્મા: Veeva Vault ઇન્ટિગ્રેશન સાથે એન્ડ-ટુ-એન્ડ MLR વર્કફ્લો',
+                ex4_title: 'RAG કોન્ટેક્સ્ટ એન્જિન બનાવો',
+                ex4_desc: '10K+ મેડિકલ પ્રકાશનોના કોર્પસ પર રિટ્રીવલ-ઓગમેન્ટેડ જનરેશન અમલ કરો.',
+                ex4_pharma: '💊 ફાર્મા: રિયલ-ટાઇમ પુરાવા પુનઃપ્રાપ્તિ સાથે મેડિકલ અફેર્સ નોલેજ બેઝ',
+                ex5_title: 'ફાર્મા ડેટા માટે MCP સર્વર બનાવો',
+                ex5_desc: 'Veeva Vault ડૉક્યુમેન્ટ્સ, ક્લિનિકલ ટ્રાયલ ડેટા અને સેફ્ટી ડેટાબેઝને એજન્ટ-ઉપયોગી સાધનો તરીકે એક્સપોઝ કરતો MCP સર્વર બનાવો.',
+                ex5_pharma: '💊 ફાર્મા: રેગ્યુલેટેડ ડૉક્યુમેન્ટ ઍક્સેસ માટે યુનિફાઇડ MCP ગેટવે',
+                ex6_title: 'ફુલ મેડિકલ અફેર્સ AI પ્લેટફોર્મ ડિપ્લોય કરો',
+                ex6_desc: 'બધી પેટર્નને પ્રોડક્શન પ્લેટફોર્મમાં જોડો: મલ્ટી-એજન્ટ ઓર્કેસ્ટ્રેશન, RAG, MCP ઇન્ટિગ્રેશન, A2A સંચાર.',
+                ex6_pharma: '💊 ફાર્મા: MLR અનુરૂપતા, Datadog ઓબ્ઝર્વેબિલિટી અને Veeva ઇન્ટિગ્રેશન સાથે પ્રોડક્શન મેડિકલ અફેર્સ AI',
+                ex7_title: 'ફીડફોરવર્ડ + ફીડબેક સાથે MLR હાર્નેસ ડિઝાઇન કરો',
+                ex7_desc: 'મેડિકલ-લીગલ-રેગ્યુલેટરી સમીક્ષા પ્રક્રિયા માટે હાર્નેસ બનાવો: ફીડફોરવર્ડ ગાઇડ્સ અને ફીડબેક સેન્સર્સ.',
+                ex7_pharma: '💊 ફાર્મા: MedDRA ફીડફોરવર્ડ ગાઇડ્સ અને ડેવિએશન ફીડબેક સેન્સર્સ સાથે MLR હાર્નેસ',
+                ex8_title: 'ફાર્માકોવિજિલન્સ માટે AI ગાર્ડરેલ્સ બનાવો',
+                ex8_desc: 'ફરજિયાત માનવ સમીક્ષા ગેટ્સ, બાયસ ડિટેક્શન, ઓડિટ ટ્રેલ લોગિંગ અને FDA GxP અનુરૂપતા સાથે સેફ્ટી-ફર્સ્ટ એજન્ટ સિસ્ટમ ડિઝાઇન કરો.',
+                ex8_pharma: '💊 ફાર્મા: હ્યુમન-ઇન-ધ-લૂપ ચેકપોઇન્ટ્સ અને FDA સબમિશન-રેડી ઓડિટ લોગ્સ સાથે ફાર્માકોવિજિલન્સ ગાર્ડરેલ્સ',
+                quiz_title: '🎯 તમારા જ્ઞાનની કસોટી',
+                quiz_sub: '2026માં AI નેતૃત્વને ફરીથી આકાર આપતા ખ્યાલો પર 5 પ્રશ્નો.',
+                quiz_counter: 'પ્રશ્ન 1 / 5',
+                q1_q: 'એજેન્ટિક એન્જિનિયરિંગ અને વાઇબ કોડિંગ વચ્ચેનો મુખ્ય તફાવત શું છે?',
+                q1_a_expl: 'એજન્ટિક એન્જિનિયરિંગ મોટા મોડેલ્સ વાપરે છે — ખોટું.',
+                q1_b_expl: 'વાઇબ કોડિંગ ઝડપી છે પણ ઓછું ચોક્કસ — નજીક પણ સાચો જવાબ નહીં.',
+                q1_c_expl: 'સાચું! એજેન્ટિક એન્જિનિયરિંગ આયોજન, ચકાસણી અને શાસન સાથે એજન્ટ્સ ઓર્કેસ્ટ્રેટ કરે છે.',
+                q1_d_expl: 'વાઇબ કોડિંગને ટીમની જરૂર છે, એજેન્ટિક એન્જિનિયરિંગ સોલો છે — ખોટું.',
+                q2_q: 'હાર્નેસ એન્જિનિયરિંગમાં, "હાર્નેસ" શું સૂચવે છે?',
+                q2_a_expl: 'ફક્ત એજન્ટ વાપરી શકે તે સાધનો — હાર્નેસ તેનાથી વધુ છે.',
+                q2_b_expl: 'સાચું! એજન્ટ = મોડેલ + હાર્નેસ. હાર્નેસ એ મોડેલની આસપાસની બધી વસ્તુઓ છે.',
+                q2_c_expl: 'હાર્નેસ મોડેલને બદલતું નથી — તે તેની આસપાસ રેપ કરે છે.',
+                q2_d_expl: 'હાર્નેસમાં ડિપ્લોયમેન્ટ પેટર્ન શામેલ છે, પણ તે મૂળભૂત રીતે મોડેલની આસપાસના કંટ્રોલ લેયર વિશે છે.',
+                q3_q: 'કોન્ટેક્સ્ટ એન્જિનિયરિંગ શું બદલે છે, અને 5 લેયર્સ કઈ છે?',
+                q3_a_expl: 'સાચું! Anthropic એ 2026માં કોન્ટેક્સ્ટ એન્જિનિયરિંગને મુખ્ય કૌશલ્ય શિફ્ટ તરીકે ઓળખ્યું.',
+                q3_b_expl: 'નજીક — પણ લેયર્સ મોડેલ આર્કિટેક્ચર લેયર્સ નથી. તે માહિતી કોન્ટેક્સ્ટ લેયર્સ છે.',
+                q3_c_expl: 'કોન્ટેક્સ્ટ એન્જિનિયરિંગ હાર્નેસ એન્જિનિયરિંગને બદલતું નથી — તેઓ એકબીજાને પૂરક છે.',
+                q3_d_expl: 'કોન્ટેક્સ્ટ એન્જિનિયરિંગ RAG ને બદલતું નથી, તે RAG ને સમાવે છે.',
+                q4_q: 'MCP (મોડેલ કોન્ટેક્સ્ટ પ્રોટોકોલ) શું છે અને શા માટે મહત્વનું છે?',
+                q4_a_expl: 'MCP મોડેલ નથી — તે કનેક્ટિવિટી માનક છે.',
+                q4_b_expl: 'સાચું! MCP એ "AI માટે USB-C" — AI એજન્ટ્સને ડેટા સ્રોત, સાધનો અને વર્કફ્લો સાથે જોડવા માટેનો ખુલ્લો માનક.',
+                q4_c_expl: 'MCP કનેક્ટિવિટી પ્રોટોકોલ છે, તાલીમ તકનીક નથી.',
+                q4_d_expl: 'MCP Anthropic દ્વારા બનાવવામાં આવ્યું છે, પણ તે Claude, ChatGPT, VS Code, Cursor અને 100+ ઇન્ટિગ્રેશન્સ દ્વારા સપોર્ટેડ છે.',
+                q5_q: 'ઉત્ક્રાંતિ ટાઇમલાઇન: પ્રોમ્પ્ટ એન્જિનિયરિંગ → કોન્ટેક્સ્ટ એન્જિનિયરિંગ → હાર્નેસ એન્જિનિયરિંગ. શા માટે?',
+                q5_a_expl: 'દરેક માત્ર માર્કેટિંગ માટે રીબ્રાન્ડ નથી — દરેક ક્ષેત્રમાં મૂળભૂત વિસ્તરણ છે.',
+                q5_b_expl: 'સાચું! દરેક શિસ્ત ક્ષેત્રને વિસ્તારે છે: એક કોલ ઑપ્ટિમાઇઝ કરવાથી, માહિતી પ્રવાહ ડિઝાઇન કરવા સુધી, સંપૂર્ણ પ્રોડક્શન સિસ્ટમ એન્જિનિયર કરવા સુધી.',
+                q5_c_expl: 'તેઓ એકબીજાને સંપૂર્ણ બદલતા નથી — તેઓ એકબીજાને પૂરક છે.',
+                q5_d_expl: 'હાર્નેસ એન્જિનિયરિંગ મલ્ટી-એજન્ટ સ્વોર્મ્સ કરતાં ઘણા સરળ સિસ્ટમ્સને લાગુ કરી શકે છે.',
+                quiz_submit: 'જવાબ સબમિટ કરો',
+                quiz_next: 'પ્રશ્ન આગળ →',
+                quiz_share: '📋 પરિણામો શેર કરો',
+                quiz_retake: '🔄 ક્વિઝ ફરી લો',
+                gloss_title: '📚 AI શબ્દકોશ',
+                gloss_sub: 'ગુજરાતી અનુવાદ સાથે મુખ્ય AI શબ્દો.',
+                footer_gu: 'પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે',
+                footer_en: 'જ્યાં પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે &nbsp;|&nbsp; કોર્સ © 2026 &nbsp;•&nbsp; Venice AI દ્વારા સંચાલિત'
+            }
+        };
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'gu' : 'en';
+            localStorage.setItem('gujarati-lang', currentLang);
+            applyLang();
+        }
+
+        function applyLang() {
+            const t = translations[currentLang];
+            if (!t) return;
+
+            // Update all data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            // Update quiz option explanations
+            document.querySelectorAll('.quiz-opt[data-expl-i18n]').forEach(el => {
+                const key = el.getAttribute('data-expl-i18n');
+                if (t[key]) {
+                    el.setAttribute('data-expl', t[key]);
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLang === 'gu' ? 'gu' : 'en';
+
+            // Update toggle button text
+            const btn = document.querySelector('#langToggle [data-i18n="lang_btn"]');
+            if (btn) btn.textContent = currentLang === 'gu' ? 'English' : 'ગુજરાતી';
+        }
+
+        // ─── Smooth scroll ───
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 e.preventDefault();
@@ -1014,18 +1304,18 @@
             });
         });
 
-        // Nav scroll effect
+        // ─── Nav scroll effect ───
         window.addEventListener('scroll', () => {
             document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
         });
 
-        // Intersection Observer for fade-in
+        // ─── Intersection Observer for fade-in ───
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
         }, {threshold:0.1});
         document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-        // Module tab filter
+        // ─── Module tab filter ───
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1042,7 +1332,7 @@
             });
         });
 
-        // Quiz — 5 question system
+        // ─── Quiz ───
         let currentQ = 1;
         let score = 0;
         let selectedOpt = null;
@@ -1061,7 +1351,7 @@
         function submitAnswer() {
             if (!selectedOpt) {
                 document.getElementById('quiz-result').style.color = '#FF006E';
-                document.getElementById('quiz-result').textContent = 'Please select an answer first!';
+                document.getElementById('quiz-result').textContent = currentLang === 'gu' ? 'કૃપા કરીને પહેલા જવાબ પસંદ કરો!' : 'Please select an answer first!';
                 return;
             }
             const parent = selectedOpt.closest('.quiz-question');
@@ -1071,16 +1361,13 @@
             });
             const isCorrect = selectedOpt.dataset.correct === 'true';
             if (isCorrect) score++;
-            // Show explanation
             const expl = parent.querySelector('.quiz-expl');
             expl.textContent = selectedOpt.dataset.expl;
             expl.classList.add('visible');
             expl.style.color = isCorrect ? '#3AFF9E' : '#FF006E';
-            // Update dot
             const dots = document.querySelectorAll('.quiz-dot');
             dots[currentQ - 1].classList.remove('active');
             dots[currentQ - 1].classList.add(isCorrect ? 'correct' : 'wrong');
-            // Show next button
             document.getElementById('quizSubmit').style.display = 'none';
             document.getElementById('quizNext').style.display = '';
             document.getElementById('quiz-result').textContent = '';
@@ -1095,7 +1382,8 @@
                 return;
             }
             document.getElementById('q' + currentQ).style.display = '';
-            document.getElementById('quizCounter').textContent = 'Question ' + currentQ + ' of ' + totalQ;
+            const counterText = currentLang === 'gu' ? `પ્રશ્ન ${currentQ} / ${totalQ}` : `Question ${currentQ} of ${totalQ}`;
+            document.getElementById('quizCounter').textContent = counterText;
             const dots = document.querySelectorAll('.quiz-dot');
             dots[currentQ - 1].classList.add('active');
             document.getElementById('quizSubmit').style.display = '';
@@ -1108,7 +1396,14 @@
             document.getElementById('quizNext').style.display = 'none';
             document.getElementById('quizFinal').style.display = '';
             document.getElementById('finalScore').textContent = score + ' / ' + totalQ;
-            const msgs = [
+            const msgs = currentLang === 'gu' ? [
+                'અભ્યાસ ચાલુ રાખો — આ ખ્યાલો AI નેતૃત્વ માટે પાયારૂપ છે.',
+                'સારી શરૂઆત! મુખ્ય ખ્યાલો વિભાગ જુઓ અને ફરી પ્રયાસ કરો.',
+                'મજબૂત સમજ! તમે મુખ્ય ખ્યાલો સારી રીતે જાણો છો.',
+                'શાનદાર! તમારી પાસે આધુનિક AI એન્જિનિયરિંગનું મજબૂત જ્ઞાન છે.',
+                'લગભગ સંપૂર્ણ! તમે AI નેતૃત્વ પહેલનું નેતૃત્વ કરવા તૈયાર છો.',
+                'સંપૂર્ણ સ્કોર! તમે AI નેતૃત્વ નિષ્ણાત છો. 🎯'
+            ] : [
                 'Keep studying — these concepts are foundational for AI leadership.',
                 'Good start! Review the Key Concepts section and try again.',
                 'Solid understanding! You know the core concepts well.',
@@ -1120,12 +1415,14 @@
         }
 
         function shareResults() {
-            const text = 'I scored ' + score + '/' + totalQ + ' on the AI Leadership Mastery quiz! 🎯\n\nTest your knowledge of Agentic Engineering, Harness Engineering, Context Engineering, MCP, and A2A.';
+            const text = currentLang === 'gu'
+                ? `મેં AI નેતૃત્વ માસ્ટરી ક્વિઝમાં ${score}/${totalQ} સ્કોર કર્યો! 🎯`
+                : `I scored ${score}/${totalQ} on the AI Leadership Mastery quiz! 🎯\n\nTest your knowledge of Agentic Engineering, Harness Engineering, Context Engineering, MCP, and A2A.`;
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(text).then(() => {
                     const btn = document.querySelector('.share-btn');
-                    btn.textContent = '✅ Copied to clipboard!';
-                    setTimeout(() => { btn.textContent = '📋 Share Results'; }, 2000);
+                    btn.textContent = currentLang === 'gu' ? '✅ કૉપિ થયું!' : '✅ Copied!';
+                    setTimeout(() => { btn.textContent = currentLang === 'gu' ? '📋 પરિણામો શેર કરો' : '📋 Share Results'; }, 2000);
                 });
             }
         }
@@ -1144,14 +1441,15 @@
                 d.className = 'quiz-dot' + (i === 0 ? ' active' : '');
             });
             document.getElementById('quizCounter').style.display = '';
-            document.getElementById('quizCounter').textContent = 'Question 1 of ' + totalQ;
+            const counterText = currentLang === 'gu' ? `પ્રશ્ન 1 / ${totalQ}` : `Question 1 of ${totalQ}`;
+            document.getElementById('quizCounter').textContent = counterText;
             document.getElementById('quizSubmit').style.display = '';
             document.getElementById('quizNext').style.display = 'none';
             document.getElementById('quizFinal').style.display = 'none';
             document.getElementById('quiz-result').textContent = '';
         }
 
-        // Progress Tracking (localStorage)
+        // ─── Progress Tracking ───
         function saveProgress() {
             const state = {};
             for (let i = 1; i <= 9; i++) {
@@ -1159,6 +1457,7 @@
             }
             localStorage.setItem('gujarati-progress', JSON.stringify(state));
         }
+
         function loadProgress() {
             const saved = localStorage.getItem('gujarati-progress');
             if (saved) {
@@ -1169,7 +1468,10 @@
                 }
             }
         }
+
+        // ─── Init ───
         loadProgress();
+        applyLang();
     </script>
 </body>
 </html>
