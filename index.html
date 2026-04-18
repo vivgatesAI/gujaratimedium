@@ -393,6 +393,486 @@
         .glossary-term { color:var(--neon-cyan); font-weight:600; font-size:0.95rem; }
         .glossary-def { color:var(--silver); font-size:0.9rem; margin-top:0.3rem; }
 
+        /* ─── LEARNING APPROACH ─── */
+        .learning-section {
+            background: linear-gradient(180deg, var(--deep-space), rgba(93,63,211,0.06), var(--deep-space));
+            padding: 5rem 2rem;
+            position: relative; z-index: 1;
+        }
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .learning-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .learning-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,245,255,0.05), rgba(157,78,221,0.05));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .learning-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,245,255,0.25);
+            box-shadow: 0 15px 40px rgba(93,63,211,0.2);
+        }
+        .learning-card:hover::before { opacity: 1; }
+        .learning-card.active {
+            border-color: rgba(0,245,255,0.4);
+            box-shadow: 0 0 30px rgba(0,245,255,0.15);
+        }
+        .learning-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .learning-card h3 {
+            font-size: 1.15rem;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            position: relative;
+        }
+        .learning-card .gu-label {
+            font-size: 0.85rem;
+            color: var(--electric-purple);
+            margin-bottom: 0.8rem;
+            display: block;
+            font-weight: 500;
+        }
+        .principle-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .learning-card.active .principle-detail {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .principle-detail p {
+            font-size: 0.9rem;
+            color: var(--silver);
+            line-height: 1.7;
+            position: relative;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .principle-detail .highlight {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+
+        /* ─── VOCABULARY LAB ─── */
+        .vocab-section {
+            padding: 6rem 2rem;
+            position: relative; z-index: 1;
+            background: linear-gradient(135deg, rgba(0,245,255,0.03), rgba(157,78,221,0.04));
+        }
+        .vocab-progress-bar {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .vocab-progress-bar .progress-text {
+            font-size: 0.95rem;
+            color: var(--silver);
+        }
+        .vocab-progress-bar .progress-text strong {
+            color: var(--neon-cyan);
+        }
+        .progress-track {
+            flex: 1;
+            min-width: 200px;
+            height: 8px;
+            background: var(--glass-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--electric-purple));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        .flashcard-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            perspective: 1000px;
+        }
+        .flashcard {
+            width: 100%;
+            min-height: 320px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .flashcard-inner {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .flashcard-front {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+        }
+        .flashcard-front:hover {
+            border-color: rgba(0,245,255,0.3);
+        }
+        .flashcard-back {
+            background: linear-gradient(135deg, rgba(93,63,211,0.15), rgba(0,245,255,0.08));
+            border: 1px solid rgba(0,245,255,0.2);
+            transform: rotateY(180deg);
+        }
+        .flashcard-term {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+        }
+        .flashcard-hint {
+            font-size: 0.9rem;
+            color: var(--silver);
+            font-style: italic;
+        }
+        .flashcard-definition {
+            font-size: 1.1rem;
+            color: var(--off-white);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .flashcard-example {
+            background: rgba(58,255,158,0.06);
+            border-left: 3px solid var(--aurora-green);
+            padding: 0.8rem 1rem;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.88rem;
+            color: var(--aurora-green);
+            text-align: left;
+            width: 100%;
+        }
+        .flashcard-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .flashcard-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--silver);
+            padding: 0.7rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .flashcard-btn:hover {
+            border-color: var(--neon-cyan);
+            color: var(--white);
+        }
+        .flashcard-btn.know-it {
+            background: rgba(58,255,158,0.1);
+            border-color: rgba(58,255,158,0.3);
+            color: var(--aurora-green);
+        }
+        .flashcard-btn.know-it:hover {
+            background: rgba(58,255,158,0.2);
+            border-color: var(--aurora-green);
+        }
+        .flashcard-btn.learning {
+            background: rgba(255,0,110,0.1);
+            border-color: rgba(255,0,110,0.3);
+            color: var(--quantum-pink);
+        }
+        .flashcard-btn.learning:hover {
+            background: rgba(255,0,110,0.2);
+            border-color: var(--quantum-pink);
+        }
+        .flashcard-counter {
+            font-size: 0.9rem;
+            color: var(--silver);
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .flashcard-counter strong { color: var(--neon-cyan); }
+
+        /* ─── CHAT ASSISTANT ─── */
+        .chat-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--plasma-blue));
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 0 30px rgba(0,245,255,0.4), 0 0 60px rgba(0,245,255,0.15);
+            transition: all 0.3s;
+            animation: chatPulse 3s ease-in-out infinite;
+        }
+        @keyframes chatPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0,245,255,0.4), 0 0 60px rgba(0,245,255,0.15); }
+            50% { box-shadow: 0 0 40px rgba(0,245,255,0.6), 0 0 80px rgba(0,245,255,0.25); }
+        }
+        .chat-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0,245,255,0.6), 0 0 80px rgba(0,245,255,0.3);
+        }
+        .chat-fab.open { display: none; }
+        .chat-panel {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 420px;
+            max-width: 100vw;
+            height: 600px;
+            max-height: 85vh;
+            background: rgba(10,10,15,0.97);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px 0 0 0;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            backdrop-filter: blur(30px);
+            box-shadow: -10px -10px 60px rgba(0,0,0,0.5);
+        }
+        .chat-panel.open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .chat-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(93,63,211,0.1), rgba(0,245,255,0.05));
+            border-radius: 20px 0 0 0;
+        }
+        .chat-header h3 {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 600;
+            margin: 0;
+        }
+        .chat-header .chat-subtitle {
+            font-size: 0.75rem;
+            color: var(--silver);
+            display: block;
+        }
+        .chat-close {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--silver);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .chat-close:hover {
+            border-color: var(--quantum-pink);
+            color: var(--quantum-pink);
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .chat-messages::-webkit-scrollbar { width: 4px; }
+        .chat-messages::-webkit-scrollbar-track { background: transparent; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 4px; }
+        .chat-msg {
+            max-width: 88%;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            animation: fadeUp 0.3s ease-out;
+        }
+        .chat-msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            color: var(--white);
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg.assistant {
+            align-self: flex-start;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--off-white);
+            border-bottom-left-radius: 4px;
+        }
+        .chat-msg.assistant a {
+            color: var(--neon-cyan);
+            text-decoration: underline;
+        }
+        .chat-msg.error {
+            align-self: center;
+            background: rgba(255,0,110,0.1);
+            border: 1px solid rgba(255,0,110,0.3);
+            color: var(--quantum-pink);
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .chat-msg code {
+            background: rgba(0,245,255,0.1);
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+        }
+        .chat-quick-asks {
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .quick-ask-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--neon-cyan);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .quick-ask-btn:hover {
+            background: rgba(0,245,255,0.1);
+            border-color: var(--neon-cyan);
+        }
+        .chat-input-area {
+            padding: 0.8rem 1rem;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            gap: 0.6rem;
+        }
+        .chat-input {
+            flex: 1;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.7rem 1rem;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .chat-input:focus {
+            border-color: var(--neon-cyan);
+        }
+        .chat-input::placeholder { color: rgba(192,192,192,0.5); }
+        .chat-send {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--plasma-blue));
+            border: none;
+            border-radius: 12px;
+            padding: 0.7rem 1rem;
+            color: var(--deep-space);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .chat-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0,245,255,0.4);
+        }
+        .chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .chat-attribution {
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(192,192,192,0.4);
+            padding: 0.3rem 0;
+        }
+        .typing-indicator {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            padding: 0.8rem 1rem;
+        }
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width:768px) {
             .hero h1 { font-size:2.4rem; }
@@ -404,6 +884,9 @@
             .timeline::before { display:none; }
             .tl-node { margin-bottom:0.8rem; }
             .concept-card { padding:1.5rem !important; }
+            .learning-grid { grid-template-columns: 1fr; }
+            .chat-panel { width: 100vw; border-radius: 0; }
+            .chat-fab { bottom: 1.2rem; right: 1.2rem; width: 52px; height: 52px; font-size: 1.3rem; }
         }
         @media (max-width:480px) {
             .hero h1 { font-size:1.8rem; }
@@ -433,6 +916,8 @@
             <li><a href="#claude" data-i18n="nav_claude">Claude Updates</a></li>
             <li><a href="#exercises" data-i18n="nav_exercises">Hands-On</a></li>
             <li><a href="#quiz" data-i18n="nav_quiz">Quiz</a></li>
+            <li><a href="#learning" data-i18n="nav_learning">Learning</a></li>
+            <li><a href="#vocabulary" data-i18n="nav_vocab">Vocabulary Lab</a></li>
             <li><a href="#glossary" data-i18n="nav_glossary">Glossary</a></li>
             <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span class="flag">🇮🇳</span> <span data-i18n="lang_btn">ગુજરાતી</span></button></li>
         </ul>
@@ -453,6 +938,65 @@
                 <span class="hero-tag">Claude Code</span>
             </div>
             <a href="#modules" class="cta" data-i18n="hero_cta">Start Learning →</a>
+        </div>
+    </section>
+
+    <!-- ═══════ LEARNING APPROACH ═══════ -->
+    <section class="learning-section" id="learning">
+        <div class="section-head">
+            <h2 class="section-title" data-i18n="learning_title">🧠 Learning Approach</h2>
+            <p class="section-sub" data-i18n="learning_sub">This course is built on adult learning principles — because you learn best when learning connects to your experience, solves real problems, and puts you in the driver's seat.</p>
+            <p style="font-size:0.85rem; color:var(--electric-purple); margin-top:0.5rem;" data-i18n="learning_hint">Click any principle to see how the course applies it.</p>
+        </div>
+        <div class="learning-grid">
+            <div class="learning-card" onclick="togglePrinciple(this)">
+                <span class="learning-icon">🎯</span>
+                <h3 data-i18n="lp_self_title">Self-Directed</h3>
+                <span class="gu-label" data-i18n="lp_self_gu">સ્વ-નિર્દેશિત</span>
+                <div class="principle-detail">
+                    <p data-i18n="lp_self_desc">You choose your path. Progressive module structure lets you <span class="highlight">learn at your own pace</span>, skip what you know, and dive deep into what matters to your role. Checkboxes track your progress — you decide when you're done.</p>
+                </div>
+            </div>
+            <div class="learning-card" onclick="togglePrinciple(this)">
+                <span class="learning-icon">🔗</span>
+                <h3 data-i18n="lp_exp_title">Experience-Based</h3>
+                <span class="gu-label" data-i18n="lp_exp_gu">અનુભવ-આધારિત</span>
+                <div class="principle-detail">
+                    <p data-i18n="lp_exp_desc">Every concept connects to what you already know. Pharma & Medical Affairs use cases <span class="highlight">bridge your domain expertise</span> to AI patterns — so you're not learning abstract theory but mapping familiar workflows to new capabilities.</p>
+                </div>
+            </div>
+            <div class="learning-card" onclick="togglePrinciple(this)">
+                <span class="learning-icon">⚡</span>
+                <h3 data-i18n="lp_rel_title">Relevance-Driven</h3>
+                <span class="gu-label" data-i18n="lp_rel_gu">પ્રાસંગિકતા-આધારિત</span>
+                <div class="principle-detail">
+                    <p data-i18n="lp_rel_desc">No filler. Every module, exercise, and quiz is <span class="highlight">directly tied to real AI leadership skills</span> you'll use on Day 1. Industry examples from JPMorgan, Pfizer, Moderna, and others make it immediately applicable.</p>
+                </div>
+            </div>
+            <div class="learning-card" onclick="togglePrinciple(this)">
+                <span class="learning-icon">🧩</span>
+                <h3 data-i18n="lp_prob_title">Problem-Centered</h3>
+                <span class="gu-label" data-i18n="lp_prob_gu">સમસ્યા-કેન્દ્રિત</span>
+                <div class="principle-detail">
+                    <p data-i18n="lp_prob_desc">We don't start with definitions — we start with <span class="highlight">problems you face</span>. How do you get agents to work reliably? How do you connect AI to your data? Each module poses a real challenge, then introduces the concept that solves it.</p>
+                </div>
+            </div>
+            <div class="learning-card" onclick="togglePrinciple(this)">
+                <span class="learning-icon">🔥</span>
+                <h3 data-i18n="lp_motiv_title">Internal Motivation</h3>
+                <span class="gu-label" data-i18n="lp_motiv_gu">આંતરિક પ્રેરણા</span>
+                <div class="principle-detail">
+                    <p data-i18n="lp_motiv_desc">This isn't compliance training. You're here because <span class="highlight">you want to lead</span>. The course respects your ambition — assembling cutting-edge skills that position you as the person who brings AI strategy to the table, not just sits in the room.</p>
+                </div>
+            </div>
+            <div class="learning-card" onclick="togglePrinciple(this)">
+                <span class="learning-icon">🔨</span>
+                <h3 data-i18n="lp_do_title">Learn-by-Doing</h3>
+                <span class="gu-label" data-i18n="lp_do_gu">કરતાં શીખો</span>
+                <div class="principle-detail">
+                    <p data-i18n="lp_do_desc">Every module ends with <span class="highlight">hands-on exercises</span>: build an agent, deploy a swarm, design a harness, create an MCP server. You don't just read about AI engineering — you practice it. The quiz and vocabulary lab reinforce through active recall.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1025,11 +1569,77 @@
         </div>
     </section>
 
+    <!-- ═══════ VOCABULARY LAB ═══════ -->
+    <section class="vocab-section" id="vocabulary">
+        <div class="section-head">
+            <h2 class="section-title" data-i18n="vocab_title">🧪 Vocabulary Lab</h2>
+            <p class="section-sub" data-i18n="vocab_sub">Master essential AI terms with interactive flashcards. Flip to reveal definitions, mark what you know, and track your progress.</p>
+        </div>
+        <div class="vocab-progress-bar">
+            <span class="progress-text" id="vocabProgressText" data-i18n="vocab_progress">Studied: <strong>0</strong> / <strong>20</strong></span>
+            <div class="progress-track">
+                <div class="progress-fill" id="vocabProgressFill"></div>
+            </div>
+        </div>
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-term" id="flashcardTerm">Agent</div>
+                        <div class="flashcard-hint" id="flashcardHint" data-i18n="vocab_flip_hint">Click to flip and reveal the definition</div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-definition" id="flashcardDef"></div>
+                        <div class="flashcard-example" id="flashcardExample"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flashcard-counter" id="flashcardCounter"></div>
+        <div class="flashcard-nav">
+            <button class="flashcard-btn" onclick="prevCard()" data-i18n="vocab_prev">← Previous</button>
+            <button class="flashcard-btn learning" onclick="markLearning()" data-i18n="vocab_learning">🔄 Still Learning</button>
+            <button class="flashcard-btn know-it" onclick="markKnowIt()" data-i18n="vocab_know_it">✅ Know It</button>
+            <button class="flashcard-btn" onclick="nextCard()" data-i18n="vocab_next">Next →</button>
+        </div>
+    </section>
+
     <!-- ═══════ FOOTER ═══════ -->
     <footer>
         <p style="font-size:1.1rem;color:var(--neon-cyan);margin-bottom:0.5rem;" data-i18n="footer_gu">પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે</p>
         <p style="font-size:0.9rem;color:#666;" data-i18n="footer_en">Where Ancient Art Meets Future Intelligence &nbsp;|&nbsp; Course © 2026 &nbsp;•&nbsp; Powered by Venice AI</p>
     </footer>
+
+    <!-- ═══════ CHAT ASSISTANT ═══════ -->
+    <button class="chat-fab" id="chatFab" onclick="toggleChat()" title="AI Tutor">💬</button>
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <div>
+                <h3 data-i18n="chat_title">AI Leadership Tutor</h3>
+                <span class="chat-subtitle" data-i18n="chat_subtitle">Ask anything about AI concepts • Web Search enabled</span>
+            </div>
+            <button class="chat-close" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-msg assistant" data-i18n="chat_welcome">👋 Hi! I'm your AI Leadership Tutor. Ask me about any AI concept — agents, swarms, harness engineering, context engineering, MCP, A2A, RAG, and more. I can search the web for the latest information!</div>
+        </div>
+        <div class="chat-quick-asks" id="quickAsks">
+            <button class="quick-ask-btn" onclick="quickAsk('AI Agents')">Agents</button>
+            <button class="quick-ask-btn" onclick="quickAsk('AI Swarms')">Swarms</button>
+            <button class="quick-ask-btn" onclick="quickAsk('Harness Engineering')">Harness Eng.</button>
+            <button class="quick-ask-btn" onclick="quickAsk('Context Engineering')">Context Eng.</button>
+            <button class="quick-ask-btn" onclick="quickAsk('MCP Server')">MCP</button>
+            <button class="quick-ask-btn" onclick="quickAsk('A2A Protocol')">A2A</button>
+            <button class="quick-ask-btn" onclick="quickAsk('RAG in AI')">RAG</button>
+            <button class="quick-ask-btn" onclick="quickAsk('Fine-tuning LLMs')">Fine-tuning</button>
+            <button class="quick-ask-btn" onclick="quickAsk('Prompt Engineering')">Prompt Eng.</button>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask about any AI concept..." onkeydown="if(event.key==='Enter')sendChat()" data-i18n-placeholder="chat_placeholder">
+            <button class="chat-send" id="chatSend" onclick="sendChat()" data-i18n="chat_send">Send</button>
+        </div>
+        <div class="chat-attribution">Powered by Venice AI ✦</div>
+    </div>
 
     <!-- ═══════ JAVASCRIPT ═══════ -->
     <script>
@@ -1268,7 +1878,43 @@
                 gloss_title: '📚 AI શબ્દકોશ',
                 gloss_sub: 'ગુજરાતી અનુવાદ સાથે મુખ્ય AI શબ્દો.',
                 footer_gu: 'પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે',
-                footer_en: 'જ્યાં પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે &nbsp;|&nbsp; કોર્સ © 2026 &nbsp;•&nbsp; Venice AI દ્વારા સંચાલિત'
+                footer_en: 'જ્યાં પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે &nbsp;|&nbsp; કોર્સ © 2026 &nbsp;•&nbsp; Venice AI દ્વારા સંચાલિત',
+                nav_learning: 'શીખવાની રીત',
+                nav_vocab: 'શબ્દ લેબ',
+                learning_title: '🧠 શીખવાની રીત',
+                learning_sub: 'આ કોર્સ પુખ્ત શીખવાના સિદ્ધાંતો પર બનેલો છે — કારણ કે જ્યારે શીખવાની વાત તમારા અનુભવ સાથે જોડાય, વાસ્તવિક સમસ્યાઓ ઉકેલે, અને તમને ડ્રાઈવિંગ સીટ પર મૂકે, ત્યારે તમે શ્રેષ્ઠ શીખો છો.',
+                learning_hint: 'કોઈપણ સિદ્ધાંત પર ક્લિક કરો જોવા કે કોર્સ તેને કેવી રીતે લાગુ કરે છે.',
+                lp_self_title: 'સ્વ-નિર્દેશિત',
+                lp_self_gu: 'Self-Directed',
+                lp_self_desc: 'તમે તમારો માર્ગ પસંદ કરો. પ્રગતિશીલ મોડ્યુલ માળખું તમને <span class="highlight">તમારા પોતાના વેગે શીખવા</span> દે છે, તમને જે ખબર છે તે છોડો, અને તમારી ભૂમિકા માટે જે મહત્વપૂર્ણ છે તેમાં ઊંડે જાઓ.',
+                lp_exp_title: 'અનુભવ-આધારિત',
+                lp_exp_gu: 'Experience-Based',
+                lp_exp_desc: 'દરેક ખ્યાલ તમે પહેલેથી જે જાણો છો તેની સાથે જોડાય છે. ફાર્મા & મેડિકલ અફેર્સ ઉપયોગ કેસ <span class="highlight">તમારા ડોમેઇન નિપુણતાને AI પેટર્ન્સ સાથે જોડે છે</span> — તમે અમૂર્ત સિદ્ધાંત શીખતા નથી પણ પરિચિત વર્કફ્લોને નવી ક્ષમતાઓ સાથે મેપ કરો છો.',
+                lp_rel_title: 'પ્રાસંગિકતા-આધારિત',
+                lp_rel_gu: 'Relevance-Driven',
+                lp_rel_desc: 'કોઈ ભરતી નહીં. દરેક મોડ્યુલ, કસરત, અને ક્વિઝ <span class="highlight">વાસ્તવિક AI નેતૃત્વ કૌશલ્ય</span> સાથે સીધા જોડાયેલ છે જે તમે પહેલા દિવસે વાપરશો. JPMorgan, Pfizer, Moderna અને અન્યના ઉદ્યોગ ઉદાહરણો તેને તાત્કાલિક લાગુ બનાવે છે.',
+                lp_prob_title: 'સમસ્યા-કેન્દ્રિત',
+                lp_prob_gu: 'Problem-Centered',
+                lp_prob_desc: 'અમે વ્યાખ્યાઓથી શરૂ કરતા નથી — <span class="highlight">તમે જે સમસ્યાઓનો સામનો કરો છો</span> તેથી શરૂ કરીએ છીએ. એજન્ટ્સને વિશ્વસનીય બનાવવા કેવી રીતે? AI ને તમારા ડેટા સાથે કેવી રીતે જોડવું? દરેક મોડ્યુલ વાસ્તવિક પડકાર રજૂ કરે છે, પછી તે ઉકેલતો ખ્યાલ રજૂ કરે છે.',
+                lp_motiv_title: 'આંતરિક પ્રેરણા',
+                lp_motiv_gu: 'Internal Motivation',
+                lp_motiv_desc: 'આ કોમ્પ્લાયન્સ ટ્રેનિંગ નથી. તમે અહીં છો કારણ કે <span class="highlight">તમે નેતૃત્વ કરવા માંગો છો</span>. કોર્સ તમારએમ્બિશનને આદર આપે છે — અત્યાધુનિક કૌશલ્ય્ય જેમને તમને એ વ્યક્તિ તરીકે સ્થાન આપે છે જે AI સ્ટ્રેટજી ટેબલ પર લાવે છે.',
+                lp_do_title: 'કરતાં શીખો',
+                lp_do_gu: 'Learn-by-Doing',
+                lp_do_desc: 'દરેક મોડ્યુલ <span class="highlight">હાથ-અનુભવ કસરતો</span> સાથે સમાપ્ત થાય છે: એજન્ટ બનાવો, સ્વોર્મ ડિપ્લોય કરો, હાર્નેસ ડિઝાઇન કરો, MCP સર્વર બનાવો. તમે ફક્ત AI એન્જિનિયરિંગ વિશે વાંચતા નથી — તમે તેનો અભ્યાસ કરો છો.',
+                vocab_title: '🧪 શબ્દ લેબ',
+                vocab_sub: 'ઇન્ટરેક્ટિવ ફ્લેશકાર્ડસ સાથે આવશ્યક AI શબ્દો માસ્ટર કરો. વ્યાખ્યા જોવા ફ્લિપ કરો, જે જાણો છે તે ચિહ્નિત કરો, અને પ્રગતિ ટ્રેક કરો.',
+                vocab_flip_hint: 'વ્યાખ્યા જોવા ફ્લિપ કરવા ક્લિક કરો',
+                vocab_progress: 'અભ્યાસ થયેલ: <strong>0</strong> / <strong>20</strong>',
+                vocab_prev: '← પાછું',
+                vocab_learning: '🔄 હજુ શીખી રહ્યા',
+                vocab_know_it: '✅ જાણું છું',
+                vocab_next: 'આગળ →',
+                chat_title: 'AI નેતૃત્વ ટ્યુટર',
+                chat_subtitle: 'AI ખ્યાલો વિશે કંઈપણ પૂછો • વેબ શોધ સક્ષમ',
+                chat_welcome: '👋 નમસ્તે! હું તમારો AI નેતૃત્વ ટ્યુટર છું. AI ના કોઈપણ ખ્યાલ વિશે મને પૂછો — એજન્ટ્સ, સ્વોર્મ્સ, હાર્નેસ એન્જિનિયરિંગ, કોન્ટેક્સ્ટ એન્જિનિયરિંગ, MCP, A2A, RAG અને વધુ. હું નવીનતમ માહિતી માટે વેબ શોધી શકું છું!',
+                chat_placeholder: 'કોઈપણ AI ખ્યાલ વિશે પૂછો...',
+                chat_send: 'મોકલો'
             }
         };
 
@@ -1304,6 +1950,16 @@
             // Update toggle button text
             const btn = document.querySelector('#langToggle [data-i18n="lang_btn"]');
             if (btn) btn.textContent = currentLang === 'gu' ? 'English' : 'ગુજરાતી';
+
+            // Update vocabulary card if visible
+            if (typeof renderCard === 'function') renderCard();
+            if (typeof updateVocabProgress === 'function') updateVocabProgress();
+
+            // Update chat input placeholder
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.placeholder = currentLang === 'gu' ? 'કોઈપણ AI ખ્યાલ વિશે પૂછો...' : 'Ask about any AI concept...';
+            }
         }
 
         // ─── Smooth scroll ───
@@ -1479,8 +2135,256 @@
             }
         }
 
+        // ─── Learning Principles Toggle ───
+        function togglePrinciple(card) {
+            const wasActive = card.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.learning-card').forEach(c => c.classList.remove('active'));
+            // Toggle clicked
+            if (!wasActive) card.classList.add('active');
+        }
+
+        // ─── Vocabulary Lab (Flashcards) ───
+        const vocabTerms = [
+            { term: 'Agent', gu: 'એજન્ટ', def: 'An autonomous AI system that perceives its environment, reasons about goals, and takes actions using tools in persistent loops (observe → think → act → reflect).', defGu: 'સ્વતંત્ર AI પ્રણાલી જે પર્યાવરણને સમજે છે, લક્ષ્યો વિશે વિચારે છે, અને સાધનોનો ઉપયોગ કરીને કાર્યો કરે છે.', example: 'Pharma: A literature surveillance agent scanning 500K+ PubMed articles daily for drug safety signals.', exampleGu: 'ફાર્મા: 500K+ PubMed લેખોનું દૈનિક સ્કેનિંગ કરતો સાહિત્ય સર્વેલન્સ એજન્ટ.' },
+            { term: 'Swarm', gu: 'સ્વોર્મ', def: 'A coordinated collective of specialized agents that divide complex objectives into sub-tasks and achieve emergent intelligence through structured message passing.', defGu: 'વિશિષ્ટ એજન્ટ્સનું સમન્વિત સામૂહિક જે જટિલ ઉદ્દેશ્યોને ઉપ-કાર્યોમાં વિભાજિત કરે છે.', example: 'Pharma: A drug safety swarm with Signal Detector → Narrative Writer → QC Reviewer agents for PSUR generation.', exampleGu: 'ફાર્મા: સિગ્નલ ડિટેક્ટર → નેરેટિવ રાઇટર → QC રિવ્યૂઅર એજન્ટ્સ સાથે ડ્રગ સેફ્ટી સ્વોર્મ.' },
+            { term: 'Harness', gu: 'હાર્નેસ', def: 'Everything that wraps the AI model: tool orchestration, context pipelines, feedback loops, memory systems, safety hooks, and sub-agent coordination. Agent = Model + Harness.', defGu: 'AI મોડેલની આસપાસની બધી વસ્તુઓ: સાધન ઓર્કેસ્ટ્રેશન, કોન્ટેક્સ્ટ પાઇપલાઇન્સ, ફીડબેક લૂપ્સ, મેમરી, સેફ્ટી. એજન્ટ = મોડેલ + હાર્નેસ.', example: 'Pharma: An MLR review harness orchestrating Medical → Legal → Regulatory workflows with audit trails.', exampleGu: 'ફાર્મા: ઓડિટ ટ્રેલ્સ સાથે મેડિકલ → લીગલ → રેગ્યુલેટરી વર્કફ્લો ઓર્કેસ્ટ્રેટ કરતો MLR હાર્નેસ.' },
+            { term: 'Context Window', gu: 'કોન્ટેક્સ્ટ વિન્ડો', def: 'The maximum amount of text (measured in tokens) that an AI model can process in a single interaction. Larger windows enable more complex reasoning and longer conversations.', defGu: 'મહત્તમ ટેક્સ્ટ (ટોકન્સમાં) જે AI મોડેલ એક જ ઇન્ટરેક્શનમાં પ્રોસેસ કરી શકે છે.', example: 'Pharma: Claude Opus 4.6 has a 1M-token context window — enough to process an entire drug submission dossier at once.', exampleGu: 'ફાર્મા: Claude Opus 4.6 ની 1M-ટોકન કોન્ટેક્સ્ટ વિન્ડો — એક સમયે સંપૂર્ણ ડ્રગ સબમિશન ડોસિયર પ્રોસેસ કરવા માટે પૂરતી.' },
+            { term: 'MCP Server', gu: 'MCP સર્વર', def: 'Model Context Protocol — an open standard for connecting AI applications to external systems. Like USB-C for AI, one MCP server can serve any AI client.', defGu: 'AI એપ્લિકેશન્સને બાહ્ય સિસ્ટમ્સ સાથે જોડવા માટેનો ખુલ્લો માનક. AI માટે USB-C જેવું.', example: 'Pharma: An MCP server exposing Veeva Vault documents to AI agents for real-time submission queries.', exampleGu: 'ફાર્મા: Veeva Vault ડૉક્યુમેન્ટ્સને AI એજન્ટ્સ માટે એક્સપોઝ કરતો MCP સર્વર.' },
+            { term: 'A2A Protocol', gu: 'A2A પ્રોટોકોલ', def: 'Agent-to-Agent — Google's open protocol enabling agents from different vendors and frameworks to discover, communicate, and collaborate. Like HTTP for agents.', defGu: 'Google નું ખુલ્લું પ્રોટોકોલ જે વિવિધ વેન્ડર્સના એજન્ટ્સને શોધવા, સંચાર કરવા અને સહયોગ કરવા સક્ષમ બનાવે છે.', example: 'Pharma: A cross-functional A2A network: medical information agent ↔ drug safety agent ↔ regulatory agent.', exampleGu: 'ફાર્મા: ક્રોસ-ફંક્શનલ A2A નેટવર્ક: મેડિકલ ઇન્ફર્મેશન ↔ ડ્રગ સેફ્ટી ↔ રેગ્યુલેટરી એજન્ટ.' },
+            { term: 'RAG', gu: 'RAG', def: 'Retrieval-Augmented Generation — enhancing AI responses by fetching relevant information from external knowledge bases before generating answers, reducing hallucinations.', defGu: 'પુનઃપ્રાપ્તિ-વર્ધિત જનરેશન — જવાબો જનરેટ કરતા પહેલા બાહ્ય નોલેજ બેઝમાંથી સંબંધિત માહિતી મેળવીને AI પ્રતિભાવો સુધારવા.', example: 'Pharma: A RAG-powered medical affairs knowledge base answering HCP queries with real-time evidence and citations.', exampleGu: 'ફાર્મા: રિયલ-ટાઇમ પુરાવા અને સંદર્ભો સાથે HCP પ્રશ્નોના જવાબો આપતો RAG-સંચાલિત મેડિકલ અફેર્સ નોલેજ બેઝ.' },
+            { term: 'Fine-tuning', gu: 'ફાઇન-ટ્યુનિંગ', def: 'The process of further training a pre-trained AI model on domain-specific data to specialize its outputs for a particular task or industry, adapting general capabilities to specific needs.', defGu: 'ડોમેઇન-વિશિષ્ટ ડેટા પર પૂર્વ-તાલીમ મોડેલને વધુ તાલીમ આપવાની પ્રક્રિયા.', example: 'Pharma: Fine-tuning a model on MedDRA术语 and ICSR narratives for pharmacovigilance signal detection.', exampleGu: 'ફાર્મા: ફાર્માકોવિજિલન્સ સિગ્નલ ડિટેક્શન માટે MedDRA શબ્દાવલી અને ICSR નેરેટિવ્સ પર મોડેલ ફાઇન-ટ્યુનિંગ.' },
+            { term: 'Prompt Engineering', gu: 'પ્રોમ્પ્ટ એન્જિનિયરિંગ', def: 'The discipline of crafting effective instructions for AI models to produce desired outputs. Now largely superseded by context engineering and harness engineering for production systems.', defGu: 'AI મોડેલ્સ માટે અસરકારક સૂચનાઓ બનાવવાની શિસ્ત. હવે મોટે ભાગે પ્રોડક્શન સિસ્ટમ્સ માટે કોન્ટેક્સ્ટ એન્જિનિયરિંગ દ્વારા બદલાય છે.', example: 'Pharma: Crafting system prompts that enforce MedDRA terminology and regulatory language in AI-generated medical content.', exampleGu: 'ફાર્મા: AI-જનરેટેડ મેડિકલ કન્ટેન્ટમાં MedDRA શબ્દાવલી અને રેગ્યુલેટરી ભાષા લાદવા સિસ્ટમ પ્રોમ્પ્ટ્સ બનાવવા.' },
+            { term: 'Token', gu: 'ટોકન', def: 'The basic unit of text that AI models process. Roughly 4 characters per token in English. Token limits determine how much context a model can handle at once.', defGu: 'AI મોડેલ્સ પ્રોસેસ કરતા ટેક્સ્ટનો મૂળભૂત એકમ. અંગ્રેજીમાં અંદાજે 4 અક્ષરો પ્રતિ ટોકન.', example: 'Pharma: A 10,000-page clinical study report requires ~3M+ tokens — context engineering determines how to compress and retrieve what\'s needed.', exampleGu: 'ફાર્મા: 10,000-પૃષ્ઠ ક્લિનિકલ સ્ટડી રિપોર્ટને ~3M+ ટોકન્સની જરૂર છે.' },
+            { term: 'Embedding', gu: 'એમ્બેડિંગ', def: 'A numerical representation (vector) of text that captures semantic meaning. Similar concepts have similar vectors, enabling similarity search in vector databases for RAG systems.', defGu: 'ટેક્સ્ટનું સંખ્યાત્મક પ્રતિનિધિત્વ (વેક્ટર) જે શાબ્દિક અર્થ પકડે છે.', example: 'Pharma: Embedding 50K+ medical publications into a vector database for real-time semantic search during HCP queries.', exampleGu: 'ફાર્મા: HCP પ્રશ્નો દરમિયાન રિયલ-ટાઇમ શાબ્દિક શોધ માટે 50K+ મેડિકલ પ્રકાશનોનું એમ્બેડિંગ.' },
+            { term: 'Hallucination', gu: 'હેલ્યુસિનેશન', def: 'When an AI model generates confident but factually incorrect information. Critical risk in regulated industries like pharma where accuracy is mandatory.', defGu: 'જ્યારે AI મોડેલ આત્મવિશ્વાસથી પણ ખોટી માહિતી જનરેટ કરે છે. ફાર્મા જેવા રેગ્યુલેટેડ ઉદ્યોગોમાં ગંભીર જોખમ.', example: 'Pharma: An AI hallucinating drug dosages or safety data could lead to patient harm — harness engineering with RAG and verification gates prevents this.', exampleGu: 'ફાર્મા: AI દ્વારા ડ્રગ ડોઝેસ અથવા સેફ્ટી ડેટા બનાવવાથી દર્દીને નુકસાન થઈ શકે — RAG અને ચકાસણી ગેટ્સ સાથે હાર્નેસ એન્જિનિયરિંગ આ રોકે છે.' },
+            { term: 'RLHF', gu: 'RLHF', def: 'Reinforcement Learning from Human Feedback — training AI models using human preferences to align outputs with desired behavior, safety, and quality standards.', defGu: 'માનવ પ્રતિસાદથી રીઇન્ફોર્સમેન્ટ લર્નિંગ — માનવ પસંદગીઓનો ઉપયોગ કરીને AI મોડેલ્સને ઇચ્છિત વર્તન, સુરક્ષા અને ગુણવત્તા માનકો સાથે સંરેખિત કરવા.', example: 'Pharma: Using physician feedback to train medical AI to produce clinically appropriate, regulation-compliant responses.', exampleGu: 'ફાર્મા: ક્લિનિકલ રીતે યોગ્ય, નિયમન-અનુરૂપ પ્રતિભાવો બનાવવા માટે ચિકિત્સક પ્રતિસાદનો ઉપયોગ.' },
+            { term: 'Multimodal', gu: 'મલ્ટિમોડલ', def: 'An AI system that can process and generate multiple types of data — text, images, audio, video, and structured data — within a single model.', defGu: 'AI સિસ્ટમ જે એક જ મોડેલમાં ઘણા પ્રકારના ડેટાને પ્રોસેસ અને જનરેટ કરી શકે — ટેક્સ્ટ, છબીઓ, ઓડિયો, વિડિયો.', example: 'Pharma: Analyzing clinical trial ECG data (waveform images) + lab results (structured data) + investigator notes (text) together for safety signals.', exampleGu: 'ફાર્મા: ક્લિનિકલ ટ્રાયલ ECG ડેટા + લેબ પરિણામો + ઇન્વેસ્ટિગેટર નોંધો એકસાથે વિશ્લેષણ.' },
+            { term: 'Inference', gu: 'ઇન્ફરન્સ', def: 'The process of running data through a trained AI model to generate a prediction, classification, or response. This is what happens when you send a prompt and receive an answer.', defGu: 'તાલીમ મેળવેલ AI મોડેલ દ્વારા ડેટા ચલાવીને અનુમાન, વર્ગીકરણ અથવા પ્રતિભાવ જનરેટ કરવાની પ્રક્રિયા.', example: 'Pharma: Running real-time inference on incoming adverse event reports to auto-classify severity and route to pharmacovigilance teams.', exampleGu: 'ફાર્મા: આવતા એડવર્સ ઇવેન્ટ રિપોર્ટ્સ પર રિયલ-ટાઇમ ઇન્ફરન્સ ચલાવીને ગંભીરતા સ્વતઃ વર્ગીકૃત કરવી.' },
+            { term: 'Orchestration', gu: 'ઓર્કેસ્ટ્રેશન', def: 'Coordinating multiple AI agents, tools, and data flows to accomplish complex workflows. The conductor that ensures each component plays its part at the right time.', defGu: 'ઘણા AI એજન્ટ્સ, સાધનો અને ડેટા પ્રવાહોનું સંકલન જટિલ વર્કફ્લો પૂર્ણ કરવા. કંડક્ટર જે દરેક ઘટકને સહી સમયે ભાગ ભજવવા સુનિશ્ચિત કરે છે.', example: 'Pharma: Orchestrating a 5-agent workflow for PSUR generation: data gatherer → signal detector → narrative writer → regulatory formatter → human reviewer.', exampleGu: 'ફાર્મા: PSUR જનરેશન માટે 5-એજન્ટ વર્કફ્લો ઓર્કેસ્ટ્રેટ કરવો.' },
+            { term: 'Tool Use', gu: 'સાધન ઉપયોગ', def: 'An AI agent\'s ability to call external functions, APIs, or services during execution to extend its capabilities beyond text generation — such as querying databases, running code, or accessing the web.', defGu: 'AI એજન્ટની બાહ્ય ફંક્શન્સ, APIs અથવા સેવાઓને કોલ કરવાની ક્ષમતા — ડેટાબેઝ શોધ, કોડ ચલાવવો, અથવા વેબ ઍક્સેસ.', example: 'Pharma: An agent using the PubMed API tool to retrieve recent publications, then using a statistics tool to calculate signal strength.', exampleGu: 'ફાર્મા: એજન્ટ PubMed API સાધન વાપરીને તાજેતરના પ્રકાશનો મેળવે છે, પછી સિગ્નલ મજબૂતી ગણવા સ્ટેટિસ્ટિક્સ સાધન વાપરે છે.' },
+            { term: 'Temperature', gu: 'ટેમ્પરેચર', def: 'A parameter controlling AI output randomness. Low temperature (0.0–0.3) = deterministic, factual responses. High temperature (0.7–1.5) = creative, varied outputs.', defGu: 'AI આઉટપુટ રેન્ડમનેસ નિયંત્રિત કરતો પેરામીટર. ઓછું ટેમ્પરેચર = નિશ્ચિત, વાસ્તવિક પ્રતિભાવો. ઊંચું ટેમ્પરેચર = સર્જનાત્મક, વિવિધ આઉટપુટ.', example: 'Pharma: Temperature 0.0 for regulatory submission drafting (must be deterministic). Temperature 0.7 for brainstorming patient engagement materials.', exampleGu: 'ફાર્મા: રેગ્યુલેટરી સબમિશન ડ્રાફ્ટિંગ માટે ટેમ્પરેચર 0.0 (નિશ્ચિત હોવું જરૂરી). દર્દી સંલગ્નતા સામગ્રી બ્રેઇનસ્ટોર્મિંગ માટે 0.7.' },
+            { term: 'Few-shot', gu: 'ફ્યુ-શોટ', def: 'Providing an AI model with a few examples of the desired input-output pattern within the prompt, enabling it to learn the task format from context rather than additional training.', defGu: 'AI મોડેલને પ્રોમ્પ્ટમાં ઇચ્છિત ઇનપુટ-આઉ�ટપુટ પેટર્નના કેટલાક ઉદાહરણો આપવા.', example: 'Pharma: Providing 3 examples of properly formatted ICSR narratives so the AI generates safety reports in the exact required structure.', exampleGu: 'ફાર્મા: ICSR નેરેટિવ્સના 3 યોગ્ય ફોર્મેટના ઉદાહરણો આપવા જેથી AI સેફ્ટી રિપોર્ટ્સ ચોક્કસ જરૂરી માળખામાં જનરેટ કરે.' },
+            { term: 'Chain-of-Thought', gu: 'ચેઇન-ઓફ-થોટ', def: 'A prompting technique where the AI is instructed to reason step-by-step before giving its final answer, dramatically improving accuracy on complex reasoning tasks.', defGu: 'પ્રોમ્પ્ટિંગ તક્નિક જ્યાં AI ને અંતિમ જવાબ આપતા પહેલા પગલે-પગલે તર્ક કરવા સૂચના આપવામાં આવે છે.', example: 'Pharma: Using CoT for adverse event causality assessment — the AI first lists symptoms, checks drug labeling, evaluates temporal relationships, then provides its causality determination.', exampleGu: 'ફાર્મા: એડવર્સ ઇવેન્ટ કોઝાલિટી અસેસમેન્ટ માટે CoT — AI પહેલા લક્ષણો સૂચિબદ્ધ કરે, ડ્રગ લેબલિંગ તપાસે, સમયબદ્ધ સંબંધો મૂલ્યાંકન કરે, પછી કોઝાલિટી નિર્ધારણ આપે.' }
+        ];
+
+        let currentCardIdx = 0;
+        let vocabProgress = JSON.parse(localStorage.getItem('vocab-progress') || '{}');
+
+        function updateVocabProgress() {
+            const studied = Object.keys(vocabProgress).length;
+            const total = vocabTerms.length;
+            const pct = total > 0 ? (studied / total * 100) : 0;
+            const isGu = currentLang === 'gu';
+            const studiedLabel = isGu ? 'અભ્યાસ થયેલ' : 'Studied';
+            document.getElementById('vocabProgressText').innerHTML = `${studiedLabel}: <strong>${studied}</strong> / <strong>${total}</strong>`;
+            document.getElementById('vocabProgressFill').style.width = pct + '%';
+        }
+
+        function renderCard() {
+            const term = vocabTerms[currentCardIdx];
+            const isGu = currentLang === 'gu';
+            document.getElementById('flashcardTerm').textContent = isGu ? term.gu : term.term;
+            document.getElementById('flashcardDef').textContent = isGu ? term.defGu : term.def;
+            document.getElementById('flashcardExample').textContent = isGu ? term.exampleGu : term.example;
+            const hint = isGu ? 'વ્યાખ્યા જોવા ફ્લિપ કરવા ક્લિક કરો' : 'Click to flip and reveal the definition';
+            document.getElementById('flashcardHint').textContent = hint;
+            document.getElementById('flashcard').classList.remove('flipped');
+            document.getElementById('flashcardCounter').innerHTML = `<strong>${currentCardIdx + 1}</strong> / ${vocabTerms.length}`;
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            currentCardIdx = (currentCardIdx + 1) % vocabTerms.length;
+            renderCard();
+        }
+
+        function prevCard() {
+            currentCardIdx = (currentCardIdx - 1 + vocabTerms.length) % vocabTerms.length;
+            renderCard();
+        }
+
+        function markKnowIt() {
+            const term = vocabTerms[currentCardIdx].term;
+            vocabProgress[term] = 'know';
+            localStorage.setItem('vocab-progress', JSON.stringify(vocabProgress));
+            updateVocabProgress();
+            nextCard();
+        }
+
+        function markLearning() {
+            const term = vocabTerms[currentCardIdx].term;
+            vocabProgress[term] = 'learning';
+            localStorage.setItem('vocab-progress', JSON.stringify(vocabProgress));
+            updateVocabProgress();
+            nextCard();
+        }
+
+        // ─── Chat Assistant ───
+        let chatOpen = false;
+        let chatHistory = [];
+        let chatStreaming = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const panel = document.getElementById('chatPanel');
+            const fab = document.getElementById('chatFab');
+            if (chatOpen) {
+                panel.classList.add('open');
+                fab.classList.add('open');
+                document.getElementById('chatInput').focus();
+            } else {
+                panel.classList.remove('open');
+                fab.classList.remove('open');
+            }
+        }
+
+        function quickAsk(topic) {
+            const isGu = currentLang === 'gu';
+            const question = isGu
+                ? `${topic} વિશે AI નેતૃત્વ કોર્સના સંદર્ભમાં સમજાવો`
+                : `Explain ${topic} in the context of AI leadership and how it applies in practice`;
+            document.getElementById('chatInput').value = question;
+            sendChat();
+        }
+
+        async function sendChat() {
+            if (chatStreaming) return;
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            input.value = '';
+            chatStreaming = true;
+            document.getElementById('chatSend').disabled = true;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'chat-msg user';
+            userDiv.textContent = msg;
+            document.getElementById('chatMessages').appendChild(userDiv);
+
+            // Add typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-msg assistant';
+            typingDiv.id = 'chatTyping';
+            typingDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+            document.getElementById('chatMessages').appendChild(typingDiv);
+            scrollChatToBottom();
+
+            chatHistory.push({ role: 'user', content: msg });
+
+            try {
+                const isGu = currentLang === 'gu';
+                const systemPrompt = isGu
+                    ? 'તમે એક AI નેતૃત્વ ટ્યુટર છો. તમે AI એજન્ટ્સ, સ્વોર્મ્સ, હાર્નેસ એન્જિનિયરિંગ, કોન્ટેક્સ્ટ એન્જિનિયરિંગ, MCP સર્વર્સ, A2A પ્રોટોકોલ, RAG, અને અન્ય AI ખ્યાલોમાં નિષ્ણાત છો. તમે પુખ્ત શીખવાના સિદ્ધાંતો વાપરો છો: વિદ્યાર્થીના પૂર્વ અનુભવ સાથે જોડો, સમસ્યા-કેન્દ્રિત શીખવો, અને સ્વ-નિર્દેશિત શીખવાને પ્રોત્સાહિત કરો. ફાર્મા અને મેડિકલ અફેર્સ ઉદાહરણો શામેલ કરો જ્યારે સંબંધિત હોય. ગુજરાતીમાં જવાબ આપો.'
+                    : 'You are an AI Leadership Tutor specializing in AI agents, swarms, harness engineering, context engineering, MCP servers, A2A protocol, RAG, and modern AI concepts. You teach using adult learning principles: connect to the learner\'s prior experience, use problem-centered approaches, and encourage self-directed learning. Include Pharma and Medical Affairs examples when relevant. Be concise but thorough. Use real-world examples.';
+
+                const response = await fetch('https://api.venice.ai/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer VENICE-INFERENCE-KEY-iYoxVItP5nyDdBNycDeXpNXFlrB4U9PnBF6X7bLtDx'
+                    },
+                    body: JSON.stringify({
+                        model: 'llama-3.3-70b',
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            ...chatHistory.slice(-10)
+                        ],
+                        venice_parameters: {
+                            enable_web_search: 'on',
+                            enable_web_citations: true
+                        },
+                        stream: true
+                    })
+                });
+
+                // Remove typing indicator
+                const typingEl = document.getElementById('chatTyping');
+                if (typingEl) typingEl.remove();
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                // Create assistant message div
+                const assistantDiv = document.createElement('div');
+                assistantDiv.className = 'chat-msg assistant';
+                document.getElementById('chatMessages').appendChild(assistantDiv);
+
+                // Stream the response
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullResponse = '';
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop() || '';
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6).trim();
+                            if (data === '[DONE]') continue;
+                            try {
+                                const json = JSON.parse(data);
+                                const content = json.choices?.[0]?.delta?.content;
+                                if (content) {
+                                    fullResponse += content;
+                                    // Simple markdown-like formatting
+                                    let html = fullResponse
+                                        .replace(/&/g, '&amp;')
+                                        .replace(/</g, '&lt;')
+                                        .replace(/>/g, '&gt;')
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                        .replace(/`(.*?)`/g, '<code>$1</code>')
+                                        .replace(/\n/g, '<br>');
+                                    assistantDiv.innerHTML = html;
+                                    scrollChatToBottom();
+                                }
+                            } catch (e) { /* skip unparseable chunks */ }
+                        }
+                    }
+                }
+
+                chatHistory.push({ role: 'assistant', content: fullResponse });
+                // Limit history to last 20 messages
+                if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+
+            } catch (err) {
+                const typingEl = document.getElementById('chatTyping');
+                if (typingEl) typingEl.remove();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'chat-msg error';
+                const errMsg = currentLang === 'gu'
+                    ? 'માફ કરો, AI ટ્યુટર હમણાં ઉપલબ્ધ નથી. કૃપા કરીને થોડી વાર પછી ફરી પ્રયાસ કરો.'
+                    : 'Sorry, the AI tutor is currently unavailable. Please try again in a moment.';
+                errorDiv.textContent = errMsg;
+                document.getElementById('chatMessages').appendChild(errorDiv);
+                scrollChatToBottom();
+            } finally {
+                chatStreaming = false;
+                document.getElementById('chatSend').disabled = false;
+            }
+        }
+
+        function scrollChatToBottom() {
+            const msgs = document.getElementById('chatMessages');
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
         // ─── Init ───
         loadProgress();
+        renderCard();
+        updateVocabProgress();
         applyLang();
     </script>
 </body>
