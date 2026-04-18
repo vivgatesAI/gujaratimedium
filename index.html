@@ -1618,7 +1618,10 @@
                 <h3 data-i18n="chat_title">AI Leadership Tutor</h3>
                 <span class="chat-subtitle" data-i18n="chat_subtitle">Ask anything about AI concepts • Web Search enabled</span>
             </div>
-            <button class="chat-close" onclick="toggleChat()">✕</button>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+                <button class="chat-close" onclick="openApiKeySettings()" title="Settings" style="font-size:1rem;">⚙</button>
+                <button class="chat-close" onclick="toggleChat()">✕</button>
+            </div>
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="chat-msg assistant" data-i18n="chat_welcome">👋 Hi! I'm your AI Leadership Tutor. Ask me about any AI concept — agents, swarms, harness engineering, context engineering, MCP, A2A, RAG, and more. I can search the web for the latest information!</div>
@@ -1641,8 +1644,63 @@
         <div class="chat-attribution">Powered by Venice AI ✦</div>
     </div>
 
+    <!-- ═══════ API KEY SETTINGS MODAL ═══════ -->
+    <div id="apiKeyModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);justify-content:center;align-items:center;">
+        <div style="background:#121214;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2rem;max-width:480px;width:90%;margin:auto;position:relative;top:50%;transform:translateY(-50%);">
+            <h3 style="color:#00F5FF;margin-bottom:0.5rem;font-size:1.3rem;" data-i18n="settings_title">🔑 API Key Settings</h3>
+            <p style="color:#C0C0C0;font-size:0.9rem;margin-bottom:1.5rem;line-height:1.6;" data-i18n="settings_desc">Enter your Venice AI API key to enable the AI Tutor chat. Your key is stored locally in your browser and never sent anywhere else. Get a key at venice.ai/settings/api</p>
+            <input type="password" id="apiKeyInput" placeholder="VENICE-INFERENCE-KEY-..." style="width:100%;padding:0.8rem 1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;color:#E8E8E8;font-size:0.95rem;font-family:inherit;outline:none;transition:border 0.3s;" onfocus="this.style.borderColor='#00F5FF'" onblur="this.style.borderColor='rgba(255,255,255,0.08)'" />
+            <div style="display:flex;gap:0.8rem;margin-top:1.2rem;">
+                <button onclick="saveApiKey()" style="flex:1;padding:0.7rem;background:linear-gradient(135deg,#5D3FD3,#9D4EDD);color:#fff;border:none;border-radius:10px;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(93,63,211,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow=''" data-i18n="settings_save">Save Key</button>
+                <button onclick="closeApiKeySettings()" style="flex:1;padding:0.7rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;color:#C0C0C0;font-size:0.95rem;cursor:pointer;font-family:inherit;transition:all 0.3s;" data-i18n="settings_cancel">Cancel</button>
+            </div>
+            <p id="apiKeyStatus" style="color:#3AFF9E;font-size:0.85rem;margin-top:1rem;display:none;"></p>
+        </div>
+    </div>
+
     <!-- ═══════ JAVASCRIPT ═══════ -->
     <script>
+        // ─── API KEY MANAGEMENT ───
+        function getApiKey() {
+            return localStorage.getItem('venice-api-key') || '';
+        }
+        function openApiKeySettings() {
+            const modal = document.getElementById('apiKeyModal');
+            const input = document.getElementById('apiKeyInput');
+            input.value = getApiKey();
+            modal.style.display = 'flex';
+            const status = document.getElementById('apiKeyStatus');
+            if (input.value) {
+                status.style.display = 'block';
+                status.style.color = '#3AFF9E';
+                status.textContent = currentLang === 'gu' ? '✓ API કી સેવ છે' : '✓ API key is saved';
+            } else {
+                status.style.display = 'block';
+                status.style.color = '#FF006E';
+                status.textContent = currentLang === 'gu' ? '⚠ API કી સેટ કરો ચેટ ને સક્ષમ કરવા માટે' : '⚠ Set your API key to enable chat';
+            }
+        }
+        function closeApiKeySettings() {
+            document.getElementById('apiKeyModal').style.display = 'none';
+        }
+        function saveApiKey() {
+            const key = document.getElementById('apiKeyInput').value.trim();
+            if (key) {
+                localStorage.setItem('venice-api-key', key);
+                const status = document.getElementById('apiKeyStatus');
+                status.style.display = 'block';
+                status.style.color = '#3AFF9E';
+                status.textContent = currentLang === 'gu' ? '✓ API કી સેવ થઈ ગઈ!' : '✓ API key saved!';
+                setTimeout(closeApiKeySettings, 800);
+            } else {
+                localStorage.removeItem('venice-api-key');
+                const status = document.getElementById('apiKeyStatus');
+                status.style.display = 'block';
+                status.style.color = '#FF006E';
+                status.textContent = currentLang === 'gu' ? '⚠ કૃપા કરીને API કી દાખલ કરો' : '⚠ Please enter an API key';
+            }
+        }
+
         // ─── LANGUAGE TOGGLE ───
         // Capture original English text from the DOM BEFORE any translation is applied
         const enTranslations = {};
@@ -1914,7 +1972,11 @@
                 chat_subtitle: 'AI ખ્યાલો વિશે કંઈપણ પૂછો • વેબ શોધ સક્ષમ',
                 chat_welcome: '👋 નમસ્તે! હું તમારો AI નેતૃત્વ ટ્યુટર છું. AI ના કોઈપણ ખ્યાલ વિશે મને પૂછો — એજન્ટ્સ, સ્વોર્મ્સ, હાર્નેસ એન્જિનિયરિંગ, કોન્ટેક્સ્ટ એન્જિનિયરિંગ, MCP, A2A, RAG અને વધુ. હું નવીનતમ માહિતી માટે વેબ શોધી શકું છું!',
                 chat_placeholder: 'કોઈપણ AI ખ્યાલ વિશે પૂછો...',
-                chat_send: 'મોકલો'
+                chat_send: 'મોકલો',
+                settings_title: '🔑 API કી સેટિંગ્સ',
+                settings_desc: 'AI ટ્યુટર ચેટ ને સક્ષમ કરવા માટે તમારી Venice AI API કી દાખલ કરો. તમારી કી તમારા બ્રાઉઝરમાં સ્થાનિક રીતે સંગ્રહિત છે અને ક્યાંય મોકલવામાં આવતી નથી. કી venice.ai/settings/api પર મેળવો',
+                settings_save: 'કી સેવ કરો',
+                settings_cancel: 'રદ કરો'
             }
         };
 
@@ -2278,6 +2340,19 @@
             chatHistory.push({ role: 'user', content: msg });
 
             try {
+                // Check for API key before making request
+                const apiKey = getApiKey();
+                if (!apiKey) {
+                    const typingEl = document.getElementById('chatTyping');
+                    if (typingEl) typingEl.remove();
+                    const noKeyDiv = document.createElement('div');
+                    noKeyDiv.className = 'chat-msg assistant';
+                    noKeyDiv.innerHTML = '⚠️ ' + (currentLang === 'gu' ? 'ચેટ ને સક્ષમ કરવા માટે તમારી Venice AI API કી સેટ કરો. ⚙ બટન પર ક્લિક કરો અને તમારી કી દાખલ કરો.' : 'Set your Venice AI API key to enable chat. Click the ⚙ button above to enter your key.');
+                    document.getElementById('chatMessages').appendChild(noKeyDiv);
+                    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+                    return;
+                }
+
                 const isGu = currentLang === 'gu';
                 const systemPrompt = isGu
                     ? 'તમે એક AI નેતૃત્વ ટ્યુટર છો. તમે AI એજન્ટ્સ, સ્વોર્મ્સ, હાર્નેસ એન્જિનિયરિંગ, કોન્ટેક્સ્ટ એન્જિનિયરિંગ, MCP સર્વર્સ, A2A પ્રોટોકોલ, RAG, અને અન્ય AI ખ્યાલોમાં નિષ્ણાત છો. તમે પુખ્ત શીખવાના સિદ્ધાંતો વાપરો છો: વિદ્યાર્થીના પૂર્વ અનુભવ સાથે જોડો, સમસ્યા-કેન્દ્રિત શીખવો, અને સ્વ-નિર્દેશિત શીખવાને પ્રોત્સાહિત કરો. ફાર્મા અને મેડિકલ અફેર્સ ઉદાહરણો શામેલ કરો જ્યારે સંબંધિત હોય. ગુજરાતીમાં જવાબ આપો.'
@@ -2287,7 +2362,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer VENICE-INFERENCE-KEY-iYoxVItP5nyDdBNycDeXpNXFlrB4U9PnBF6X7bLtDx'
+                        'Authorization': 'Bearer ' + getApiKey()
                     },
                     body: JSON.stringify({
                         model: 'llama-3.3-70b',
