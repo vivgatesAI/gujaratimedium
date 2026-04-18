@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Leadership Mastery | Future-Forward Intelligence</title>
+    <meta name="description" content="9-module AI leadership course covering agents, swarms, harness engineering, context engineering, MCP servers, A2A, and modern AI tech stack — with Medical Affairs & Pharma industry use cases and Gujarati folk art.">
+    <meta property="og:title" content="AI Leadership Mastery | Gujarati Medium">
+    <meta property="og:description" content="Upskill from operator to AI leader. 9 cutting-edge modules with hands-on exercises and real Pharma industry applications.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -294,6 +299,82 @@
         .fade { opacity:0; transform:translateY(30px); transition:all 0.6s ease-out; }
         .fade.visible { opacity:1; transform:translateY(0); }
 
+        /* ─── TIMELINE ─── */
+        .timeline-section { padding:4rem 2rem; position:relative; z-index:1; }
+        .timeline {
+            display:flex; justify-content:center; align-items:flex-start; gap:0;
+            max-width:1000px; margin:2rem auto 0; position:relative;
+        }
+        .timeline::before {
+            content:''; position:absolute; top:40px; left:0; right:0; height:3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--electric-purple), var(--quantum-pink));
+            border-radius:2px; z-index:0;
+        }
+        .tl-step {
+            flex:1; text-align:center; position:relative; z-index:1; padding:0 1rem;
+        }
+        .tl-node {
+            width:80px; height:80px; border-radius:50%; margin:0 auto 1.2rem;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.8rem; transition:all 0.4s; cursor:default;
+            border:3px solid var(--glass-border); background:var(--deep-space);
+        }
+        .tl-step:nth-child(1) .tl-node { border-color:var(--neon-cyan); }
+        .tl-step:nth-child(2) .tl-node { border-color:var(--electric-purple); }
+        .tl-step:nth-child(3) .tl-node { border-color:var(--quantum-pink); }
+        .tl-step:hover .tl-node { transform:scale(1.15); box-shadow:0 0 30px rgba(93,63,211,0.4); }
+        .tl-year { font-size:1.4rem; font-weight:700; color:var(--white); margin-bottom:0.3rem; }
+        .tl-term { font-size:1.1rem; font-weight:600; color:var(--neon-cyan); margin-bottom:0.3rem; }
+        .tl-step:nth-child(2) .tl-term { color:var(--electric-purple); }
+        .tl-step:nth-child(3) .tl-term { color:var(--quantum-pink); }
+        .tl-desc { font-size:0.85rem; color:var(--silver); line-height:1.5; max-width:220px; margin:0 auto; }
+
+        /* ─── PROGRESS TRACKING ─── */
+        .mod-check {
+            display:flex; align-items:center; gap:0.6rem; margin-top:0.8rem;
+            padding:0.5rem 0; cursor:pointer; user-select:none;
+        }
+        .mod-check input[type="checkbox"] {
+            appearance:none; width:22px; height:22px; border:2px solid var(--glass-border);
+            border-radius:6px; background:var(--glass); cursor:pointer; transition:all 0.3s;
+            position:relative; flex-shrink:0;
+        }
+        .mod-check input[type="checkbox"]:checked {
+            background:linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            border-color:var(--electric-purple);
+        }
+        .mod-check input[type="checkbox"]:checked::after {
+            content:'✓'; position:absolute; inset:0; display:flex; align-items:center;
+            justify-content:center; color:white; font-size:0.8rem; font-weight:700;
+        }
+        .mod-check label { font-size:0.85rem; color:var(--silver); cursor:pointer; transition:color 0.3s; }
+        .mod-check input:checked + label { color:var(--aurora-green); text-decoration:line-through; }
+
+        /* ─── SHARE BUTTON ─── */
+        .share-btn {
+            display:inline-flex; align-items:center; gap:0.5rem;
+            background:linear-gradient(135deg, var(--plasma-blue), var(--electric-purple));
+            color:var(--white); padding:0.7rem 1.5rem; border:none; border-radius:10px;
+            font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.3s;
+            margin-top:1rem; font-family:inherit;
+        }
+        .share-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(93,63,211,0.4); }
+
+        /* ─── QUIZ ENHANCED ─── */
+        .quiz-progress {
+            display:flex; justify-content:center; gap:0.5rem; margin-bottom:2rem;
+        }
+        .quiz-dot {
+            width:12px; height:12px; border-radius:50%; background:var(--glass-border);
+            transition:all 0.3s;
+        }
+        .quiz-dot.active { background:var(--electric-purple); box-shadow:0 0 10px rgba(157,78,221,0.5); }
+        .quiz-dot.correct { background:var(--aurora-green); }
+        .quiz-dot.wrong { background:var(--quantum-pink); }
+        .quiz-counter { text-align:center; color:var(--silver); font-size:0.9rem; margin-bottom:1rem; }
+        .quiz-expl { margin-top:0.8rem; font-size:0.88rem; color:var(--silver); line-height:1.6; display:none; }
+        .quiz-expl.visible { display:block; }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width:768px) {
             .hero h1 { font-size:2.4rem; }
@@ -301,6 +382,23 @@
             nav ul { gap:0.3rem; }
             nav a { font-size:0.8rem; padding:0.4rem 0.8rem; }
             .ex-card { flex-direction:column; }
+            .timeline { flex-direction:column; gap:1.5rem; }
+            .timeline::before { display:none; }
+            .tl-node { margin-bottom:0.8rem; }
+            .concept-card { padding:1.5rem !important; }
+        }
+        @media (max-width:480px) {
+            .hero h1 { font-size:1.8rem; }
+            .hero p { font-size:1.1rem; }
+            section { padding:4rem 1rem; }
+            .mod-body { padding:1.2rem; }
+            .mod-body h3 { font-size:1.3rem; }
+            .def-box { font-size:0.85rem; }
+            .hero-tags { gap:0.4rem; }
+            .hero-tag { font-size:0.75rem; padding:0.3rem 0.7rem; }
+            .tab-btn { padding:0.6rem 1rem; font-size:0.85rem; }
+            .quiz-card { padding:1.5rem; }
+            .claude-card { padding:1.5rem; }
         }
     </style>
 </head>
@@ -313,6 +411,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#modules">Modules</a></li>
             <li><a href="#concepts">Key Concepts</a></li>
+            <li><a href="#timeline">Timeline</a></li>
             <li><a href="#claude">Claude Updates</a></li>
             <li><a href="#exercises">Hands-On</a></li>
             <li><a href="#quiz">Quiz</a></li>
@@ -371,11 +470,8 @@
                         <strong>Industry Leaders</strong>
                         <span>JPMorgan COIN: 360K hours of legal review → seconds. Pfizer's regulatory submission agents auto-populating eCTD modules.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Build Your First Agent →</a>
-                </div>
-            </div>
-
-            <!-- Module 2 -->
+                    <div class="mod-check"><input type="checkbox" id="m1" onchange="saveProgress()"><label for="m1">Mark Module 1 complete</label></div>
+                    <a href="#exercises" class="mod-link">Build Your First Agent →</a> -->
             <div class="mod-card fade" data-cat="core">
                 <div class="mod-img-wrap"><img src="images/hero-swarm.png" alt="Swarm Agents"></div>
                 <div class="mod-body">
@@ -393,11 +489,8 @@
                         <strong>Industry Leaders</strong>
                         <span>Microsoft AutoGen: 8-agent dev teams. Novartis multi-agent clinical trial site selection optimizing enrollment velocity.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Deploy a 3-Agent Swarm →</a>
-                </div>
-            </div>
-
-            <!-- Module 3 — Harness Engineering -->
+                    <div class="mod-check"><input type="checkbox" id="m2" onchange="saveProgress()"><label for="m2">Mark Module 2 complete</label></div>
+                    <a href="#exercises" class="mod-link">Deploy a 3-Agent Swarm →</a> — Harness Engineering -->
             <div class="mod-card fade" data-cat="eng">
                 <div class="mod-img-wrap"><img src="images/hero-harness.png" alt="Harness Engineering"></div>
                 <div class="mod-body">
@@ -415,11 +508,8 @@
                         <strong>Industry Leaders</strong>
                         <span>OpenAI Codex agents use harness engineering for production-scale code generation. Martin Fowler's "feedforward guides + feedback sensors" pattern adopted by Anthropic and OpenAI in Q1 2026. Salesforce Einstein Orchestrator managing 50+ enterprise tools.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Design an Agent Harness →</a>
-                </div>
-            </div>
-
-            <!-- Module 4 -->
+                    <div class="mod-check"><input type="checkbox" id="m3" onchange="saveProgress()"><label for="m3">Mark Module 3 complete</label></div>
+                    <a href="#exercises" class="mod-link">Design an Agent Harness →</a> -->
             <div class="mod-card fade" data-cat="eng">
                 <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Context Engineering"></div>
                 <div class="mod-body">
@@ -437,13 +527,10 @@
                         <strong>Industry Leaders</strong>
                         <span>Notion AI: persistent workspace memory across 10M+ docs. Cohere RAG pipeline processing 1B+ tokens/day for enterprise search.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Build a RAG Context Engine →</a>
-                </div>
-            </div>
-
-            <!-- Module 5 — Agentic Engineering -->
+                    <div class="mod-check"><input type="checkbox" id="m4" onchange="saveProgress()"><label for="m4">Mark Module 4 complete</label></div>
+                    <a href="#exercises" class="mod-link">Build a RAG Context Engine →</a> — Agentic Engineering -->
             <div class="mod-card fade" data-cat="eng">
-                <div class="mod-img-wrap"><img src="images/hero-context.png" alt="Agentic Engineering"></div>
+                <div class="mod-img-wrap"><img src="images/hero-agentic.png" alt="Agentic Engineering"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 5 — Engineering</span><span class="mod-new">UPDATED</span>
                     <h3>🧬 Agentic Engineering <small style="font-size:0.7em;color:var(--quantum-pink);">(The New Vibe Coding)</small></h3>
@@ -459,11 +546,8 @@
                         <strong>Industry Leaders</strong>
                         <span>Zapier's agentic pipeline: 47 agents in production. TELUS uses agentic engineering for compliance-first content generation. Stripe's agentic fraud detection uses ReAct + multi-agent coordination.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Practice Agentic Engineering →</a>
-                </div>
-            </div>
-
-            <!-- Module 6 -->
+                    <div class="mod-check"><input type="checkbox" id="m5" onchange="saveProgress()"><label for="m5">Mark Module 5 complete</label></div>
+                    <a href="#exercises" class="mod-link">Practice Agentic Engineering →</a> -->
             <div class="mod-card fade" data-cat="infra">
                 <div class="mod-img-wrap"><img src="images/hero-mcp.png" alt="MCP Servers"></div>
                 <div class="mod-body">
@@ -481,11 +565,8 @@
                         <strong>Industry Leaders</strong>
                         <span>GitHub Copilot MCP: code repos as agent tools. Figma MCP: design-to-code conversion workflows. Anthropic Claude Desktop MCP hub for 100+ integrations.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Build an MCP Server →</a>
-                </div>
-            </div>
-
-            <!-- Module 7 -->
+                    <div class="mod-check"><input type="checkbox" id="m6" onchange="saveProgress()"><label for="m6">Mark Module 6 complete</label></div>
+                    <a href="#exercises" class="mod-link">Build an MCP Server →</a> -->
             <div class="mod-card fade" data-cat="infra">
                 <div class="mod-img-wrap"><img src="images/hero-a2a.png" alt="A2A"></div>
                 <div class="mod-body">
@@ -503,11 +584,8 @@
                         <strong>Industry Leaders</strong>
                         <span>Google's A2A protocol enabling 100B+ agent messages/day across cloud services. Roche's multi-site clinical trial agents coordinating patient enrollment.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Build an A2A Network →</a>
-                </div>
-            </div>
-
-            <!-- Module 8 -->
+                    <div class="mod-check"><input type="checkbox" id="m7" onchange="saveProgress()"><label for="m7">Mark Module 7 complete</label></div>
+                    <a href="#exercises" class="mod-link">Build an A2A Network →</a> -->
             <div class="mod-card fade" data-cat="infra">
                 <div class="mod-img-wrap"><img src="images/hero-techstack.png" alt="AI Tech Stack"></div>
                 <div class="mod-body">
@@ -525,13 +603,10 @@
                         <strong>Industry Leaders</strong>
                         <span>Perplexity: 500M+ queries/month with sub-second latency. Mistral's complete AI platform stack. Moderna's mRNA platform running AI across drug discovery, clinical ops, and manufacturing.</span>
                     </div>
-                    <a href="#exercises" class="mod-link">Deploy Full AI Platform →</a>
-                </div>
-            </div>
-
-            <!-- Module 9 -->
+                    <div class="mod-check"><input type="checkbox" id="m8" onchange="saveProgress()"><label for="m8">Mark Module 8 complete</label></div>
+                    <a href="#exercises" class="mod-link">Deploy Full AI Platform →</a> -->
             <div class="mod-card fade" data-cat="core">
-                <div class="mod-img-wrap"><img src="images/hero-main.png" alt="AI Safety"></div>
+                <div class="mod-img-wrap"><img src="images/hero-safety.png" alt="AI Safety"></div>
                 <div class="mod-body">
                     <span class="mod-badge">Module 9 — Core AI</span><span class="mod-new">NEW</span>
                     <h3>🛡️ AI Safety, Governance &amp; Responsible Deployment</h3>
@@ -547,6 +622,7 @@
                         <strong>Industry Leaders</strong>
                         <span>Google DeepMind's responsible AI framework. Microsoft's responsible AI dashboard. Pfizer's AI governance council reviewing all agentic deployments under GxP compliance.</span>
                     </div>
+                    <div class="mod-check"><input type="checkbox" id="m9" onchange="saveProgress()"><label for="m9">Mark Module 9 complete</label></div>
                     <a href="#exercises" class="mod-link">Design AI Guardrails →</a>
                 </div>
             </div>
@@ -610,6 +686,34 @@
                 <p style="font-size:0.85rem;color:var(--silver);line-height:1.7;"><strong style="color:var(--aurora-green);">Why it matters:</strong> Without A2A, agents are siloed. With it, a pharma safety agent, a regulatory agent, and a medical writing agent — each built on different platforms — can seamlessly collaborate on a PSUR.</p>
             </div>
 
+        </div>
+    </section>
+
+    <!-- ═══════ EVOLUTION TIMELINE ═══════ -->
+    <section class="timeline-section" id="timeline">
+        <div class="section-head">
+            <h2 class="section-title">⏳ The Evolution</h2>
+            <p class="section-sub">How AI engineering disciplines evolved — from crafting prompts to engineering entire agent systems.</p>
+        </div>
+        <div class="timeline">
+            <div class="tl-step fade">
+                <div class="tl-node">🎯</div>
+                <div class="tl-year">2024</div>
+                <div class="tl-term">Prompt Engineering</div>
+                <div class="tl-desc">Craft the perfect prompt. Optimize instructions to get better outputs from a single model call. One shot, one output.</div>
+            </div>
+            <div class="tl-step fade">
+                <div class="tl-node">🧩</div>
+                <div class="tl-year">2025</div>
+                <div class="tl-term">Context Engineering</div>
+                <div class="tl-desc">Design the information environment. 5 context layers, RAG, memory hierarchies. Not better prompts — better context architecture.</div>
+            </div>
+            <div class="tl-step fade">
+                <div class="tl-node">🎭</div>
+                <div class="tl-year">2026</div>
+                <div class="tl-term">Harness Engineering</div>
+                <div class="tl-desc">Design everything around the model: tools, feedback loops, safety hooks, sub-agents. Agent = Model + Harness. Production-ready systems.</div>
+            </div>
         </div>
     </section>
 
@@ -722,6 +826,22 @@
                     <div class="ex-pharma">💊 Pharma: Production medical affairs AI with MLR compliance, Datadog observability, and Veeva integration</div>
                 </div>
             </div>
+            <div class="ex-card fade">
+                <div class="ex-num">7</div>
+                <div>
+                    <h4>Design an MLR Harness with Feedforward + Feedback</h4>
+                    <p>Build a harness for the Medical-Legal-Regulatory review process: feedforward guides (approved terminology, template constraints) and feedback sensors (deviation flags, compliance scores) that keep the agent within regulatory bounds.</p>
+                    <div class="ex-pharma">💊 Pharma: MLR harness with MedDRA feedforward guides and deviation feedback sensors for regulated content</div>
+                </div>
+            </div>
+            <div class="ex-card fade">
+                <div class="ex-num">8</div>
+                <div>
+                    <h4>Build AI Guardrails for Pharmacovigilance</h4>
+                    <p>Design a safety-first agent system with mandatory human review gates, bias detection in signal analysis, audit trail logging, and compliance validation for FDA GxP and EU AI Act requirements.</p>
+                    <div class="ex-pharma">💊 Pharma: Pharmacovigilance guardrails with human-in-the-loop checkpoints and FDA submission-ready audit logs</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -729,16 +849,81 @@
     <section id="quiz">
         <div class="section-head">
             <h2 class="section-title">🎯 Test Your Knowledge</h2>
-            <p class="section-sub">Quick check on a key concept for AI leaders.</p>
+            <p class="section-sub">5 questions on the concepts reshaping AI leadership in 2026.</p>
         </div>
-        <div class="quiz-card">
-            <h3>What distinguishes an AI agent from a simple chatbot?</h3>
-            <div class="quiz-opt" data-correct="false">A. It uses a larger language model</div>
-            <div class="quiz-opt" data-correct="false">B. It responds faster with lower latency</div>
-            <div class="quiz-opt" data-correct="true">C. It perceives, reasons, and takes autonomous actions toward goals</div>
-            <div class="quiz-opt" data-correct="false">D. It has a better user interface</div>
-            <div id="quiz-result"></div>
-            <button class="cta" onclick="checkQuiz()" style="margin-top:1.5rem;font-size:1rem;padding:0.8rem 2rem;">Submit Answer</button>
+        <div class="quiz-section">
+            <div class="quiz-card">
+                <div class="quiz-progress" id="quizDots">
+                    <div class="quiz-dot active"></div>
+                    <div class="quiz-dot"></div>
+                    <div class="quiz-dot"></div>
+                    <div class="quiz-dot"></div>
+                    <div class="quiz-dot"></div>
+                </div>
+                <div class="quiz-counter" id="quizCounter">Question 1 of 5</div>
+
+                <!-- Q1 -->
+                <div class="quiz-question" id="q1">
+                    <h3>What is the key difference between Agentic Engineering and Vibe Coding?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl="Vibe coding is about expressing intent and accepting whatever the AI generates, with no structured oversight.">A. Agentic Engineering uses larger models</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="Both can use any model — the difference is in process and oversight, not model size.">B. Vibe Coding is faster but less accurate</div>
+                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Agentic Engineering adds planning, verification, iterative refinement, and governance — you conduct an orchestra of agents rather than vibing alone.">C. Agentic Engineering orchestrates agents with planning, verification, and governance</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="Close — but the real shift isn't about team size, it's about structured oversight vs. unstructured generation.">D. Vibe Coding requires a team, Agentic Engineering is solo</div>
+                    <div class="quiz-expl" id="expl1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="quiz-question" id="q2" style="display:none">
+                    <h3>In Harness Engineering, what does the "harness" refer to?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl="The harness includes tools, but it's much broader than that.">A. Just the tools an agent can use</div>
+                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Agent = Model + Harness. The harness is everything around the model: tools, context pipes, feedback loops, memory, safety hooks, and sub-agents. Like the car around an engine.">B. Everything that wraps the model: tools, context, feedback, memory, safety, sub-agents</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="The harness doesn't replace the model — it wraps around it.">C. A replacement model that's more reliable</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="The harness includes deployment patterns, but it's fundamentally about the control layer around a model, not just where it runs.">D. The cloud infrastructure where the agent runs</div>
+                    <div class="quiz-expl" id="expl2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="quiz-question" id="q3" style="display:none">
+                    <h3>What does Context Engineering replace, and what are the 5 layers?</h3>
+                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Anthropic identified Context Engineering as the key skill shift in 2026. The 5 layers are: system instructions, retrieval context (RAG), conversation history, tool results, and user input.">A. Replaces Prompt Engineering; layers are system instructions, retrieval, history, tool results, user input</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="Close — it does replace prompt engineering, but the layers aren't model architecture layers. They're information context layers.">B. Replaces Prompt Engineering; layers are input, hidden, output, attention, and embedding</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="Context Engineering doesn't replace Harness Engineering — they complement each other. Context is about information design; Harness is about the control layer around the model.">C. Replaces Harness Engineering; layers are tools, memory, safety, feedback, and deployment</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="Context Engineering predates 2026, but Anthropic's formal identification of it as replacing prompt engineering is what makes it the key 2026 skill shift.">D. Replaces RAG; layers are vector databases, embeddings, chunking, retrieval, and generation</div>
+                    <div class="quiz-expl" id="expl3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="quiz-question" id="q4" style="display:none">
+                    <h3>What is MCP (Model Context Protocol) and why does it matter?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl="MCP is not a model — it's a connectivity standard.">A. A new large language model by Anthropic</div>
+                    <div class="quiz-opt" data-correct="true" data-expl="Correct! MCP is the "USB-C for AI" — an open standard for connecting agents to data sources, tools, and workflows. One MCP server serves any AI client. Write once, connect everywhere.">B. An open standard for connecting AI applications to external systems — the USB-C for AI</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="MCP is a connectivity protocol, not a training technique.">C. A method for training models with more context</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="While MCP is made by Anthropic, it's supported by Claude, ChatGPT, VS Code, Cursor, and 100+ integrations — it's a universal standard, not a proprietary lock-in.">D. Anthropic's proprietary API for Claude</div>
+                    <div class="quiz-expl" id="expl4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="quiz-question" id="q5" style="display:none">
+                    <h3>The evolution timeline goes: Prompt Engineering → Context Engineering → Harness Engineering. Why?</h3>
+                    <div class="quiz-opt" data-correct="false" data-expl="Subtext doesn't fully capture it — each discipline represents a fundamental expansion in scope, not just a new label.">A. Each is just a rebrand of the previous one for marketing</div>
+                    <div class="quiz-opt" data-correct="true" data-expl="Correct! Each discipline fundamentally expands scope: Prompt Engineering optimizes a single call, Context Engineering designs the entire information environment, and Harness Engineering builds the complete production system around the model.">B. Each expands scope — from optimizing a call, to designing information flow, to engineering the full production system</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="They actually complement each other — you still use prompt and context engineering within a harness. It's additive, not sequential.">C. Each replaces the previous one completely</div>
+                    <div class="quiz-opt" data-correct="false" data-expl="Harness Engineering can apply to much simpler systems than multi-agent swarms. It's about the control layer around ANY model instance.">D. They're only relevant for multi-agent swarms</div>
+                    <div class="quiz-expl" id="expl5"></div>
+                </div>
+
+                <div id="quiz-result"></div>
+                <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
+                    <button class="cta" id="quizSubmit" onclick="submitAnswer()" style="font-size:1rem;padding:0.8rem 2rem;">Submit Answer</button>
+                    <button class="cta" id="quizNext" onclick="nextQuestion()" style="font-size:1rem;padding:0.8rem 2rem;display:none;background:linear-gradient(135deg,var(--neon-cyan),var(--plasma-blue));">Next Question →</button>
+                </div>
+                <div id="quizFinal" style="display:none;margin-top:1.5rem;text-align:center;">
+                    <h3 style="font-size:1.8rem;margin-bottom:0.5rem;" id="finalScore"></h3>
+                    <p style="color:var(--silver);margin-bottom:1rem;" id="finalMsg"></p>
+                    <button class="share-btn" onclick="shareResults()">📋 Share Results</button>
+                    <button class="share-btn" onclick="restartQuiz()" style="margin-left:0.5rem;background:linear-gradient(135deg,var(--neon-cyan),var(--plasma-blue));">🔄 Retake Quiz</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -785,31 +970,134 @@
             });
         });
 
-        // Quiz
-        let selected = null;
+        // Quiz — 5 question system
+        let currentQ = 1;
+        let score = 0;
+        let selectedOpt = null;
+        const totalQ = 5;
+
+        function selectOption(opt) {
+            const parent = opt.closest('.quiz-question');
+            parent.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            selectedOpt = opt;
+        }
         document.querySelectorAll('.quiz-opt').forEach(opt => {
-            opt.addEventListener('click', () => {
-                document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected','correct','wrong'));
-                opt.classList.add('selected');
-                selected = opt;
-            });
+            opt.addEventListener('click', () => selectOption(opt));
         });
 
-        function checkQuiz() {
-            const result = document.getElementById('quiz-result');
-            if(!selected) { result.style.color = '#FF006E'; result.textContent = 'Please select an answer first!'; return; }
-            document.querySelectorAll('.quiz-opt').forEach(o => {
-                if(o.dataset.correct === 'true') o.classList.add('correct');
-                else if(o.classList.contains('selected')) o.classList.add('wrong');
+        function submitAnswer() {
+            if (!selectedOpt) {
+                document.getElementById('quiz-result').style.color = '#FF006E';
+                document.getElementById('quiz-result').textContent = 'Please select an answer first!';
+                return;
+            }
+            const parent = selectedOpt.closest('.quiz-question');
+            parent.querySelectorAll('.quiz-opt').forEach(o => {
+                if (o.dataset.correct === 'true') o.classList.add('correct');
+                else if (o.classList.contains('selected')) o.classList.add('wrong');
             });
-            if(selected.dataset.correct === 'true') {
-                result.style.color = '#3AFF9E';
-                result.textContent = '✅ Correct! AI agents are autonomous systems that perceive, reason, and take actions toward goals — not just respond to prompts.';
-            } else {
-                result.style.color = '#FF006E';
-                result.textContent = '❌ Not quite. The correct answer is C — agents are distinguished by autonomous goal-directed behavior (perceive → reason → act).';
+            const isCorrect = selectedOpt.dataset.correct === 'true';
+            if (isCorrect) score++;
+            // Show explanation
+            const expl = parent.querySelector('.quiz-expl');
+            expl.textContent = selectedOpt.dataset.expl;
+            expl.classList.add('visible');
+            expl.style.color = isCorrect ? '#3AFF9E' : '#FF006E';
+            // Update dot
+            const dots = document.querySelectorAll('.quiz-dot');
+            dots[currentQ - 1].classList.remove('active');
+            dots[currentQ - 1].classList.add(isCorrect ? 'correct' : 'wrong');
+            // Show next button
+            document.getElementById('quizSubmit').style.display = 'none';
+            document.getElementById('quizNext').style.display = '';
+            document.getElementById('quiz-result').textContent = '';
+        }
+
+        function nextQuestion() {
+            document.getElementById('q' + currentQ).style.display = 'none';
+            currentQ++;
+            selectedOpt = null;
+            if (currentQ > totalQ) {
+                showFinalResults();
+                return;
+            }
+            document.getElementById('q' + currentQ).style.display = '';
+            document.getElementById('quizCounter').textContent = 'Question ' + currentQ + ' of ' + totalQ;
+            const dots = document.querySelectorAll('.quiz-dot');
+            dots[currentQ - 1].classList.add('active');
+            document.getElementById('quizSubmit').style.display = '';
+            document.getElementById('quizNext').style.display = 'none';
+        }
+
+        function showFinalResults() {
+            document.getElementById('quizCounter').style.display = 'none';
+            document.getElementById('quizSubmit').style.display = 'none';
+            document.getElementById('quizNext').style.display = 'none';
+            document.getElementById('quizFinal').style.display = '';
+            document.getElementById('finalScore').textContent = score + ' / ' + totalQ;
+            const msgs = [
+                'Keep studying — these concepts are foundational for AI leadership.',
+                'Good start! Review the Key Concepts section and try again.',
+                'Solid understanding! You know the core concepts well.',
+                'Great job! You have a strong grasp of modern AI engineering.',
+                'Almost perfect! You\'re ready to lead AI initiatives.',
+                'Perfect score! You\'re an AI leadership expert. 🎯'
+            ];
+            document.getElementById('finalMsg').textContent = msgs[score];
+        }
+
+        function shareResults() {
+            const text = 'I scored ' + score + '/' + totalQ + ' on the AI Leadership Mastery quiz! 🎯\n\nTest your knowledge of Agentic Engineering, Harness Engineering, Context Engineering, MCP, and A2A.';
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = document.querySelector('.share-btn');
+                    btn.textContent = '✅ Copied to clipboard!';
+                    setTimeout(() => { btn.textContent = '📋 Share Results'; }, 2000);
+                });
             }
         }
+
+        function restartQuiz() {
+            currentQ = 1;
+            score = 0;
+            selectedOpt = null;
+            document.querySelectorAll('.quiz-question').forEach((q, i) => {
+                q.style.display = i === 0 ? '' : 'none';
+                q.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected', 'correct', 'wrong'));
+                const expl = q.querySelector('.quiz-expl');
+                if (expl) { expl.classList.remove('visible'); expl.textContent = ''; }
+            });
+            document.querySelectorAll('.quiz-dot').forEach((d, i) => {
+                d.className = 'quiz-dot' + (i === 0 ? ' active' : '');
+            });
+            document.getElementById('quizCounter').style.display = '';
+            document.getElementById('quizCounter').textContent = 'Question 1 of ' + totalQ;
+            document.getElementById('quizSubmit').style.display = '';
+            document.getElementById('quizNext').style.display = 'none';
+            document.getElementById('quizFinal').style.display = 'none';
+            document.getElementById('quiz-result').textContent = '';
+        }
+
+        // Progress Tracking (localStorage)
+        function saveProgress() {
+            const state = {};
+            for (let i = 1; i <= 9; i++) {
+                state['m' + i] = document.getElementById('m' + i).checked;
+            }
+            localStorage.setItem('gujarati-progress', JSON.stringify(state));
+        }
+        function loadProgress() {
+            const saved = localStorage.getItem('gujarati-progress');
+            if (saved) {
+                const state = JSON.parse(saved);
+                for (let i = 1; i <= 9; i++) {
+                    const cb = document.getElementById('m' + i);
+                    if (cb && state['m' + i]) cb.checked = true;
+                }
+            }
+        }
+        loadProgress();
     </script>
 </body>
 </html>
