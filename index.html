@@ -698,6 +698,20 @@
         }
         .flashcard-counter strong { color: var(--neon-cyan); }
 
+        /* ─── LAYOUT: MAIN + SIDE CHAT ─── */
+        .page-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .page-content {
+            flex: 1;
+            min-width: 0;
+            transition: margin-right 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .page-content.chat-open {
+            margin-right: 400px;
+        }
+
         /* ─── CHAT ASSISTANT ─── */
         .chat-fab {
             position: fixed;
@@ -729,26 +743,23 @@
         .chat-fab.open { display: none; }
         .chat-panel {
             position: fixed;
-            bottom: 0;
+            top: 70px;
             right: 0;
-            width: 420px;
-            max-width: 100vw;
-            height: 600px;
-            max-height: 85vh;
+            bottom: 0;
+            width: 400px;
             background: rgba(10,10,15,0.97);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px 0 0 0;
+            border-left: 1px solid var(--glass-border);
             z-index: 10000;
             display: flex;
             flex-direction: column;
-            transform: translateY(100%);
+            transform: translateX(100%);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
             backdrop-filter: blur(30px);
-            box-shadow: -10px -10px 60px rgba(0,0,0,0.5);
+            box-shadow: -10px 0 60px rgba(0,0,0,0.5);
         }
         .chat-panel.open {
-            transform: translateY(0);
+            transform: translateX(0);
             opacity: 1;
         }
         .chat-header {
@@ -758,7 +769,6 @@
             align-items: center;
             justify-content: space-between;
             background: linear-gradient(135deg, rgba(93,63,211,0.1), rgba(0,245,255,0.05));
-            border-radius: 20px 0 0 0;
         }
         .chat-header h3 {
             font-size: 1rem;
@@ -941,8 +951,9 @@
             .tl-node { margin-bottom:0.8rem; }
             .concept-card { padding:1.5rem !important; }
             .learning-grid { grid-template-columns: 1fr; }
-            .chat-panel { width: 100vw; border-radius: 0; }
+            .chat-panel.open { width: 100vw; top: 0; border-radius: 0; }
             .chat-fab { bottom: 1.2rem; right: 1.2rem; width: 52px; height: 52px; font-size: 1.3rem; }
+            .page-content.chat-open { margin-right: 0; }
         }
         @media (max-width:480px) {
             .hero h1 { font-size:1.8rem; }
@@ -961,6 +972,9 @@
 </head>
 <body>
     <div class="grid-bg"></div>
+
+<div class="page-layout">
+<div class="page-content" id="pageContent">
 
     <!-- ═══════ NAV ═══════ -->
     <nav id="nav">
@@ -1883,6 +1897,8 @@
         <p style="font-size:0.9rem;color:#666;" data-i18n="footer_en">Where Ancient Art Meets Future Intelligence &nbsp;|&nbsp; Course © 2026 &nbsp;•&nbsp; Powered by Venice AI</p>
     </footer>
 
+</div><!-- end page-content -->
+
     <!-- ═══════ CHAT ASSISTANT ═══════ -->
     <button class="chat-fab" id="chatFab" onclick="toggleChat()" title="AI Tutor">💬</button>
     <div class="chat-panel" id="chatPanel">
@@ -2616,13 +2632,16 @@
             chatOpen = !chatOpen;
             const panel = document.getElementById('chatPanel');
             const fab = document.getElementById('chatFab');
+            const content = document.getElementById('pageContent');
             if (chatOpen) {
                 panel.classList.add('open');
                 fab.classList.add('open');
+                if (content) content.classList.add('chat-open');
                 document.getElementById('chatInput').focus();
             } else {
                 panel.classList.remove('open');
                 fab.classList.remove('open');
+                if (content) content.classList.remove('chat-open');
             }
         }
 
@@ -2784,5 +2803,6 @@
         updateVocabProgress();
         applyLang();
     </script>
+</div><!-- end page-layout -->
 </body>
 </html>
