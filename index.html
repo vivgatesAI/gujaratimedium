@@ -1034,9 +1034,19 @@
     <!-- ═══════ JAVASCRIPT ═══════ -->
     <script>
         // ─── LANGUAGE TOGGLE ───
+        // Capture original English text from the DOM BEFORE any translation is applied
+        const enTranslations = {};
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (key && !enTranslations[key]) {
+                enTranslations[key] = el.innerHTML;
+            }
+        });
+
         let currentLang = localStorage.getItem('gujarati-lang') || 'en';
 
         const translations = {
+            en: enTranslations,
             gu: {
                 nav_home: 'મુખ્ય પૃષ્ઠ',
                 nav_modules: 'મોડ્યુલ્સ',
