@@ -237,6 +237,62 @@
             color:var(--neon-cyan); margin-top:0.8rem;
         }
 
+        /* ─── STACK SECTION ─── */
+        .stack-section {
+            background: linear-gradient(135deg, rgba(0,245,255,0.04), rgba(93,63,211,0.06));
+            border-top:1px solid var(--glass-border); border-bottom:1px solid var(--glass-border);
+            padding:6rem 2rem; position:relative; z-index:1;
+        }
+        .stack-subtitle { text-align:center; color:var(--silver); font-size:1.05rem; max-width:800px; margin:0 auto 3rem; line-height:1.8; }
+        .stack-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(380px,1fr));
+            gap:1.8rem; max-width:1400px; margin:0 auto;
+        }
+        .stack-category {
+            background:var(--glass); border:1px solid var(--glass-border);
+            border-radius:16px; padding:2rem; transition:all 0.4s;
+        }
+        .stack-category:hover {
+            border-color:rgba(0,245,255,0.25); transform:translateY(-4px);
+            box-shadow:0 15px 40px rgba(93,63,211,0.15);
+        }
+        .stack-category h3 { font-size:1.3rem; color:var(--white); margin-bottom:0.3rem; }
+        .stack-why { font-size:0.88rem; color:var(--silver); line-height:1.7; margin-bottom:1.2rem; }
+        .stack-tools { display:flex; flex-direction:column; gap:0.7rem; }
+        .stack-tool {
+            display:flex; align-items:center; gap:0.6rem;
+            background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+            border-radius:10px; padding:0.7rem 1rem; transition:all 0.3s; text-decoration:none;
+        }
+        .stack-tool:hover {
+            border-color:var(--neon-cyan); background:rgba(0,245,255,0.06);
+        }
+        .stack-tool-name { font-weight:600; color:var(--neon-cyan); font-size:0.92rem; }
+        .stack-tool-sep { color:var(--silver); opacity:0.4; margin:0 0.2rem; }
+        .stack-tool-desc { font-size:0.82rem; color:var(--silver); }
+        .stack-ideal-box {
+            max-width:1400px; margin:3rem auto 0;
+            background: linear-gradient(135deg, rgba(0,245,255,0.06), rgba(157,78,221,0.08));
+            border:2px solid transparent;
+            border-image: linear-gradient(135deg, var(--neon-cyan), var(--electric-purple)) 1;
+            border-radius:0;
+            padding:2.5rem;
+        }
+        .stack-ideal-box-inner { border-radius:14px; overflow:hidden; }
+        .stack-ideal-box h3 { font-size:1.5rem; color:var(--neon-cyan); margin-bottom:0.6rem; }
+        .stack-ideal-box p { color:var(--silver); font-size:0.92rem; line-height:1.7; }
+        .stack-ideal-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0 1.2rem; }
+        .stack-ideal-list span {
+            background:rgba(0,245,255,0.08); border:1px solid rgba(0,245,255,0.15);
+            padding:0.35rem 0.85rem; border-radius:12px;
+            font-size:0.85rem; color:var(--neon-cyan); font-weight:500;
+        }
+        .stack-ideal-enables { color:var(--aurora-green); font-weight:600; }
+        @media (max-width:768px) {
+            .stack-grid { grid-template-columns:1fr; }
+            .stack-category { padding:1.5rem; }
+        }
+
         /* ─── EXERCISES ─── */
         .exercises-section { background: linear-gradient(180deg, var(--deep-space), #0D0D1A); }
         .ex-grid { max-width:1100px; margin:3rem auto 0; }
@@ -876,7 +932,7 @@
         /* ─── RESPONSIVE ─── */
         @media (max-width:768px) {
             .hero h1 { font-size:2.4rem; }
-            .modules-grid, .claude-grid { grid-template-columns:1fr; }
+            .modules-grid, .claude-grid, .stack-grid { grid-template-columns:1fr; }
             nav ul { gap:0.3rem; }
             nav a { font-size:0.8rem; padding:0.4rem 0.8rem; }
             .ex-card { flex-direction:column; }
@@ -917,6 +973,7 @@
             <li><a href="#exercises" data-i18n="nav_exercises">Hands-On</a></li>
             <li><a href="#quiz" data-i18n="nav_quiz">Quiz</a></li>
             <li><a href="#learning" data-i18n="nav_learning">Learning</a></li>
+            <li><a href="#stack" data-i18n="nav_stack">AI Stack</a></li>
             <li><a href="#vocabulary" data-i18n="nav_vocab">Vocabulary Lab</a></li>
             <li><a href="#glossary" data-i18n="nav_glossary">Glossary</a></li>
             <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span class="flag">🇮🇳</span> <span data-i18n="lang_btn">ગુજરાતી</span></button></li>
@@ -1363,6 +1420,222 @@
                 <p data-i18n="cl_desktop_desc">Complete UI overhaul with multi-session support, improved terminal integration, NO_FLICKER rendering, /powerup interactive tutorials, and team onboarding workflows. From pair-programmer to operations platform.</p>
                 <span class="claude-tag" data-i18n="cl_desktop_tag">Ops Platform Era</span>
             </div>
+        </div>
+    </section>
+
+    <!-- ═══════ AI STACK SETUP 2026 ═══════ -->
+    <section class="stack-section" id="stack">
+        <div class="section-head">
+            <h2 class="section-title" data-i18n="stack_title">🛠️ AI Stack Setup 2026</h2>
+            <p class="stack-subtitle" data-i18n="stack_subtitle">The essential toolkit every AI builder needs — from agent operating systems to deployment platforms. These are the 10 categories that power modern AI development.</p>
+        </div>
+
+        <div class="stack-grid">
+            <!-- 1. Agent Operating Systems -->
+            <div class="stack-category fade">
+                <h3>🧠 <span data-i18n="stack_cat1_title">AI Agent Operating Systems</span></h3>
+                <p class="stack-why" data-i18n="stack_why1">Command centers where agents run and coordinate. Without an agent OS, you're manually triggering each AI call.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://openclaw.ai" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">OpenClaw</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t1_openclaw">Autonomous task execution, workflow automation, multi-agent coordination</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Agent Supervisors -->
+            <div class="stack-category fade">
+                <h3>👁️ <span data-i18n="stack_cat2_title">AI Agent Supervisors</span></h3>
+                <p class="stack-why" data-i18n="stack_why2">The shift is toward AI developers supervising agent teams rather than writing every line.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://claude.ai/desktop" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Claude Desktop</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t2_claude">Runs AI assistants locally, automates tasks, computer-use capability</span>
+                    </a>
+                    <a class="stack-tool" href="https://openai.com/codex" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Codex</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t2_codex">Manages multiple coding agents in parallel</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. AI-Native Code Editors -->
+            <div class="stack-category fade">
+                <h3>💻 <span data-i18n="stack_cat3_title">AI-Native Code Editors</span></h3>
+                <p class="stack-why" data-i18n="stack_why3">Your primary workspace — where you write, debug, and ship code with AI assistance built in.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://code.visualstudio.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">VS Code</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t3_vscode">Industry-standard editor with vast extension ecosystem</span>
+                    </a>
+                    <a class="stack-tool" href="https://cursor.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Cursor</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t3_cursor">AI-first editor built on VS Code, powerful tab-completion</span>
+                    </a>
+                    <a class="stack-tool" href="https://windsurf.com/editor" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Windsurf</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t3_windsurf">AI-native editor with Cascade agentic flows</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Version Control -->
+            <div class="stack-category fade">
+                <h3>📂 <span data-i18n="stack_cat4_title">Version Control</span></h3>
+                <p class="stack-why" data-i18n="stack_why4">Every AI project needs version control — collaboration, rollback, and deployment all start here.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://git-scm.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Git</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t4_git">Distributed source control foundation</span>
+                    </a>
+                    <a class="stack-tool" href="https://github.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">GitHub</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t4_github">Collaboration, CI/CD, open-source integration</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Programming Environments -->
+            <div class="stack-category fade">
+                <h3>🐍 <span data-i18n="stack_cat5_title">Programming Environments</span></h3>
+                <p class="stack-why" data-i18n="stack_why5">Most AI stacks combine Python (for models) and Node.js (for agents and APIs).</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://python.org" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Python</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t5_python">ML/AI development language</span>
+                    </a>
+                    <a class="stack-tool" href="https://nodejs.org" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Node.js</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t5_node">Agents, APIs, automation runtime</span>
+                    </a>
+                    <a class="stack-tool" href="https://anaconda.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Anaconda</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t5_conda">Data science Python distribution with package management</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Containerization -->
+            <div class="stack-category fade">
+                <h3>🐳 <span data-i18n="stack_cat6_title">Containerization</span></h3>
+                <p class="stack-why" data-i18n="stack_why6">Ensures your AI environment runs identically everywhere — dev, staging, production.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://docker.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Docker</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t6_docker">Running services, model environments, reproducible deployments</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 7. Local Model Runtimes -->
+            <div class="stack-category fade">
+                <h3>🏠 <span data-i18n="stack_cat7_title">Local Model Runtimes</span></h3>
+                <p class="stack-why" data-i18n="stack_why7">Run models locally for testing before paying for cloud inference — and keep sensitive data private.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://ollama.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Ollama</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t7_ollama">Run LLMs locally with one command</span>
+                    </a>
+                    <a class="stack-tool" href="https://lmstudio.ai" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">LM Studio</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t7_lmstudio">GUI for downloading and running local models</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 8. Terminal + Linux Layer -->
+            <div class="stack-category fade">
+                <h3>⌨️ <span data-i18n="stack_cat8_title">Terminal + Linux Layer</span></h3>
+                <p class="stack-why" data-i18n="stack_why8">Most AI tools expect Linux environments. WSL gives you a full Linux environment on Windows.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://aka.ms/terminal" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Windows Terminal</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t8_terminal">Modern terminal with tabs, tabs, GPU acceleration</span>
+                    </a>
+                    <a class="stack-tool" href="https://learn.microsoft.com/powershell" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">PowerShell</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t8_powershell">Cross-platform automation and scripting</span>
+                    </a>
+                    <a class="stack-tool" href="https://learn.microsoft.com/windows/wsl" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">WSL</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t8_wsl">Full Linux environment on Windows</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 9. Automation Systems -->
+            <div class="stack-category fade">
+                <h3>⚡ <span data-i18n="stack_cat9_title">Automation Systems</span></h3>
+                <p class="stack-why" data-i18n="stack_why9">Connect AI agents to 1000+ apps without writing custom integrations.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://n8n.io" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">n8n</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t9_n8n">Open-source automation with AI workflow nodes</span>
+                    </a>
+                    <a class="stack-tool" href="https://zapier.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Zapier</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t9_zapier">No-code integration across 7000+ apps</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 10. Deployment Platforms -->
+            <div class="stack-category fade">
+                <h3>🚀 <span data-i18n="stack_cat10_title">Deployment Platforms</span></h3>
+                <p class="stack-why" data-i18n="stack_why10">One-click deployment from Git — or Docker — to production URLs.</p>
+                <div class="stack-tools">
+                    <a class="stack-tool" href="https://vercel.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Vercel</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t10_vercel">Frontend and serverless deployment platform</span>
+                    </a>
+                    <a class="stack-tool" href="https://railway.app" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Railway</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t10_railway">Full-stack deployment from Git repos and Docker</span>
+                    </a>
+                    <a class="stack-tool" href="https://render.com" target="_blank" rel="noopener">
+                        <span class="stack-tool-name">Render</span>
+                        <span class="stack-tool-sep">—</span>
+                        <span class="stack-tool-desc" data-i18n="stack_t10_render">Cloud platform for web services, APIs, and cron jobs</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ideal Stack Summary -->
+        <div class="stack-ideal-box">
+            <h3 data-i18n="stack_ideal_title">🎯 Ideal AI Builder Machine Setup</h3>
+            <p data-i18n="stack_ideal_desc">The minimum stack many builders use today:</p>
+            <div class="stack-ideal-list">
+                <span>VS Code</span>
+                <span>Git + GitHub</span>
+                <span>Python</span>
+                <span>Docker</span>
+                <span>Claude Desktop</span>
+                <span>Codex</span>
+                <span>OpenClaw</span>
+            </div>
+            <p><span class="stack-ideal-enables" data-i18n="stack_ideal_enables">That stack enables:</span> <span data-i18n="stack_ideal_what">coding, agent orchestration, AI development, automation, deployment</span></p>
         </div>
     </section>
 
@@ -1938,6 +2211,7 @@
                 footer_gu: 'પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે',
                 footer_en: 'જ્યાં પ્રાચીન કલા ભવિષ્યની બુદ્ધિમત્તાને મળે છે &nbsp;|&nbsp; કોર્સ © 2026 &nbsp;•&nbsp; Venice AI દ્વારા સંચાલિત',
                 nav_learning: 'શીખવાની રીત',
+                nav_stack: 'AI સ્ટેક',
                 nav_vocab: 'શબ્દ લેબ',
                 learning_title: '🧠 શીખવાની રીત',
                 learning_sub: 'આ કોર્સ પુખ્ત શીખવાના સિદ્ધાંતો પર બનેલો છે — કારણ કે જ્યારે શીખવાની વાત તમારા અનુભવ સાથે જોડાય, વાસ્તવિક સમસ્યાઓ ઉકેલે, અને તમને ડ્રાઈવિંગ સીટ પર મૂકે, ત્યારે તમે શ્રેષ્ઠ શીખો છો.',
@@ -1976,7 +2250,55 @@
                 settings_title: '🔑 API કી સેટિંગ્સ',
                 settings_desc: 'AI ટ્યુટર ચેટ ને સક્ષમ કરવા માટે તમારી Venice AI API કી દાખલ કરો. તમારી કી તમારા બ્રાઉઝરમાં સ્થાનિક રીતે સંગ્રહિત છે અને ક્યાંય મોકલવામાં આવતી નથી. કી venice.ai/settings/api પર મેળવો',
                 settings_save: 'કી સેવ કરો',
-                settings_cancel: 'રદ કરો'
+                settings_cancel: 'રદ કરો',
+                stack_title: '🛠️ AI સ્ટેક સેટઅપ 2026',
+                stack_subtitle: 'દરેક AI બિલ્ડરને જરૂરી ટૂલકિટ — એજન્ટ OS થી ડિપ્લોયમેન્ટ પ્લેટફોર્મ સુધી. આ છે તે 10 કેટેગરીઝ જે મોડર્ન AI ડેવલપમેન્ટને શક્તિશાળી બનાવે છે.',
+                stack_cat1_title: 'AI એજન્ટ ઓપરેટિંગ સિસ્ટમ્સ',
+                stack_why1: 'કમાન્ડ સેન્ટર્સ જ્યાં એજન્ટ્સ ચાલે અને સંકલિત થાય. એજન્ટ OS વિના, તમે દરેક AI કોલ મેન્યુઅલી ટ્રિગર કરો છો.',
+                stack_t1_openclaw: 'સ્વતંત્ર ટાસ્ક એક્ઝિક્યુશન, વર્કફ્લો ઓટોમેશન, મલ્ટિ-એજન્ટ કોઓર્ડિનેશન',
+                stack_cat2_title: 'AI એજન્ટ સુપરવાઇઝર્સ',
+                stack_why2: 'ફેરફાર AI ડેવલપર્સ એજન્ટ ટીમ્સનું સુપરવિઝન કરે છે, દરેક લાઇન લખવાને બદલે.',
+                stack_t2_claude: 'સ્થાનિક AI સહાયકો ચલાવે, કાર્યો ઓટોમેટ કરે, કમ્પ્યુટર-યુઝ ક્ષમતા',
+                stack_t2_codex: 'સમાંતરમાં ઘણા કોડિંગ એજન્ટ્સ મેનેજ કરે',
+                stack_cat3_title: 'AI-નેટિવ કોડ એડિટર્સ',
+                stack_why3: 'તમારું પ્રાથમિક વર્કસ્પેસ — જ્યાં તમે AI સહાયતા સાથે કોડ લખો, ડીબગ કરો, અને શિપ કરો.',
+                stack_t3_vscode: 'વિશાળ એક્સ્ટેન્શન ઇકોસિસ્ટમ સાથે ઇન્ડસ્ટ્રી-સ્ટાન્ડર્ડ એડિટર',
+                stack_t3_cursor: 'VS Code પર બનેલ AI-ફર્સ્ટ એડિટર, શક્તિશાળી ટેબ-કમ્પ્લીશન',
+                stack_t3_windsurf: 'Cascade એજેન્ટિક ફ્લો સાથે AI-નેટિવ એડિટર',
+                stack_cat4_title: 'વર્ઝન કંટ્રોલ',
+                stack_why4: 'દરેક AI પ્રોજેક્ટને વર્ઝન કંટ્રોલ જોઈએ — સહિયારા, રોલબેક, અને ડિપ્લોયમેન્ટ બધા અહીંથી શરૂ થાય.',
+                stack_t4_git: 'ડિસ્ટ્રિબ્યુટેડ સોર્સ કંટ્રોલ ફાઉન્ડેશન',
+                stack_t4_github: 'સહિયારા, CI/CD, ઓપન-સોર્સ ઇન્ટિગ્રેશન',
+                stack_cat5_title: 'પ્રોગ્રામિંગ એન્વાયરમેન્ટ્સ',
+                stack_why5: 'મોટાભાગના AI સ્ટેક Python (મોડેલ્સ માટે) અને Node.js (એજન્ટ્સ અને APIs માટે) જોડે છે.',
+                stack_t5_python: 'ML/AI ડેવલપમેન્ટ ભાષા',
+                stack_t5_node: 'એજન્ટ્સ, APIs, ઓટોમેશન રનટાઇમ',
+                stack_t5_conda: 'પેકેજ મેનેજમેન્ટ સાથે ડેટા સાયન્સ Python ડિસ્ટ્રિબ્યુશન',
+                stack_cat6_title: 'કન્ટેનરાઇઝેશન',
+                stack_why6: 'તમારું AI એન્વાયરમેન્ટ દરેક જગ્યાએ સમાન રીતે ચાલે તે સુનિશ્ચિત કરે — dev, staging, production.',
+                stack_t6_docker: 'સેવાઓ ચલાવવી, મોડેલ એન્વાયરમેન્ટ્સ, પુનઃઉત્પાદક ડિપ્લોયમેન્ટ્સ',
+                stack_cat7_title: 'સ્થાનિક મોડેલ રનટાઇમ્સ',
+                stack_why7: 'ક્લાઉડ ઇન્ફરન્સ માટે પેમેન્ટ કરતા પહેલા સ્થાનિક મોડેલ્સ ટેસ્ટ કરો — અને સંવેદનશીલ ડેટા ખાનગી રાખો.',
+                stack_t7_ollama: 'એક કમાન્ડ સાથે સ્થાનિક LLMs ચલાવો',
+                stack_t7_lmstudio: 'સ્થાનિક મોડેલ્સ ડાઉનલોડ અને ચલાવવા માટે GUI',
+                stack_cat8_title: 'ટર્મિનલ + Linux લેયર',
+                stack_why8: 'મોટાભાગના AI ટૂલ્સ Linux એન્વાયરમેન્ટ્સ ઈચ્છે. WSL તમને Windows પર સંપૂર્ણ Linux એન્વાયરમેન્ટ આપે.',
+                stack_t8_terminal: 'ટેબ્સ અને GPU એક્સેલેરેશન સાથે મોડર્ન ટર્મિનલ',
+                stack_t8_powershell: 'ક્રોસ-પ્લેટફોર્મ ઓટોમેશન અને સ્ક્રિપ્ટિંગ',
+                stack_t8_wsl: 'Windows પર સંપૂર્ણ Linux એન્વાયરમેન્ટ',
+                stack_cat9_title: 'ઓટોમેશન સિસ્ટમ્સ',
+                stack_why9: 'કસ્ટમ ઇન્ટિગ્રેશન લખ્યા વિના AI એજન્ટ્સને 1000+ એપ્સ સાથે જોડો.',
+                stack_t9_n8n: 'AI વર્કફ્લો નોડ્સ સાથે ઓપન-સોર્સ ઓટોમેશન',
+                stack_t9_zapier: '7000+ એપ્સમાં નો-કોડ ઇન્ટિગ્રેશન',
+                stack_cat10_title: 'ડિપ્લોયમેન્ટ પ્લેટફોર્મ્સ',
+                stack_why10: 'Git અથવા Docker થી પ્રોડક્શન URLs સુધી વન-ક્લિક ડિપ્લોયમેન્ટ.',
+                stack_t10_vercel: 'ફ્રન્ટએન્ડ અને સર્વરલેસ ડિપ્લોયમેન્ટ પ્લેટફોર્મ',
+                stack_t10_railway: 'Git રિપોઝ અને Docker થી ફુલ-સ્ટેક ડિપ્લોયમેન્ટ',
+                stack_t10_render: 'વેબ સેવાઓ, APIs, અને cron jobs માટે ક્લાઉડ પ્લેટફોર્મ',
+                stack_ideal_title: '🎯 આદર્શ AI બિલ્ડર મશીન સેટઅપ',
+                stack_ideal_desc: 'ઘણા બિલ્ડર્સ આજે વાપરતા ન્યૂનતમ સ્ટેક:',
+                stack_ideal_enables: 'આ સ્ટેક શક્ય બનાવે છે:',
+                stack_ideal_what: 'કોડિંગ, એજન્ટ ઓર્કેસ્ટ્રેશન, AI ડેવલપમેન્ટ, ઓટોમેશન, ડિપ્લોયમેન્ટ'
             }
         };
 
