@@ -77,6 +77,55 @@
         .lang-toggle:hover { border-color:var(--neon-cyan); background:rgba(0,245,255,0.08); }
         .lang-toggle .flag { font-size:1.1rem; }
 
+        /* ─── THEME TOGGLE ─── */
+        .theme-toggle {
+            display:inline-flex; align-items:center; gap:0.4rem;
+            background:var(--glass); border:1px solid var(--glass-border);
+            padding:0.45rem 0.9rem; border-radius:10px; cursor:pointer;
+            color:var(--stellar-gold); font-size:0.85rem; font-weight:600;
+            font-family:inherit; transition:all 0.3s; margin-left:0.3rem;
+        }
+        .theme-toggle:hover { border-color:var(--stellar-gold); background:rgba(255,215,0,0.08); }
+
+        /* ─── LIGHT THEME ─── */
+        [data-theme="light"] {
+            --deep-space: #F5F5FA;
+            --carbon: #FFFFFF;
+            --glass: rgba(0,0,0,0.04);
+            --glass-border: rgba(0,0,0,0.1);
+            --white: #1A1A2E;
+            --off-white: #2D2D44;
+            --silver: #555;
+            --neon-cyan: #0077B6;
+            --electric-purple: #7B2D8E;
+            --plasma-blue: #4A2D8E;
+            --quantum-pink: #D6336C;
+            --aurora-green: #0A8754;
+            --stellar-gold: #B8860B;
+        }
+        [data-theme="light"] body { background: linear-gradient(135deg, #F5F5FA, #E8E8F0); }
+        [data-theme="light"] .grid-bg { background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px); }
+        [data-theme="light"] nav { background: rgba(255,255,255,0.9); }
+        [data-theme="light"] nav.scrolled { background: rgba(255,255,255,0.97); }
+        [data-theme="light"] .mod-card { background: rgba(255,255,255,0.9); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .concept-card { background: rgba(255,255,255,0.92) !important; border-color: rgba(0,0,0,0.08) !important; }
+        [data-theme="light"] .claude-card { background: rgba(255,255,255,0.9); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .quiz-card { background: rgba(255,255,255,0.92); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .chat-panel { background: rgba(255,255,255,0.97); }
+        [data-theme="light"] .chat-msg.user { background: linear-gradient(135deg, var(--plasma-blue), var(--electric-purple)); }
+        [data-theme="light"] .chat-msg.assistant { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .def-box { background: rgba(0,119,182,0.06); border-color: rgba(0,119,182,0.2); }
+        [data-theme="light"] .ex-card { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .learning-card { background: rgba(255,255,255,0.92); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .stack-category { background: rgba(255,255,255,0.92); border-color: rgba(0,0,0,0.08); }
+        [data-theme="light"] .flashcard { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.1); }
+        [data-theme="light"] .hero::before { opacity: 0.06; }
+        [data-theme="light"] .hero h1 { text-shadow: none; }
+        [data-theme="light"] .hero-tag { border-color: rgba(0,0,0,0.1); color: var(--off-white); }
+        [data-theme="light"] .tab-btn { border-color: rgba(0,0,0,0.1); color: var(--silver); }
+        [data-theme="light"] .tab-btn.active { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+        [data-theme="light"] footer { border-top: 1px solid rgba(0,0,0,0.08); }
+
         /* ─── HERO ─── */
         .hero {
             min-height:100vh; display:flex; align-items:center; justify-content:center;
@@ -1106,6 +1155,7 @@
             <li><a href="#stack" data-i18n="nav_stack">AI Stack</a></li>
             <li><a href="#vocabulary" data-i18n="nav_vocab">Vocabulary Lab</a></li>
             <li><a href="#glossary" data-i18n="nav_glossary">Glossary</a></li>
+            <li><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Switch theme">☀️</button></li>
             <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span class="flag">🇮🇳</span> <span data-i18n="lang_btn">ગુજરાતી</span></button></li>
         </ul>
     </nav>
@@ -2955,6 +3005,25 @@
             const msgs = document.getElementById('chatMessages');
             msgs.scrollTop = msgs.scrollHeight;
         }
+
+        // ─── Theme Toggle ───
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('gujarati-theme', next);
+            document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+        }
+        // Load saved theme
+        (function() {
+            const savedTheme = localStorage.getItem('gujarati-theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                const tt = document.getElementById('themeToggle');
+                if (tt) tt.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            }
+        })();
 
         // ─── Init ───
         loadProgress();
